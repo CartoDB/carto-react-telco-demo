@@ -1,21 +1,21 @@
-import { VOYAGER } from '@carto/react/basemaps';
+import { GOOGLE_ROADMAP } from '@carto/react/basemaps';
 
 export const initialState = {
   viewState: {
-    latitude: 31.802892,
-    longitude: -103.007813,
-    zoom: 2,
+    latitude: 13.012379386614766,
+    longitude: 104.10658904368671,
+    zoom: 5,
     pitch: 0,
     bearing: 0,
     dragRotate: false,
   },
-  basemap: VOYAGER,
+  basemap: GOOGLE_ROADMAP,
   credentials: {
     username: 'TYPE HERE YOUR CARTO USERNAME',
     apiKey: 'default_public',
     serverUrlTemplate: 'https://{user}.carto.com',
   },
-  googleApiKey: '', // only required when using a Google Basemap
+  googleApiKey: process.env.REACT_APP_GOOGLE_API_KEY, // only required when using a Google Basemap
 };
 
 export const oauthInitialState = {

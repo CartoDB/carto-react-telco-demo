@@ -85,7 +85,6 @@ export function Map(props) {
       };
     }
   };
-
   if (basemap.type === 'mapbox') {
     map = (
       <DeckGL
