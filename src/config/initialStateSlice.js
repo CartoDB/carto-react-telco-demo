@@ -11,7 +11,7 @@ export const initialState = {
   },
   basemap: GOOGLE_ROADMAP,
   credentials: {
-    username: 'TYPE HERE YOUR CARTO USERNAME',
+    username: 'oshean',
     apiKey: 'default_public',
     serverUrlTemplate: 'https://{user}.carto.com',
   },
@@ -20,7 +20,7 @@ export const initialState = {
 
 export const oauthInitialState = {
   oauthApp: {
-    clientId: 'TYPE HERE YOUR OAUTH CLIENT ID',
+    clientId: 'LdOPmAYOcPLb',
     scopes: [
       'user:profile', // to load avatar photo
       'dataservices:geocoding', // to use geocoding through Data Services API
