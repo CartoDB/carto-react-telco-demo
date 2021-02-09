@@ -1,4 +1,10 @@
 import { useRef } from 'react';
+import { useEffect } from 'react';
+import openCellIdSource from 'data/sources/openCellIdSource';
+
+import { OPEN_CELL_ID_LAYER_ID } from 'components/layers/OpenCellIdLayer';
+
+import { addLayer, removeLayer, addSource, removeSource } from '@carto/react/redux';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -165,6 +171,22 @@ export default function Main() {
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const mobileContainer = useRef(null);
   const desktopContainer = useRef(null);
+
+  useEffect(() => {
+    dispatch(addSource(openCellIdSource));
+
+    dispatch(
+      addLayer({
+        id: OPEN_CELL_ID_LAYER_ID,
+        source: openCellIdSource.id,
+      })
+    );
+
+    return function cleanup() {
+      dispatch(removeLayer(OPEN_CELL_ID_LAYER_ID));
+      dispatch(removeSource(openCellIdSource.id));
+    };
+  }, [dispatch]);
 
   // Auto import useEffect
 

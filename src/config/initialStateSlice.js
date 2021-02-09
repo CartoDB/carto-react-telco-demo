@@ -11,8 +11,8 @@ export const initialState = {
   },
   basemap: GOOGLE_ROADMAP,
   credentials: {
-    username: 'oshean',
-    apiKey: 'default_public',
+    username: process.env.REACT_APP_CARTO_USERNAME,
+    apiKey: process.env.REACT_APP_CARTO_API_KEY,
     serverUrlTemplate: 'https://{user}.carto.com',
   },
   googleApiKey: process.env.REACT_APP_GOOGLE_API_KEY, // only required when using a Google Basemap
@@ -20,7 +20,7 @@ export const initialState = {
 
 export const oauthInitialState = {
   oauthApp: {
-    clientId: 'LdOPmAYOcPLb',
+    clientId: process.env.REACT_APP_CARTO_CLIENT_ID,
     scopes: [
       'user:profile', // to load avatar photo
       'dataservices:geocoding', // to use geocoding through Data Services API
