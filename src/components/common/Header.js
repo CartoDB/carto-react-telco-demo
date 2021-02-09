@@ -74,6 +74,13 @@ const NavigationMenu = (props) => {
           variant={vertical ? 'fullWidth' : 'standard'}
         >
           <Tab label='Home' value='' component={NavLink} to='/' />
+          <Tab
+            label='Capex'
+            value='capex'
+            component={NavLink}
+            to='/capex'
+            className={classes.navLink}
+          />
           {/* Auto import links */}
         </Tabs>
       </Grid>
