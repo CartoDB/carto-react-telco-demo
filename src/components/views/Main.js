@@ -1,4 +1,8 @@
 import { useRef } from 'react';
+import populationSource from 'data/sources/populationSource';
+
+import { POPULATION_LAYER_ID } from 'components/layers/PopulationLayer';
+
 import { useEffect } from 'react';
 import openCellIdSource from 'data/sources/openCellIdSource';
 
@@ -185,6 +189,22 @@ export default function Main() {
     return function cleanup() {
       dispatch(removeLayer(OPEN_CELL_ID_LAYER_ID));
       dispatch(removeSource(openCellIdSource.id));
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(addSource(populationSource));
+
+    dispatch(
+      addLayer({
+        id: POPULATION_LAYER_ID,
+        source: populationSource.id,
+      })
+    );
+
+    return function cleanup() {
+      dispatch(removeLayer(POPULATION_LAYER_ID));
+      dispatch(removeSource(populationSource.id));
     };
   }, [dispatch]);
 
