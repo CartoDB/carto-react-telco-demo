@@ -73,7 +73,13 @@ const NavigationMenu = (props) => {
           orientation={vertical ? 'vertical' : 'horizontal'}
           variant={vertical ? 'fullWidth' : 'standard'}
         >
-          <Tab label='Home' value='' component={NavLink} to='/' />
+          <Tab
+            label='Profiling'
+            value='profiling'
+            component={NavLink}
+            to='/profiling'
+            className={classes.navLink}
+          />
           <Tab
             label='Capex'
             value='capex'
