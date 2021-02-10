@@ -1,4 +1,8 @@
 import { useRef } from 'react';
+import internetSpeedsSource from 'data/sources/internetSpeedsSource';
+
+import { INTERNET_SPEEDS_LAYER_ID } from 'components/layers/InternetSpeedsLayer';
+
 import populationSource from 'data/sources/populationSource';
 
 import { POPULATION_LAYER_ID } from 'components/layers/PopulationLayer';
@@ -34,6 +38,7 @@ import { getLayers } from 'components/layers';
 import { setBottomSheetOpen, setError } from 'config/appSlice';
 import cartoLogo from 'assets/img/carto-logo-map.svg';
 
+import LayerSelect from 'components/LayerSelect';
 const drawerWidth = 350;
 
 const useStyles = makeStyles((theme) => ({
@@ -163,6 +168,11 @@ const useStyles = makeStyles((theme) => ({
       bottom: theme.spacing(5),
     },
   },
+  layerSelect: {
+    position: 'absolute',
+    right: theme.spacing(4),
+    top: theme.spacing(4),
+  },
 }));
 
 export default function Main() {
@@ -179,12 +189,12 @@ export default function Main() {
   useEffect(() => {
     dispatch(addSource(openCellIdSource));
 
-    dispatch(
-      addLayer({
-        id: OPEN_CELL_ID_LAYER_ID,
-        source: openCellIdSource.id,
-      })
-    );
+    // dispatch(
+    //   addLayer({
+    //     id: OPEN_CELL_ID_LAYER_ID,
+    //     source: openCellIdSource.id,
+    //   })
+    // );
 
     return function cleanup() {
       dispatch(removeLayer(OPEN_CELL_ID_LAYER_ID));
@@ -195,16 +205,32 @@ export default function Main() {
   useEffect(() => {
     dispatch(addSource(populationSource));
 
-    dispatch(
-      addLayer({
-        id: POPULATION_LAYER_ID,
-        source: populationSource.id,
-      })
-    );
+    // dispatch(
+    //   addLayer({
+    //     id: POPULATION_LAYER_ID,
+    //     source: populationSource.id,
+    //   })
+    // );
 
     return function cleanup() {
       dispatch(removeLayer(POPULATION_LAYER_ID));
       dispatch(removeSource(populationSource.id));
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(addSource(internetSpeedsSource));
+
+    dispatch(
+      addLayer({
+        id: INTERNET_SPEEDS_LAYER_ID,
+        source: internetSpeedsSource.id,
+      })
+    );
+
+    return function cleanup() {
+      dispatch(removeLayer(INTERNET_SPEEDS_LAYER_ID));
+      dispatch(removeSource(internetSpeedsSource.id));
     };
   }, [dispatch]);
 
@@ -278,6 +304,7 @@ export default function Main() {
       <Grid item className={`${classes.mapWrapper} ${isGmaps ? classes.gmaps : ''}`}>
         <Map layers={getLayers()} />
         <GeocoderWidget className={classes.geocoder} onError={onGeocoderWidgetError} />
+        <LayerSelect className={classes.layerSelect} />
         <Hidden xsDown>
           <ZoomControl className={classes.zoomControl} />
         </Hidden>
