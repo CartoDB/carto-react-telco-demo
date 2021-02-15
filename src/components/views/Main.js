@@ -1,4 +1,8 @@
 import { useRef } from 'react';
+import thailandAdminSource from 'data/sources/thailandAdminSource';
+
+import { THAILAND_ADMIN_LAYER_ID } from 'components/layers/ThailandAdminLayer';
+
 import internetSpeedsSource from 'data/sources/internetSpeedsSource';
 
 import { INTERNET_SPEEDS_LAYER_ID } from 'components/layers/InternetSpeedsLayer';
@@ -221,16 +225,32 @@ export default function Main() {
   useEffect(() => {
     dispatch(addSource(internetSpeedsSource));
 
-    dispatch(
-      addLayer({
-        id: INTERNET_SPEEDS_LAYER_ID,
-        source: internetSpeedsSource.id,
-      })
-    );
+    // dispatch(
+    //   addLayer({
+    //     id: INTERNET_SPEEDS_LAYER_ID,
+    //     source: internetSpeedsSource.id,
+    //   })
+    // );
 
     return function cleanup() {
       dispatch(removeLayer(INTERNET_SPEEDS_LAYER_ID));
       dispatch(removeSource(internetSpeedsSource.id));
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(addSource(thailandAdminSource));
+
+    dispatch(
+      addLayer({
+        id: THAILAND_ADMIN_LAYER_ID,
+        source: thailandAdminSource.id,
+      })
+    );
+
+    return function cleanup() {
+      dispatch(removeLayer(THAILAND_ADMIN_LAYER_ID));
+      dispatch(removeSource(thailandAdminSource.id));
     };
   }, [dispatch]);
 
