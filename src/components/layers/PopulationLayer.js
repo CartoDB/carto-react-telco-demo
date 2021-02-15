@@ -16,6 +16,7 @@ export default function PopulationLayer() {
       ...cartoFilterProps,
       id: POPULATION_LAYER_ID,
       data: source.data,
+      credentials: source.credentials,
       getFillColor: [119, 221, 119],
       pointRadiusMinPixels: 2,
       pickable: true,
