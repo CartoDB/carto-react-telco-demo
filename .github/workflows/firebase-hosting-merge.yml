@@ -12,6 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn && yarn build
+        env:
+          REACT_APP_CARTO_API_KEY: '${{ secrets.REACT_APP_CARTO_API_KEY }}'
+          REACT_APP_CARTO_USERNAME: '${{ secrets.REACT_APP_CARTO_USERNAME }}'
+          REACT_APP_CARTO_CLIENT_ID: '${{ secrets.REACT_APP_CARTO_CLIENT_ID }}'
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
