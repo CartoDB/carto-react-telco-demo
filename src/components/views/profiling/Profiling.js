@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
 
-function Stores() {
+function Profiling() {
   // Auto import useEffect
 
   return <Outlet />;
 }
 
-export default Stores;
+export default Profiling;
