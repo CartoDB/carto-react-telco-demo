@@ -114,22 +114,18 @@ export default function Profiling() {
           <WrapperWidgetUI title='Population Breakdown'>
             <CategoryWidgetUI
               data={[
-                { category: '10', value: 100 },
-                { category: '20', value: 50 },
-                { category: '30', value: 25 },
-                { category: '40', value: 12 },
-                { category: '50', value: 6 },
-                { category: '60', value: 3 },
-                { category: '70', value: 1 },
+                { category: 'C', value: 50 },
+                { category: 'D', value: 25 },
+                { category: 'E', value: 12 },
+                { category: 'B', value: 6 },
+                { category: 'A', value: 3 },
               ]}
               labels={{
-                10: '10mbps',
-                20: '20mbps',
-                30: '30mbps',
-                40: '40mbps',
-                50: '50mbps',
-                60: '60mbps',
-                70: '70mbps',
+                A: 'Class A',
+                C: 'Class C',
+                B: 'Class B',
+                D: 'Class D',
+                E: 'Class E',
               }}
               formatter={JSON.stringify}
               tooltipFormatter={([series]) => `Total: ${series.value}`}

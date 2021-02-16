@@ -18,6 +18,11 @@ export default function OpenCellIdLayer() {
       data: source.data,
       credentials: source.credentials,
       getFillColor: [241, 109, 122],
+      getRadius: (object) => {
+        const size = Math.ceil(object.properties.number_of_towers / 10) + 2;
+        return size >= 15 ? 15 : size;
+      },
+      pointRadiusUnits: 'pixels',
       pointRadiusMinPixels: 2,
       pickable: true,
       onHover: (info) => {
