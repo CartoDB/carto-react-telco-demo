@@ -5,7 +5,10 @@ import Main from 'components/views/Main';
 import NotFound from 'components/views/NotFound';
 
 import Capex from 'components/views/Capex.js';
-import Profiling from 'components/views/Profiling.js';
+import Profiling from 'components/views/profiling/Profiling.js';
+import ProfilingList from 'components/views/profiling/ProfilingList.js';
+import ProfilingDetails from 'components/views/profiling/ProfilingDetails.js';
+
 // Auto import
 const routes = [
   {
@@ -13,7 +16,14 @@ const routes = [
     element: <Main />,
     children: [
       { path: '/', element: <Navigate to='/profiling' /> },
-      { path: '/profiling', element: <Profiling /> },
+      {
+        path: '/profiling',
+        element: <Profiling />,
+        children: [
+          { path: '/', element: <ProfilingList /> },
+          { path: '/:id', element: <ProfilingDetails /> },
+        ],
+      },
       { path: '/capex', element: <Capex /> },
 
       // Auto import routes

@@ -1,4 +1,4 @@
-import { GOOGLE_ROADMAP } from '@carto/react/basemaps';
+import { GOOGLE_ROADMAP, VOYAGER } from '@carto/react/basemaps';
 
 export const initialState = {
   viewState: {
@@ -9,7 +9,7 @@ export const initialState = {
     bearing: 0,
     dragRotate: false,
   },
-  basemap: GOOGLE_ROADMAP,
+  basemap: VOYAGER, // Gmaps is buggy and i dont like it
   credentials: {
     username: process.env.REACT_APP_CARTO_USERNAME,
     apiKey: process.env.REACT_APP_CARTO_API_KEY,
