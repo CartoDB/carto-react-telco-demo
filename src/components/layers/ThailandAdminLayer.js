@@ -14,12 +14,11 @@ export default function ThailandAdminLayer() {
     selectSourceById(state, thailandAdminLayer?.source)
   );
   const cartoFilterProps = useCartoLayerFilterProps(source);
-
   const getLineColor = useCallback(
     (f) => {
-      return f.properties.adm3_pcode_key === thailandAdminLayer.selectedAdmin
+      return f.properties.adm2_pcode === thailandAdminLayer.selectedAdmin
         ? [255, 0, 0]
-        : [0, 0, 0, 0];
+        : [0, 0, 0, 60];
     },
     [thailandAdminLayer]
   );
@@ -36,8 +35,11 @@ export default function ThailandAdminLayer() {
       getLineWidth: 3,
       onClick: (info) => {
         if (info?.object) {
-          navigate(`/profiling/${info.object.properties.adm3_pcode_key}`);
+          navigate(`/profiling/${info.object.properties.adm2_pcode}`);
         }
+      },
+      updateTriggers: {
+        getLineColor: getLineColor,
       },
       pickable: true,
       onHover: (info) => {

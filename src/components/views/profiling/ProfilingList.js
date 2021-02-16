@@ -22,7 +22,7 @@ export default function Profiling() {
   const dispatch = useDispatch();
   // Auto import useEffec
 
-  const onTotalRevenueWidgetError = (error) => {
+  const onTotalPopulationWidgetError = (error) => {
     dispatch(setError(`Error obtaining total population: ${error.message}`));
   };
   return (
@@ -37,7 +37,7 @@ export default function Profiling() {
         dataSource={thailandAdminSource.id}
         column='population'
         operation={AggregationTypes.SUM}
-        onError={onTotalRevenueWidgetError}
+        onError={onTotalPopulationWidgetError}
         formatter={numberFormatter}
         viewportFilter
       />

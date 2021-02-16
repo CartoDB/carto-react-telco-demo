@@ -33,3 +33,27 @@ export const numberFormatter = (value) => {
     compactDisplay: 'short',
   }).format(value);
 };
+
+export const internetSpeedFormatter = (value) => {
+  return {
+    suffix: 'mbps',
+    value: Intl.NumberFormat('en-US', {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+      notation: 'compact',
+      compactDisplay: 'short',
+    }).format(isNaN(value) ? 0 : value),
+  };
+};
+
+export const percentageFormatter = (value) => {
+  return {
+    suffix: ' %',
+    value: Intl.NumberFormat('en-US', {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+      notation: 'compact',
+      compactDisplay: 'short',
+    }).format(isNaN(value) ? 0 : value),
+  };
+};
