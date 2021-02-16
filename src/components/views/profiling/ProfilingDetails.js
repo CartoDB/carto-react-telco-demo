@@ -5,7 +5,7 @@ import { Divider, Grid, Typography, CircularProgress } from '@material-ui/core';
 
 import { selectSourceById, updateLayer } from '@carto/react/redux';
 
-import { AggregationTypes, FormulaWidget } from '@carto/react/widgets';
+import { FormulaWidgetUI, WrapperWidgetUI } from '@carto/react/ui';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setError } from 'config/appSlice';
@@ -35,15 +35,20 @@ export default function Profiling() {
     if (!source) return;
     const { credentials } = source;
     const abortController = new AbortController();
-    getAdmin({ id, credentials, opts: { abortController } }).then((admin) => {
-      setAdminDetail(admin);
-    });
     dispatch(
       updateLayer({
         id: THAILAND_ADMIN_LAYER_ID,
         layerAttributes: { selectedAdmin: id },
       })
     );
+    getAdmin({ id, credentials, opts: { abortController } })
+      .then((admin) => {
+        setAdminDetail(admin);
+      })
+      .catch((error) => {
+        if (error.name === 'AbortError') return;
+        dispatch(setError(`getRevenuePerMonth error: ${error.message}`));
+      });
     return () => {
       dispatch(
         updateLayer({
@@ -54,11 +59,6 @@ export default function Profiling() {
       abortController.abort();
     };
   }, [dispatch, source, id, location.state]);
-
-  const onTotalRevenueWidgetError = (error) => {
-    dispatch(setError(`Error obtaining total population: ${error.message}`));
-  };
-  console.dir(adminDetail?.population);
   return (
     <>
       {adminDetail == null ? (
@@ -71,12 +71,13 @@ export default function Profiling() {
             Geographic Profiling: {adminDetail.adm3_th} ({adminDetail.adm3_en})
           </Typography>
           <Divider />
-          <FormulaWidget
-            id='totalPopulation'
-            title='Total Population'
-            data={adminDetail.population}
-            formatter={numberFormatter}
-          />
+          <WrapperWidgetUI title='Total Population'>
+            <FormulaWidgetUI
+              title='Total Population'
+              data={adminDetail.population}
+              formatter={numberFormatter}
+            />
+          </WrapperWidgetUI>
         </Grid>
       )}
     </>

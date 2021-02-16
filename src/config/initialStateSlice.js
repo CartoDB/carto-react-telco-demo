@@ -1,4 +1,4 @@
-import { GOOGLE_ROADMAP, VOYAGER } from '@carto/react/basemaps';
+import { VOYAGER } from '@carto/react/basemaps';
 
 export const initialState = {
   viewState: {
