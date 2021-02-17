@@ -1,7 +1,4 @@
 import { useRef } from 'react';
-import thailandAdminSource from 'data/sources/thailandAdminSource';
-
-import { THAILAND_ADMIN_LAYER_ID } from 'components/layers/ThailandAdminLayer';
 
 import internetSpeedsSource from 'data/sources/internetSpeedsSource';
 
@@ -16,7 +13,7 @@ import openCellIdSource from 'data/sources/openCellIdSource';
 
 import { OPEN_CELL_ID_LAYER_ID } from 'components/layers/OpenCellIdLayer';
 
-import { addLayer, removeLayer, addSource, removeSource } from '@carto/react/redux';
+import { removeLayer, addSource, removeSource } from '@carto/react/redux';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -235,22 +232,6 @@ export default function Main() {
     return function cleanup() {
       dispatch(removeLayer(INTERNET_SPEEDS_LAYER_ID));
       dispatch(removeSource(internetSpeedsSource.id));
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(addSource(thailandAdminSource));
-
-    dispatch(
-      addLayer({
-        id: THAILAND_ADMIN_LAYER_ID,
-        source: thailandAdminSource.id,
-      })
-    );
-
-    return function cleanup() {
-      dispatch(removeLayer(THAILAND_ADMIN_LAYER_ID));
-      dispatch(removeSource(thailandAdminSource.id));
     };
   }, [dispatch]);
 
