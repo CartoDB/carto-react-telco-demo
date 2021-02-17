@@ -8,8 +8,7 @@ import { makeStyles } from '@material-ui/core';
 import { setViewState } from '@carto/react/redux';
 import { BASEMAPS, GoogleMap } from '@carto/react/basemaps';
 
-import { CapexOverlayItem } from 'components/overlay/CapexOverlay';
-import { HtmlOverlay, HtmlOverlayItem } from '@nebula.gl/overlays';
+import CapexOverlay from 'components/overlay/CapexOverlay';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(1, 1.5),
       borderRadius: theme.shape.borderRadius,
       backgroundColor: theme.palette.common.white,
-      color: theme.palette.grey, // TODO: Add emphasis colors to theme
+      color: theme.palette.grey[900], // TODO: Add emphasis colors to theme
       transform: `translate(-50%, calc(-100% - ${theme.spacing(2.5)}px))`,
 
       '& .arrow': {
@@ -70,10 +69,10 @@ const useStyles = makeStyles((theme) => ({
         left: '50%',
         width: 0,
         height: 0,
-        marginLeft: theme.spacing(-1),
-        borderLeft: `${theme.spacing(1)}px solid transparent`,
-        borderRight: `${theme.spacing(1)}px solid transparent`,
-        borderTop: `${theme.spacing(1)}px solid ${theme.palette.common.white}`,
+        marginLeft: theme.spacing(-2),
+        borderLeft: `${theme.spacing(2)}px solid transparent`,
+        borderRight: `${theme.spacing(2)}px solid transparent`,
+        borderTop: `${theme.spacing(2)}px solid ${theme.palette.common.white}`,
       },
     },
   },
@@ -124,17 +123,12 @@ export function Map(props) {
         getCursor={handleCursor}
         getTooltip={handleTooltip}
       >
-        <StaticMap reuseMaps mapStyle={basemap.options.mapStyle} preventStyleDiffing />
-        <HtmlOverlay>
-          <HtmlOverlayItem coordinates={[100.50155639648438, 13.64198320382471]}>
-            <div className={classes.popup}>
-              <div class='content'>
-                <CapexOverlayItem />
-                <div class='arrow'></div>
-              </div>
-            </div>
-          </HtmlOverlayItem>
-        </HtmlOverlay>
+        <CapexOverlay className={classes.popup} />
+        <StaticMap
+          reuseMaps
+          mapStyle={basemap.options.mapStyle}
+          preventStyleDiffing
+        ></StaticMap>
       </DeckGL>
     );
   } else if (basemap.type === 'gmaps') {

@@ -36,7 +36,7 @@ export default function Capex() {
     dispatch(
       updateLayer({
         id: PIN_LAYER_ID,
-        layerAttributes: { radius: value },
+        layerAttributes: { radius: value, summaryData: null }, // reset summary data
       })
     );
   }, [value, dispatch]);
@@ -44,6 +44,16 @@ export default function Capex() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+  const loadData = () => {
+    //insertAPICall
+    const data = { data: 'test' };
+    dispatch(
+      updateLayer({
+        id: PIN_LAYER_ID,
+        layerAttributes: { summaryData: data },
+      })
+    );
   };
   return (
     <Grid container direction='column' className={classes.root}>
@@ -61,7 +71,7 @@ export default function Capex() {
         />
       </Grid>
       <Grid item className={classes.sliderContainer}>
-        <Button variant='contained' color='primary'>
+        <Button variant='contained' color='primary' onClick={loadData}>
           Load Radius
         </Button>
       </Grid>
