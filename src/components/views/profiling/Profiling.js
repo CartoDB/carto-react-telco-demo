@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import thailandAdminSource from 'data/sources/thailandAdminSource';
 import { THAILAND_ADMIN_LAYER_ID } from 'components/layers/ThailandAdminLayer';
 import { addLayer, removeLayer, addSource, removeSource } from '@carto/react/redux';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 function Profiling() {
   const dispatch = useDispatch();

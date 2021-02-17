@@ -3,6 +3,7 @@ import OpenCellIdLayer from './OpenCellIdLayer';
 import PopulationLayer from './PopulationLayer';
 import InternetSpeedsLayer from './InternetSpeedsLayer';
 import ThailandAdminLayer from './ThailandAdminLayer';
+import PinLayer from './PinLayer';
 // Auto import
 
 export const getLayers = () => {
@@ -12,6 +13,7 @@ export const getLayers = () => {
     PopulationLayer(),
     InternetSpeedsLayer(),
     ThailandAdminLayer(),
+    PinLayer(),
     // Auto import layers
   ];
 };
