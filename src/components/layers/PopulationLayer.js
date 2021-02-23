@@ -2,8 +2,7 @@ import { useSelector } from 'react-redux';
 import { CartoBQTilerLayer } from '@deck.gl/carto';
 import { selectSourceById } from '@carto/react/redux';
 import { useCartoLayerFilterProps } from '@carto/react/api';
-import htmlForFeature from 'utils/htmlForFeature';
-
+import renderPopulationTooltip from 'components/tooltip/populationTooltip';
 export const POPULATION_LAYER_ID = 'populationLayer';
 
 const COLORS = {
@@ -49,7 +48,7 @@ export default function PopulationLayer() {
       onHover: (info) => {
         if (info?.object) {
           info.object = {
-            html: htmlForFeature(info.object),
+            html: renderPopulationTooltip(info.object),
             style: {},
           };
         }

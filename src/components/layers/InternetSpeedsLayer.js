@@ -2,7 +2,8 @@ import { useSelector } from 'react-redux';
 import { CartoBQTilerLayer } from '@deck.gl/carto';
 import { selectSourceById } from '@carto/react/redux';
 import { useCartoLayerFilterProps } from '@carto/react/api';
-import htmlForFeature from 'utils/htmlForFeature';
+
+import renderInternetSpeedsTooltip from 'components/tooltip/internetSpeedsTooltip';
 
 export const INTERNET_SPEEDS_LAYER_ID = 'internetSpeedsLayer';
 
@@ -51,7 +52,7 @@ export default function InternetSpeedsLayer() {
       onHover: (info) => {
         if (info?.object) {
           info.object = {
-            html: htmlForFeature(info.object),
+            html: renderInternetSpeedsTooltip(info.object),
             style: {},
           };
         }
