@@ -9,11 +9,11 @@ import PinLayer from './PinLayer';
 export const getLayers = () => {
   return [
     GeocoderLayer(),
+    ThailandAdminLayer(),
+    PinLayer(),
     OpenCellIdLayer(),
     PopulationLayer(),
     InternetSpeedsLayer(),
-    ThailandAdminLayer(),
-    PinLayer(),
     // Auto import layers
   ];
 };

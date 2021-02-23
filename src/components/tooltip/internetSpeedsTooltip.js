@@ -1,18 +1,18 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 
-const renderInternetSpeeds = (feature) => {
-  return renderToString(
+import { makeStyles } from '@material-ui/core';
+const useStyles = makeStyles((theme) => ({
+  sectionTitle: {
+    fontWeight: 'bold',
+    fontSize: '14px',
+  },
+}));
+const InternetSpeedTooltip = () => {
+  const classes = useStyles();
+  return (
     <div style={{ width: 200 }}>
-      <div
-        style={{
-          fontWeight: 'bold',
-          fontSize: '14px',
-          marginTop: '5px',
-        }}
-      >
-        Fixed Speeds{' '}
-      </div>
+      <div className={classes.sectionTitle}>Fixed Speeds </div>
       <div
         style={{
           display: 'flex',
@@ -40,15 +40,7 @@ const renderInternetSpeeds = (feature) => {
         <strong>Average Latency: (ms)</strong>
         10
       </div>
-      <div
-        style={{
-          fontWeight: 'bold',
-          fontSize: '14px',
-          marginTop: '5px',
-        }}
-      >
-        Mobile Speeds{' '}
-      </div>
+      <div className={classes.sectionTitle}>Fixed Speeds </div>
       <div
         style={{
           display: 'flex',
@@ -78,6 +70,11 @@ const renderInternetSpeeds = (feature) => {
       </div>
     </div>
   );
+};
+const renderInternetSpeeds = (feature) => {
+  const str = renderToString(<InternetSpeedTooltip feature={feature} />);
+  console.dir(str);
+  return str;
 };
 
 export default renderInternetSpeeds;

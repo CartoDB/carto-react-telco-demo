@@ -8,13 +8,13 @@ import renderInternetSpeedsTooltip from 'components/tooltip/internetSpeedsToolti
 export const INTERNET_SPEEDS_LAYER_ID = 'internetSpeedsLayer';
 
 const COLORS = {
-  ONE_MILLION: [207, 89, 126],
-  HUNDRED_THOUSAND: [232, 133, 113],
-  TEN_THOUSAND: [238, 180, 121],
-  THOUSAND: [233, 226, 156],
-  HUNDRED: [156, 203, 134],
-  TEN: [57, 177, 133],
-  OTHER: [0, 147, 146],
+  ONE_MILLION: [207, 89, 126, 128],
+  HUNDRED_THOUSAND: [232, 133, 113, 128],
+  TEN_THOUSAND: [238, 180, 121, 128],
+  THOUSAND: [233, 226, 156, 128],
+  HUNDRED: [156, 203, 134, 128],
+  TEN: [57, 177, 133, 128],
+  OTHER: [0, 147, 146, 128],
 };
 export default function InternetSpeedsLayer() {
   const { internetSpeedsLayer } = useSelector((state) => state.carto.layers);

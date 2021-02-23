@@ -20,13 +20,13 @@ export default function OpenCellIdLayer() {
       credentials: source.credentials,
       getFillColor: (object) => {
         if (object.properties.radio === 'LTE') {
-          return [207, 89, 126];
+          return [207, 89, 126, 128];
         } else if (object.properties.radio === 'UMTS') {
-          return [238, 180, 121];
+          return [238, 180, 121, 128];
         } else if (object.properties.radio === 'GSM') {
-          return [156, 203, 134];
+          return [156, 203, 134, 128];
         } else {
-          return [0, 147, 146];
+          return [0, 147, 146, 128];
         }
       },
       pointRadiusUnits: 'pixels',

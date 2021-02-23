@@ -2,9 +2,9 @@ import { VOYAGER } from '@carto/react/basemaps';
 
 export const initialState = {
   viewState: {
-    latitude: 13.012379386614766,
-    longitude: 104.10658904368671,
-    zoom: 5,
+    latitude: 13.921457408056295,
+    longitude: 100.78633522577707,
+    zoom: 9,
     pitch: 0,
     bearing: 0,
     dragRotate: false,

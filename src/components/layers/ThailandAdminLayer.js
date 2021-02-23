@@ -3,13 +3,11 @@ import { useSelector } from 'react-redux';
 import { CartoSQLLayer } from '@deck.gl/carto';
 import { selectSourceById } from '@carto/react/redux';
 import { useCartoLayerFilterProps } from '@carto/react/api';
-import { useNavigate } from 'react-router-dom';
 
 export const THAILAND_ADMIN_LAYER_ID = 'thailandAdminLayer';
 
 export default function ThailandAdminLayer() {
   const { thailandAdminLayer } = useSelector((state) => state.carto.layers);
-  const navigate = useNavigate();
   const source = useSelector((state) =>
     selectSourceById(state, thailandAdminLayer?.source)
   );
@@ -33,11 +31,6 @@ export default function ThailandAdminLayer() {
       lineWidthMinPixels: 2,
       lineWidthUnits: 'pixel',
       getLineWidth: 3,
-      onClick: (info) => {
-        if (info?.object) {
-          navigate(`/profiling/${info.object.properties.adm2_pcode}`);
-        }
-      },
       updateTriggers: {
         getLineColor: getLineColor,
       },
