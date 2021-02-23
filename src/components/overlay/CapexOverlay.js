@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Box, makeStyles, Typography, Divider, Paper } from '@material-ui/core';
 import { HtmlOverlay, HtmlOverlayItem } from '@nebula.gl/overlays';
 import { connect } from 'react-redux';
@@ -21,16 +22,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 export const CapexOverlayItem = ({ className }) => {
   const classes = useStyles();
+  const { pinLayer } = useSelector((state) => state.carto.layers);
   return (
     <Box className={classes.root}>
       <Box className={classes.section}>
         <Typography variant='h5'>USD 486k</Typography>
-        <Typography variant='subtitle'>Untapped Market Potential</Typography>
+        <Typography variant='subtitle1'>Untapped Market Potential</Typography>
       </Box>
       <Divider flexItem className={classes.divider} />
       <Box className={classes.section}>
-        <Typography variant='h6'>58%</Typography>
-        <Typography variant='subtitle'>Competition Market Coverage</Typography>
+        <Typography variant='h6'>
+          {(
+            (pinLayer.summaryData.companyb /
+              (pinLayer.summaryData.companya + pinLayer.summaryData.companyb)) *
+            100
+          ).toFixed(2)}{' '}
+          %
+        </Typography>
+        <Typography variant='subtitle1'>Competition Market Coverage</Typography>
       </Box>
       <Divider flexItem className={classes.divider} />
       <Box className={classes.section}>

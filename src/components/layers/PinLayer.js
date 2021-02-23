@@ -1,11 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { EditableGeoJsonLayer } from '@nebula.gl/layers';
-import { DrawPointMode } from '@nebula.gl/edit-modes';
+import { DrawPointMode, ViewMode } from '@nebula.gl/edit-modes';
 import { updateLayer } from '@carto/react/redux';
 export const PIN_LAYER_ID = 'pinLayer';
 export default function PinLayer() {
   const { pinLayer } = useSelector((state) => state.carto.layers);
   const dispatch = useDispatch();
+  console.dir(pinLayer);
   const updatePointData = (updatedData) => {
     dispatch(
       updateLayer({
@@ -32,7 +33,7 @@ export default function PinLayer() {
       },
       getRadius: pinLayer.radius || 1000,
       pointRadiusUnits: 'meters',
-      mode: DrawPointMode,
+      mode: pinLayer.draw ? DrawPointMode : ViewMode,
       opacity: 1,
       _subLayerProps: {
         geojson: {

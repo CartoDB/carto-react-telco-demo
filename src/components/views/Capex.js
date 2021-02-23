@@ -1,10 +1,22 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Slider, Typography, Button } from '@material-ui/core';
+import {
+  Grid,
+  Slider,
+  Typography,
+  Button,
+  Switch,
+  FormGroup,
+  FormControlLabel,
+} from '@material-ui/core';
 import { PIN_LAYER_ID } from 'components/layers/PinLayer';
-import { addLayer, removeLayer, updateLayer } from '@carto/react/redux';
+import { addLayer, removeLayer, updateLayer, setError } from '@carto/react/redux';
 
+import CreateIcon from '@material-ui/icons/Create';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+import { getSummaryOfPoint } from 'data/models/capexSummary';
 const useStyles = makeStyles((theme) => ({
   root: {},
   title: {
@@ -18,7 +30,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Capex() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState(1000);
+  const { pinLayer } = useSelector((state) => state.carto.layers);
+  const credentials = useSelector((state) => state.carto.credentials);
+  const [sliderValue, setSliderValue] = React.useState(1000);
+
+  const [drawMode, setDrawMode] = React.useState(false);
 
   useEffect(() => {
     dispatch(
@@ -36,38 +52,66 @@ export default function Capex() {
     dispatch(
       updateLayer({
         id: PIN_LAYER_ID,
-        layerAttributes: { radius: value, summaryData: null }, // reset summary data
+        layerAttributes: { radius: sliderValue, summaryData: null }, // reset summary data
       })
     );
-  }, [value, dispatch]);
+  }, [sliderValue, dispatch]);
   // Auto import useEffect
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleSliderChange = (event, newValue) => {
+    setSliderValue(newValue);
   };
-  const loadData = () => {
-    //insertAPICall
-    const data = { data: 'test' };
+  const handleToggleDraw = (event) => {
+    setDrawMode(event.target.checked);
     dispatch(
       updateLayer({
         id: PIN_LAYER_ID,
-        layerAttributes: { summaryData: data },
+        layerAttributes: { draw: event.target.checked },
       })
     );
+  };
+  const loadData = () => {
+    //insertAPICall
+    getSummaryOfPoint({
+      point: pinLayer.pointData.geometry,
+      buffer: pinLayer.radius,
+      credentials,
+    })
+      .then((data) => {
+        dispatch(
+          updateLayer({
+            id: PIN_LAYER_ID,
+            layerAttributes: { summaryData: data },
+          })
+        );
+      })
+      .catch((error) => {
+        if (error.name === 'AbortError') return;
+        dispatch(setError(`getSummaryofPoint error: ${error.message}`));
+      });
   };
   return (
     <Grid container direction='column' className={classes.root}>
       <Typography variant='h5' gutterBottom className={classes.title}>
         Smart Capex Investment
       </Typography>
+      <Grid className={classes.sliderContainer}>
+        <FormGroup row>
+          <FormControlLabel
+            control={
+              <Switch checked={drawMode} onChange={handleToggleDraw} name='Draw mode' />
+            }
+            label={'Drop center of radius'}
+          />
+        </FormGroup>
+      </Grid>
       <Grid item className={classes.sliderContainer}>
-        <Typography variant='h6'>Radius: {value}m</Typography>
+        <Typography variant='h6'>Radius: {sliderValue}m</Typography>
         <Slider
           min={1000}
           max={10000}
-          value={value}
-          onChange={handleChange}
-          aria-labelledby='continuous-slider'
+          value={sliderValue}
+          onChange={handleSliderChange}
         />
       </Grid>
       <Grid item className={classes.sliderContainer}>
