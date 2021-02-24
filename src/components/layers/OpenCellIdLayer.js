@@ -19,11 +19,9 @@ export default function OpenCellIdLayer() {
       data: source.data,
       credentials: source.credentials,
       getFillColor: (object) => {
-        if (object.properties.radio === 'LTE') {
+        if (object.properties.network_operator === 'Company A') {
           return [207, 89, 126, 128];
-        } else if (object.properties.radio === 'UMTS') {
-          return [238, 180, 121, 128];
-        } else if (object.properties.radio === 'GSM') {
+        } else if (object.properties.network_operator === 'Company B') {
           return [156, 203, 134, 128];
         } else {
           return [0, 147, 146, 128];

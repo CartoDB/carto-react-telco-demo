@@ -19,6 +19,15 @@ const renderOpenCellIdTooltip = (feature) => {
           justifyContent: 'space-between',
         }}
       >
+        <strong style={{ marginRight: '5px' }}>Network Operator:</strong>
+        <span>{feature.properties.network_operator}</span>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
         <strong style={{ marginRight: '5px' }}>Last updated at:</strong>
         <span>2020-08-01</span>
       </div>

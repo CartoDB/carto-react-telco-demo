@@ -73,7 +73,6 @@ const InternetSpeedTooltip = () => {
 };
 const renderInternetSpeeds = (feature) => {
   const str = renderToString(<InternetSpeedTooltip feature={feature} />);
-  console.dir(str);
   return str;
 };
 
