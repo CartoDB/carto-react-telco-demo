@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Grid,
-  Slider,
-  Typography,
-  Button,
-  Switch,
-  FormGroup,
-  FormControlLabel,
-} from '@material-ui/core';
+import { Grid, Slider, Typography, Button } from '@material-ui/core';
+import { ToggleButton } from '@material-ui/lab';
 import { PIN_LAYER_ID } from 'components/layers/PinLayer';
 import { addLayer, removeLayer, updateLayer, setError } from '@carto/react/redux';
 
 import { getSummaryOfPoint } from 'data/models/capexSummary';
+
+import PinDropIcon from '@material-ui/icons/PinDrop';
+
 const useStyles = makeStyles((theme) => ({
   root: {},
   title: {
@@ -21,6 +17,25 @@ const useStyles = makeStyles((theme) => ({
   },
   sliderContainer: {
     padding: theme.spacing(3, 3, 1.5),
+  },
+  drawToolsContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(3, 3, 1.5),
+  },
+  drawButton: {
+    '&.MuiToggleButton-root': {
+      '&.Mui-selected': {
+        backgroundColor: theme.palette.primary.light,
+        color: theme.palette.primary.contrastText,
+      },
+      color: theme.palette.primary.light,
+      backgroundColor: theme.palette.primary.contrastText,
+      border: `solid 2px ${theme.palette.primary.light}`,
+    },
+  },
+  drawButtonContainer: {
+    margin: 10,
   },
 }));
 
@@ -59,11 +74,11 @@ export default function Capex() {
     setSliderValue(newValue);
   };
   const handleToggleDraw = (event) => {
-    setDrawMode(event.target.checked);
+    setDrawMode(!drawMode);
     dispatch(
       updateLayer({
         id: PIN_LAYER_ID,
-        layerAttributes: { draw: event.target.checked },
+        layerAttributes: { draw: !drawMode },
       })
     );
   };
@@ -92,16 +107,20 @@ export default function Capex() {
       <Typography variant='h5' gutterBottom className={classes.title}>
         Smart Capex Investment
       </Typography>
-      <Grid className={classes.sliderContainer}>
+      <Grid className={classes.drawToolsContainer}>
+        <div className={classes.drawButtonContainer}>
+          <ToggleButton
+            className={classes.drawButton}
+            color='primary'
+            variant='outlined'
+            value='check'
+            selected={drawMode}
+            onChange={handleToggleDraw}
+          >
+            <PinDropIcon />
+          </ToggleButton>
+        </div>
         <Typography>Drop a pin to determine market potential of this area</Typography>
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Switch checked={drawMode} onChange={handleToggleDraw} name='Draw mode' />
-            }
-            label={'Drop center of radius'}
-          />
-        </FormGroup>
       </Grid>
       <Grid item className={classes.sliderContainer}>
         <Typography variant='h6'>Radius: {sliderValue}m</Typography>
@@ -114,7 +133,7 @@ export default function Capex() {
       </Grid>
       <Grid item className={classes.sliderContainer}>
         <Button variant='contained' color='primary' onClick={loadData}>
-          Load Radius
+          Calculate Metrics
         </Button>
       </Grid>
     </Grid>
