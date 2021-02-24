@@ -93,6 +93,7 @@ export default function Capex() {
         Smart Capex Investment
       </Typography>
       <Grid className={classes.sliderContainer}>
+        <Typography>Drop a pin to determine market potential of this area</Typography>
         <FormGroup row>
           <FormControlLabel
             control={

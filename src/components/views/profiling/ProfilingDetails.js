@@ -81,7 +81,10 @@ export default function Profiling() {
           </Typography>
           <Divider />
           <WrapperWidgetUI title='Total Population'>
-            <FormulaWidgetUI data={adminDetail.population} formatter={numberFormatter} />
+            <FormulaWidgetUI
+              data={adminDetail.total_population}
+              formatter={numberFormatter}
+            />
           </WrapperWidgetUI>
           <WrapperWidgetUI title='Current Market Coverage'>
             <FormulaWidgetUI data={10.1} formatter={percentageFormatter} />
@@ -114,20 +117,18 @@ export default function Profiling() {
           <WrapperWidgetUI title='Population Breakdown'>
             <CategoryWidgetUI
               data={[
-                { category: 'C', value: 50 },
-                { category: 'D', value: 25 },
-                { category: 'E', value: 12 },
-                { category: 'B', value: 6 },
-                { category: 'A', value: 3 },
+                { category: 'population_women', value: adminDetail.population_women },
+                { category: 'population_men', value: adminDetail.population_men },
+                { category: 'population_youth', value: adminDetail.population_youth },
+                { category: 'population_elderly', value: adminDetail.population_elderly },
               ]}
               labels={{
-                A: 'Class A',
-                C: 'Class C',
-                B: 'Class B',
-                D: 'Class D',
-                E: 'Class E',
+                population_women: 'Women',
+                population_men: 'Men',
+                population_youth: 'Youth',
+                population_elderly: 'Elderly',
               }}
-              formatter={JSON.stringify}
+              formatter={numberFormatter}
               tooltipFormatter={([series]) => `Total: ${series.value}`}
             />
           </WrapperWidgetUI>

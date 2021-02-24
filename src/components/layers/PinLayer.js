@@ -6,7 +6,6 @@ export const PIN_LAYER_ID = 'pinLayer';
 export default function PinLayer() {
   const { pinLayer } = useSelector((state) => state.carto.layers);
   const dispatch = useDispatch();
-  console.dir(pinLayer);
   const updatePointData = (updatedData) => {
     dispatch(
       updateLayer({
