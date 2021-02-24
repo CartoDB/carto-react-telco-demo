@@ -4,12 +4,7 @@ import { Divider, Grid, Typography } from '@material-ui/core';
 
 import { AggregationTypes, FormulaWidget, CategoryWidget } from '@carto/react/widgets';
 
-import {
-  FormulaWidgetUI,
-  WrapperWidgetUI,
-  HistogramWidgetUI,
-  CategoryWidgetUI,
-} from '@carto/react/ui';
+import { FormulaWidgetUI, WrapperWidgetUI, HistogramWidgetUI } from '@carto/react/ui';
 import { useDispatch } from 'react-redux';
 import { setError } from 'config/appSlice';
 import { numberFormatter, percentageFormatter } from 'utils/formatter';
