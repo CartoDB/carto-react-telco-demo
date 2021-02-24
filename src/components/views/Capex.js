@@ -13,9 +13,6 @@ import {
 import { PIN_LAYER_ID } from 'components/layers/PinLayer';
 import { addLayer, removeLayer, updateLayer, setError } from '@carto/react/redux';
 
-import CreateIcon from '@material-ui/icons/Create';
-import DeleteIcon from '@material-ui/icons/Delete';
-
 import { getSummaryOfPoint } from 'data/models/capexSummary';
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -87,7 +84,7 @@ export default function Capex() {
       })
       .catch((error) => {
         if (error.name === 'AbortError') return;
-        dispatch(setError(`getSummaryofPoint error: ${error.message}`));
+        dispatch(setError(`getSummaryOfPoint error: ${error.message}`));
       });
   };
   return (
