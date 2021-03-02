@@ -13,7 +13,7 @@ const routes = [
     path: '/',
     element: <Main />,
     children: [
-      { path: '/', element: <Navigate to='/profiling/' /> },
+      { path: '/', element: <Navigate to='/profiling' /> },
       {
         path: '/profiling',
         element: <Profiling />,
