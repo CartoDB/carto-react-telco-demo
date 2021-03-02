@@ -78,10 +78,10 @@ function Profiling() {
     };
   }, [dispatch]);
 
+  // Auto import useEffect
   const onTotalPopulationWidgetError = (error) => {
     dispatch(setError(`Error obtaining total population: ${error.message}`));
   };
-  // Auto import useEffect
   const classes = useStyles();
   return (
     <Grid container direction='column' className={classes.root}>
