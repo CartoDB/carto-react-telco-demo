@@ -42,7 +42,7 @@ export const internetSpeedFormatter = (value) => {
       minimumFractionDigits: 2,
       notation: 'compact',
       compactDisplay: 'short',
-    }).format(isNaN(value) ? 0 : value),
+    }).format(isNaN(value) ? 0 : value / 1000),
   };
 };
 
