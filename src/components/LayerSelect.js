@@ -1,4 +1,3 @@
-import React from 'react';
 import internetSpeedsSource from 'data/sources/internetSpeedsSource';
 
 import { INTERNET_SPEEDS_LAYER_ID } from 'components/layers/InternetSpeedsLayer';
@@ -18,6 +17,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { useLocation } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +44,7 @@ export function LayerSelect({ ...props }) {
   const classes = useStyles();
   const activeLayers = useSelector((state) => state.carto.layers);
   const dispatch = useDispatch();
-
+  const location = useLocation();
   const setPopulationLayer = (active) => {
     if (active) {
       dispatch(
@@ -80,6 +81,7 @@ export function LayerSelect({ ...props }) {
       dispatch(removeLayer(INTERNET_SPEEDS_LAYER_ID));
     }
   };
+  if (location.pathname !== '/profiling/') return null;
   return (
     <Paper className={`${props.className} ${classes.root}`} elevation={2}>
       <Typography className={classes.title} variant='caption'>
