@@ -1,4 +1,3 @@
-import { useCallback, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import DeckGL from '@deck.gl/react';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -8,10 +7,6 @@ import { makeStyles } from '@material-ui/core';
 
 import { setViewState } from '@carto/react/redux';
 import { BASEMAPS, GoogleMap } from '@carto/react/basemaps';
-import { useNavigate } from 'react-router-dom';
-import { THAILAND_ADMIN_LAYER_ID } from 'components/layers/ThailandAdminLayer';
-
-import CapexOverlay from 'components/overlay/CapexOverlay';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,36 +50,9 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  popup: {
-    '& .content': {
-      ...theme.typography.caption,
-      position: 'relative',
-      padding: theme.spacing(1, 1.5),
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: theme.palette.common.white,
-      color: theme.palette.grey[900], // TODO: Add emphasis colors to theme
-      transform: `translate(-50%, calc(-100% - ${theme.spacing(2.5)}px))`,
-
-      '& .arrow': {
-        display: 'block',
-        position: 'absolute',
-        top: 'calc(100% - 1px)',
-        left: '50%',
-        width: 0,
-        height: 0,
-        marginLeft: theme.spacing(-2),
-        borderLeft: `${theme.spacing(2)}px solid transparent`,
-        borderRight: `${theme.spacing(2)}px solid transparent`,
-        borderTop: `${theme.spacing(2)}px solid ${theme.palette.common.white}`,
-      },
-    },
-  },
 }));
 
 export function Map(props) {
-  const deckRef = useRef(null);
-  const ref = useRef(null);
-  const navigate = useNavigate();
   const viewState = useSelector((state) => state.carto.viewState);
   const basemap = useSelector((state) => BASEMAPS[state.carto.basemap]);
   const googleApiKey = useSelector((state) => state.carto.googleApiKey);
@@ -92,31 +60,6 @@ export function Map(props) {
   const classes = useStyles();
   let isHovering = false;
   let map;
-  // Custom handleClick to allow selecting a
-  // ThailandAdminLayer even if other layers are on top of it
-  const handleClick = useCallback(
-    (event) => {
-      if (ref && deckRef) {
-        // Need to offset clientX and clientY as for some reason
-        // they are using the entire page
-        const offsetX = ref.current.getBoundingClientRect().left;
-        const offsetY = ref.current.getBoundingClientRect().top;
-        const pickInfos = deckRef.current.pickObjects({
-          x: event.clientX - offsetX,
-          y: event.clientY - offsetY,
-          layerIds: [THAILAND_ADMIN_LAYER_ID],
-        });
-        if (pickInfos) {
-          const info = pickInfos[0];
-          if (info?.object) {
-            navigate(`/profiling/${info.object.properties.adm2_pcode}`);
-          }
-        }
-      }
-    },
-    [ref, deckRef, navigate]
-  );
-
   const handleViewStateChange = ({ viewState }) => {
     dispatch(setViewState(viewState));
   };
@@ -144,7 +87,6 @@ export function Map(props) {
   if (basemap.type === 'mapbox') {
     map = (
       <DeckGL
-        ref={deckRef}
         viewState={{ ...viewState }}
         controller={true}
         layers={props.layers}
@@ -154,7 +96,6 @@ export function Map(props) {
         getCursor={handleCursor}
         getTooltip={handleTooltip}
       >
-        <CapexOverlay className={classes.popup} />
         <StaticMap
           reuseMaps
           mapStyle={basemap.options.mapStyle}
@@ -178,9 +119,5 @@ export function Map(props) {
     map = <div>Not a valid map provider</div>;
   }
 
-  return (
-    <div className={classes.root} ref={ref} onClick={handleClick}>
-      {map}
-    </div>
-  );
+  return <div className={classes.root}>{map}</div>;
 }

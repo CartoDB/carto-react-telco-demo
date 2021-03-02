@@ -41,6 +41,7 @@ export default function Profiling() {
         operation={AggregationTypes.SUM}
         onError={onTotalPopulationWidgetError}
         formatter={numberFormatter}
+        viewportFilter
       />
       <WrapperWidgetUI title='Current Market Coverage'>
         <FormulaWidgetUI data={10.1} formatter={percentageFormatter} />

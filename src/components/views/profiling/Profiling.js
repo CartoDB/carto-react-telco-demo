@@ -1,31 +1,22 @@
-import { Outlet } from 'react-router-dom';
-import { useEffect } from 'react';
-import thailandAdminSource from 'data/sources/thailandAdminSource';
-import { THAILAND_ADMIN_LAYER_ID } from 'components/layers/ThailandAdminLayer';
-import { addLayer, removeLayer, addSource, removeSource } from '@carto/react/redux';
-import { useDispatch } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography } from '@material-ui/core';
 
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  title: {
+    padding: theme.spacing(3, 3, 1.5),
+  },
+}));
 function Profiling() {
-  const dispatch = useDispatch();
   // Auto import useEffect
-
-  useEffect(() => {
-    dispatch(addSource(thailandAdminSource));
-
-    dispatch(
-      addLayer({
-        id: THAILAND_ADMIN_LAYER_ID,
-        source: thailandAdminSource.id,
-      })
-    );
-
-    return function cleanup() {
-      dispatch(removeLayer(THAILAND_ADMIN_LAYER_ID));
-      dispatch(removeSource(thailandAdminSource.id));
-    };
-  }, [dispatch]);
-
-  return <Outlet />;
+  const classes = useStyles();
+  return (
+    <Grid container direction='column' className={classes.root}>
+      <Typography variant='h5' gutterBottom className={classes.title}>
+        Geographic Profiling
+      </Typography>
+    </Grid>
+  );
 }
 
 export default Profiling;
