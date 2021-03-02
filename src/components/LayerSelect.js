@@ -81,7 +81,7 @@ export function LayerSelect({ ...props }) {
       dispatch(removeLayer(INTERNET_SPEEDS_LAYER_ID));
     }
   };
-  if (location.pathname !== '/profiling/') return null;
+  if (location.pathname !== '/profiling') return null;
   return (
     <Paper className={`${props.className} ${classes.root}`} elevation={2}>
       <Typography className={classes.title} variant='caption'>
