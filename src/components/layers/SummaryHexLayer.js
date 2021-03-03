@@ -21,6 +21,7 @@ const COLORS = [
 ];
 const maxPopulationValue = 5000;
 const maxPotentialRevenue = 3000000;
+const maxNumCellTower = 100;
 export default function SummaryHexLayer() {
   const { summaryHexLayer } = useSelector((state) => state.carto.layers);
   const source = useSelector((state) => selectSourceById(state, summaryHexLayer?.source));
@@ -30,11 +31,30 @@ export default function SummaryHexLayer() {
       if (summaryHexLayer) {
         const populationSlider = summaryHexLayer.totalPopulation || 100;
         const maxRevenueSlider = summaryHexLayer.maxRevenue || 300000;
+        const numOfCellTowersSlider = summaryHexLayer.numOfCellTowers || 10;
+        const marketCoverageSlider = (summaryHexLayer.marketCoverage || 50) * 0.01;
+        const competitorMarketCoverageSlider =
+          (summaryHexLayer.competitorMarketCoverage || 50) * 0.01;
         const popDiff =
-          (object.properties.total_pop - populationSlider) / maxPopulationValue;
+          ((object.properties.total_pop || 0) - populationSlider) / maxPopulationValue;
         const potRevenueDiff =
-          (object.properties.potential_revenue - maxRevenueSlider) / maxPotentialRevenue;
-        const distance = Math.sqrt(popDiff * popDiff + potRevenueDiff * potRevenueDiff);
+          ((object.properties.potential_revenue || 0) - maxRevenueSlider) /
+          maxPotentialRevenue;
+        const numOfCellTowerDiff =
+          ((object.properties.num_celltowers || 0) - numOfCellTowersSlider) /
+          maxNumCellTower;
+        const marketCoverageDiff =
+          (object.properties.market_share || 0) - marketCoverageSlider;
+        const competitorMarketCoverageDiff =
+          (object.properties.competitor_market_share || 0) -
+          competitorMarketCoverageSlider;
+        const distance = Math.hypot(
+          popDiff,
+          potRevenueDiff,
+          numOfCellTowerDiff,
+          marketCoverageDiff,
+          competitorMarketCoverageDiff
+        );
         const color = COLORS[Math.round(distance * 10)];
         return color ? color : COLORS[9];
       }

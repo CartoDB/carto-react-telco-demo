@@ -26,6 +26,7 @@ import { setBottomSheetOpen, setError } from 'config/appSlice';
 import cartoLogo from 'assets/img/carto-logo-map.svg';
 
 import LayerSelect from 'components/LayerSelect';
+import InfoPanel from 'components/InfoPanel';
 const drawerWidth = 350;
 
 const useStyles = makeStyles((theme) => ({
@@ -160,6 +161,12 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(4),
     top: theme.spacing(4),
   },
+  infoPanel: {
+    position: 'absolute',
+    right: theme.spacing(4),
+    top: theme.spacing(4),
+    width: 250,
+  },
 }));
 
 export default function Main() {
@@ -244,6 +251,7 @@ export default function Main() {
         <Map layers={getLayers()} />
         <GeocoderWidget className={classes.geocoder} onError={onGeocoderWidgetError} />
         <LayerSelect className={classes.layerSelect} />
+        <InfoPanel className={classes.infoPanel} />
         <Hidden xsDown>
           <ZoomControl className={classes.zoomControl} />
         </Hidden>

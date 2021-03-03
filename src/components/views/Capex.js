@@ -50,6 +50,9 @@ export default function Capex() {
   const [sliderValues, setSliderValues] = React.useState({
     totalPopulation: 100,
     maxRevenue: 300000,
+    numOfCellTowers: 10,
+    marketCoverage: 50,
+    competitorMarketCoverage: 50,
   });
 
   useEffect(() => {
@@ -90,6 +93,45 @@ export default function Capex() {
           value={sliderValues.totalPopulation}
           onChange={(e, totalPopulation) =>
             setSliderValues((state) => ({ ...state, totalPopulation }))
+          }
+        />
+      </Grid>
+      <Grid item className={classes.sliderContainer}>
+        <Typography variant='h6'>
+          Number of Cell Towers: {sliderValues.numOfCellTowers}
+        </Typography>
+        <Slider
+          min={0}
+          max={100}
+          value={sliderValues.numOfCellTowers}
+          onChange={(e, numOfCellTowers) =>
+            setSliderValues((state) => ({ ...state, numOfCellTowers }))
+          }
+        />
+      </Grid>
+      <Grid item className={classes.sliderContainer}>
+        <Typography variant='h6'>
+          Market Coverage: {sliderValues.marketCoverage}%
+        </Typography>
+        <Slider
+          min={0}
+          max={100}
+          value={sliderValues.marketCoverage}
+          onChange={(e, marketCoverage) =>
+            setSliderValues((state) => ({ ...state, marketCoverage }))
+          }
+        />
+      </Grid>
+      <Grid item className={classes.sliderContainer}>
+        <Typography variant='h6'>
+          Competitor Market Coverage: {sliderValues.competitorMarketCoverage} %
+        </Typography>
+        <Slider
+          min={0}
+          max={100}
+          value={sliderValues.competitorMarketCoverage}
+          onChange={(e, competitorMarketCoverage) =>
+            setSliderValues((state) => ({ ...state, competitorMarketCoverage }))
           }
         />
       </Grid>
