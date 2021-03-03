@@ -149,7 +149,7 @@ function Profiling() {
           />
           <CategoryWidget
             id='cellIdRadio'
-            title='Cell tower by radio'
+            title='Cell tower by Technology'
             dataSource={openCellIdSource.id}
             column='radio'
             operation={AggregationTypes.COUNT}
