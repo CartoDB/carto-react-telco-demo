@@ -29,19 +29,18 @@ export default function InternetSpeedsLayer() {
       id: INTERNET_SPEEDS_LAYER_ID,
       data: source.data,
       credentials: source.credentials,
+      maxZoom: 10,
       getFillColor: (object) => {
         // Apply color based on an attribute
-        if (object.properties.avg_d_kbps > 100000) {
+        if (object.properties.mobile_avg_d_kbps > 80000) {
           return COLORS.ONE_MILLION;
-        } else if (object.properties.avg_d_kbps > 50000) {
+        } else if (object.properties.mobile_avg_d_kbps > 60000) {
           return COLORS.HUNDRED_THOUSAND;
-        } else if (object.properties.avg_d_kbps > 10000) {
+        } else if (object.properties.mobile_avg_d_kbps > 40000) {
           return COLORS.TEN_THOUSAND;
-        } else if (object.properties.avg_d_kbps > 5000) {
+        } else if (object.properties.mobile_avg_d_kbps > 20000) {
           return COLORS.THOUSAND;
-        } else if (object.properties.avg_d_kbps > 1000) {
-          return COLORS.HUNDRED;
-        } else if (object.properties.avg_d_kbps > 500) {
+        } else if (object.properties.mobile_avg_d_kbps > 0) {
           return COLORS.TEN;
         } else {
           return COLORS.OTHER;

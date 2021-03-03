@@ -120,6 +120,18 @@ function Profiling() {
             formatter={numberFormatter}
             viewportFilter
           />
+
+          <HistogramWidget
+            id='populationDensity'
+            title='Population Density'
+            dataSource={populationSource.id}
+            column='total_population'
+            operation={AggregationTypes.COUNT}
+            ticks={[0, 10, 100, 1000, 10000]}
+            onError={onTotalPopulationWidgetError}
+            formatter={numberFormatter}
+            viewportFilter
+          />
         </>
       ) : null}
 
