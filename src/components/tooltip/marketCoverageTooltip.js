@@ -1,7 +1,7 @@
 import { renderToString } from 'react-dom/server';
 import { Box, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
-import { percentageFormatter, populationTooltipFormatter } from 'utils/formatter';
+import { percentageFormatter } from 'utils/formatter';
 const useStyles = makeStyles((theme) => ({
   root: {},
   populationValue: {
