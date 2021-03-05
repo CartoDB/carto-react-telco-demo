@@ -1,20 +1,23 @@
 import { renderToString } from 'react-dom/server';
 
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
-
-import PublishIcon from '@material-ui/icons/Publish';
-import GetAppIcon from '@material-ui/icons/GetApp';
+import { internetSpeedFormatter } from 'utils/formatter';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
   section: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: '0 10px',
   },
   title: {
     fontWeight: 'bold',
     fontSize: '18px',
+  },
+  divider: {
+    margin: '10px',
   },
 }));
 const InternetSpeedTooltip = ({ feature }) => {
@@ -28,36 +31,33 @@ const InternetSpeedTooltip = ({ feature }) => {
         </Typography>
       </Box>
       <Box className={classes.section}>
-        <PublishIcon />
-        <Typography variant='subtitle2'>Average Upload</Typography>
+        <Typography variant='subtitle2'>Average Upload (mbps)</Typography>
         <Typography variant='subtitle2' className={classes.company}>
-          {feature.properties.fixed_avg_u_kbps}
+          {internetSpeedFormatter(feature.properties.fixed_avg_u_kbps).value}
         </Typography>
       </Box>
       <Box className={classes.section}>
-        <GetAppIcon />
-        <Typography variant='subtitle2'>Average Download</Typography>
+        <Typography variant='subtitle2'>Average Download (mbps)</Typography>
         <Typography variant='subtitle2' className={classes.company}>
-          {feature.properties.fixed_avg_d_kbps}
+          {internetSpeedFormatter(feature.properties.fixed_avg_d_kbps).value}
         </Typography>
       </Box>
+      <Divider className={classes.divider} />
       <Box className={classes.section}>
         <Typography className={classes.title} variant='h5'>
           Mobile Internet Speed
         </Typography>
       </Box>
       <Box className={classes.section}>
-        <PublishIcon />
-        <Typography variant='subtitle2'>Average Upload</Typography>
+        <Typography variant='subtitle2'>Average Upload (mbps)</Typography>
         <Typography variant='subtitle2' className={classes.company}>
-          {feature.properties.mobile_avg_u_kbps}
+          {internetSpeedFormatter(feature.properties.mobile_avg_u_kbps).value}
         </Typography>
       </Box>
       <Box className={classes.section}>
-        <GetAppIcon />
-        <Typography variant='subtitle2'>Average Download</Typography>
+        <Typography variant='subtitle2'>Average Download (mbps)</Typography>
         <Typography variant='subtitle2' className={classes.company}>
-          {feature.properties.mobile_avg_d_kbps}
+          {internetSpeedFormatter(feature.properties.mobile_avg_d_kbps).value}
         </Typography>
       </Box>
     </Box>
