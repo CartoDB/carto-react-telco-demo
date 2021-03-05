@@ -67,14 +67,7 @@ export default function SummaryHexLayer() {
       updateTriggers: {
         getFillColor: getFillColor,
       },
-      onHover: (info) => {
-        if (info?.object) {
-          info.object = {
-            html: htmlForFeature(info.object),
-            style: {},
-          };
-        }
-      },
+      onHover: () => {},
     });
   }
 }
