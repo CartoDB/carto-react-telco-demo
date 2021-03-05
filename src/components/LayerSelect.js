@@ -12,6 +12,9 @@ import { OPEN_CELL_ID_LAYER_ID } from 'components/layers/OpenCellIdLayer';
 import marketCoverageSource from 'data/sources/marketCoverageSource';
 
 import { MARKET_COVERAGE_LAYER_ID } from 'components/layers/MarketCoverageLayer';
+import potentialRevenueSource from 'data/sources/potentialRevenueSource';
+
+import { POTENTIAL_REVENUE_LAYER_ID } from 'components/layers/PotentialRevenueLayer';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Paper from '@material-ui/core/Paper';
@@ -96,6 +99,18 @@ export function LayerSelect({ ...props }) {
       dispatch(removeLayer(MARKET_COVERAGE_LAYER_ID));
     }
   };
+  const setPotentialRevenue = (active) => {
+    if (active) {
+      dispatch(
+        addLayer({
+          id: POTENTIAL_REVENUE_LAYER_ID,
+          source: potentialRevenueSource.id,
+        })
+      );
+    } else {
+      dispatch(removeLayer(MARKET_COVERAGE_LAYER_ID));
+    }
+  };
   if (location.pathname !== '/profiling') return null;
   return (
     <Paper className={`${props.className} ${classes.root}`} elevation={2}>
@@ -153,6 +168,19 @@ export function LayerSelect({ ...props }) {
             />
           }
           label='Market Coverage'
+        />
+      </Grid>
+      <Grid container direction='row' alignItems='center'>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={'potentialRevenueLayer' in activeLayers}
+              name='potentialRevenue'
+              onClick={(e) => setPotentialRevenue(e.target.checked)}
+              color='primary'
+            />
+          }
+          label='Potential Revenue'
         />
       </Grid>
     </Paper>

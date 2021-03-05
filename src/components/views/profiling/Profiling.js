@@ -1,4 +1,8 @@
 import { useEffect } from 'react';
+import potentialRevenueSource from 'data/sources/potentialRevenueSource';
+
+import { POTENTIAL_REVENUE_LAYER_ID } from 'components/layers/PotentialRevenueLayer';
+
 import marketCoverageSource from 'data/sources/marketCoverageSource';
 
 import { MARKET_COVERAGE_LAYER_ID } from 'components/layers/MarketCoverageLayer';
@@ -39,6 +43,7 @@ function Profiling() {
     internetSpeedsLayer,
     openCellIdLayer,
     marketCoverageLayer,
+    potentialRevenueLayer,
   } = useSelector((state) => state.carto.layers);
 
   useEffect(() => {
@@ -100,6 +105,22 @@ function Profiling() {
     return function cleanup() {
       dispatch(removeLayer(MARKET_COVERAGE_LAYER_ID));
       dispatch(removeSource(marketCoverageSource.id));
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(addSource(potentialRevenueSource));
+
+    // dispatch(
+    //   addLayer({
+    //     id: POTENTIAL_REVENUE_LAYER_ID,
+    //     source: potentialRevenueSource.id,
+    //   })
+    // );
+
+    return function cleanup() {
+      dispatch(removeLayer(POTENTIAL_REVENUE_LAYER_ID));
+      dispatch(removeSource(potentialRevenueSource.id));
     };
   }, [dispatch]);
 
@@ -255,6 +276,30 @@ function Profiling() {
             operation={AggregationTypes.COUNT}
             ticks={[0, 0.2, 0.4, 0.6]}
             onError={onTotalPopulationWidgetError}
+            viewportFilter
+          />
+        </>
+      ) : null}
+      {potentialRevenueLayer ? (
+        <>
+          <FormulaWidget
+            id='totalPotentialRevenue'
+            title='Total Potential Revenue'
+            dataSource={potentialRevenueSource.id}
+            column='potential_revenue'
+            operation={AggregationTypes.SUM}
+            onError={onTotalPopulationWidgetError}
+            formatter={numberFormatter}
+            viewportFilter
+          />
+          <CategoryWidget
+            id='revenueTier'
+            title='Revenue Tier'
+            dataSource={potentialRevenueSource.id}
+            column='tier'
+            operation={AggregationTypes.COUNT}
+            onError={onTotalPopulationWidgetError}
+            formatter={numberFormatter}
             viewportFilter
           />
         </>

@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { CartoBQTilerLayer } from '@deck.gl/carto';
 import { selectSourceById } from '@carto/react/redux';
 import { useCartoLayerFilterProps } from '@carto/react/api';
-import htmlForFeature from 'utils/htmlForFeature';
 
 export const SUMMARY_HEX_LAYER_ID = 'summaryHexLayer';
 
