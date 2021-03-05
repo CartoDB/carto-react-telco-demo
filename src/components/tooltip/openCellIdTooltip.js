@@ -1,30 +1,39 @@
 import { renderToString } from 'react-dom/server';
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
+import { PICTON_BLUE, YELLOW_ORANGE } from 'utils/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
-  value: {
+  radioValue: {
     fontWeight: 'bold',
     fontSize: '24px',
   },
-  section: {
+  titleSection: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 5,
   },
-  companySection: {
+  section: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    padding: 5,
   },
-  title: {
-    padding: 2,
+  column: {
+    padding: '0 10px',
   },
   company: {
-    fontWeight: 'bold',
+    padding: '0 10px',
+  },
+  companyA: {
+    color: PICTON_BLUE.hex,
+  },
+  companyB: {
+    color: YELLOW_ORANGE.hex,
   },
 }));
 
@@ -32,26 +41,29 @@ const OpenCellIdTooltip = ({ feature }) => {
   const classes = useStyles();
   return (
     <Box className={classes.root}>
-      <Box className={classes.section}>
-        <Typography className={classes.value}>{feature.properties.radio}</Typography>
+      <Box className={classes.titleSection}>
+        <Typography className={classes.radioValue}>{feature.properties.radio}</Typography>
         <Typography variant='subtitle2'>Technology</Typography>
       </Box>
-      <Box className={classes.companySection}>
-        <Typography variant='subtitle2' className={classes.title}>
-          Network Operator
-        </Typography>
-        <Typography
-          variant='subtitle2'
-          className={classes.company}
-          style={{
-            color:
+      <Divider />
+      <Box className={classes.section}>
+        <Box>
+          <Typography variant='subtitle2' className={classes.column}>
+            Network Operator
+          </Typography>
+        </Box>
+        <Box>
+          <Typography
+            variant='subtitle2'
+            className={`${classes.company} ${
               feature.properties.network_operator === 'Company A'
-                ? 'rgb(207, 89, 126)'
-                : 'rgb(156, 203, 134)',
-          }}
-        >
-          {feature.properties.network_operator}
-        </Typography>
+                ? classes.companyA
+                : classes.companyB
+            }`}
+          >
+            {feature.properties.network_operator}
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );

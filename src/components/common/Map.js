@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(1, 1.5),
       borderRadius: theme.shape.borderRadius,
       backgroundColor: theme.palette.common.white,
+      color: theme.palette.text.primary,
       transform: `translate(-50%, calc(-100% - ${theme.spacing(2.5)}px))`,
       boxShadow: '0px 5px 15px 0px rgba(0,0,0,0.3)',
 
