@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
+import marketCoverageSource from 'data/sources/marketCoverageSource';
 
+import { MARKET_COVERAGE_LAYER_ID } from 'components/layers/MarketCoverageLayer';
 import populationSource from 'data/sources/populationSource';
 import { POPULATION_LAYER_ID } from 'components/layers/PopulationLayer';
 import internetSpeedsSource from 'data/sources/internetSpeedsSource';
@@ -12,7 +14,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 import { removeLayer, addSource, removeSource, addLayer } from '@carto/react/redux';
 import { useDispatch, useSelector } from 'react-redux';
-import { numberFormatter, internetSpeedFormatter } from 'utils/formatter';
+import {
+  numberFormatter,
+  internetSpeedFormatter,
+  percentageFormatter,
+} from 'utils/formatter';
 
 import {
   AggregationTypes,
@@ -28,9 +34,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 function Profiling() {
   const dispatch = useDispatch();
-  const { populationLayer, internetSpeedsLayer, openCellIdLayer } = useSelector(
-    (state) => state.carto.layers
-  );
+  const {
+    populationLayer,
+    internetSpeedsLayer,
+    openCellIdLayer,
+    marketCoverageLayer,
+  } = useSelector((state) => state.carto.layers);
 
   useEffect(() => {
     dispatch(addSource(openCellIdSource));
@@ -75,6 +84,22 @@ function Profiling() {
     return function cleanup() {
       dispatch(removeLayer(POPULATION_LAYER_ID));
       dispatch(removeSource(populationSource.id));
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(addSource(marketCoverageSource));
+
+    // dispatch(
+    //   addLayer({
+    //     id: MARKET_COVERAGE_LAYER_ID,
+    //     source: marketCoverageSource.id,
+    //   })
+    // );
+
+    return function cleanup() {
+      dispatch(removeLayer(MARKET_COVERAGE_LAYER_ID));
+      dispatch(removeSource(marketCoverageSource.id));
     };
   }, [dispatch]);
 
@@ -196,6 +221,40 @@ function Profiling() {
             onError={onTotalPopulationWidgetError}
             xAxisFormatter={internetSpeedFormatter}
             formatter={numberFormatter}
+            viewportFilter
+          />
+        </>
+      ) : null}
+      {marketCoverageLayer ? (
+        <>
+          <FormulaWidget
+            id='aveMarketCoverage'
+            title='Average Market Coverage'
+            dataSource={marketCoverageSource.id}
+            column='market_share'
+            operation={AggregationTypes.AVG}
+            onError={onTotalPopulationWidgetError}
+            formatter={percentageFormatter}
+            viewportFilter
+          />
+          <HistogramWidget
+            id='histogramMarketCoverage'
+            title='Histogram Market Coverage'
+            dataSource={openCellIdSource.id}
+            column='market_share'
+            operation={AggregationTypes.COUNT}
+            ticks={[0, 0.2, 0.4, 0.6]}
+            onError={onTotalPopulationWidgetError}
+            viewportFilter
+          />
+          <HistogramWidget
+            id='histogramMarketCoverage'
+            title='Histogram Competitor Market Coverage'
+            dataSource={openCellIdSource.id}
+            column='competitor_market_share'
+            operation={AggregationTypes.COUNT}
+            ticks={[0, 0.2, 0.4, 0.6]}
+            onError={onTotalPopulationWidgetError}
             viewportFilter
           />
         </>

@@ -3,6 +3,7 @@ import OpenCellIdLayer from './OpenCellIdLayer';
 import PopulationLayer from './PopulationLayer';
 import InternetSpeedsLayer from './InternetSpeedsLayer';
 import SummaryHexLayer from './SummaryHexLayer';
+import MarketCoverageLayer from './MarketCoverageLayer';
 // Auto import
 
 export const getLayers = () => {
@@ -12,6 +13,7 @@ export const getLayers = () => {
     PopulationLayer(),
     InternetSpeedsLayer(),
     SummaryHexLayer(),
+    MarketCoverageLayer(),
     // Auto import layers
   ];
 };

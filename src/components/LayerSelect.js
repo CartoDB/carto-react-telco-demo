@@ -9,6 +9,9 @@ import { POPULATION_LAYER_ID } from 'components/layers/PopulationLayer';
 import openCellIdSource from 'data/sources/openCellIdSource';
 
 import { OPEN_CELL_ID_LAYER_ID } from 'components/layers/OpenCellIdLayer';
+import marketCoverageSource from 'data/sources/marketCoverageSource';
+
+import { MARKET_COVERAGE_LAYER_ID } from 'components/layers/MarketCoverageLayer';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Paper from '@material-ui/core/Paper';
@@ -81,6 +84,18 @@ export function LayerSelect({ ...props }) {
       dispatch(removeLayer(INTERNET_SPEEDS_LAYER_ID));
     }
   };
+  const setMarketCoverage = (active) => {
+    if (active) {
+      dispatch(
+        addLayer({
+          id: MARKET_COVERAGE_LAYER_ID,
+          source: marketCoverageSource.id,
+        })
+      );
+    } else {
+      dispatch(removeLayer(MARKET_COVERAGE_LAYER_ID));
+    }
+  };
   if (location.pathname !== '/profiling') return null;
   return (
     <Paper className={`${props.className} ${classes.root}`} elevation={2}>
@@ -113,19 +128,32 @@ export function LayerSelect({ ...props }) {
           }
           label='Open Cell Id'
         />
-        <Grid container direction='row' alignItems='center'>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={'internetSpeedsLayer' in activeLayers}
-                name='Internet Speeds'
-                onClick={(e) => setInternetSpeeds(e.target.checked)}
-                color='primary'
-              />
-            }
-            label='Internet Speeds'
-          />
-        </Grid>
+      </Grid>
+      <Grid container direction='row' alignItems='center'>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={'internetSpeedsLayer' in activeLayers}
+              name='Internet Speeds'
+              onClick={(e) => setInternetSpeeds(e.target.checked)}
+              color='primary'
+            />
+          }
+          label='Internet Speeds'
+        />
+      </Grid>
+      <Grid container direction='row' alignItems='center'>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={'marketCoverageLayer' in activeLayers}
+              name='marketCoverage'
+              onClick={(e) => setMarketCoverage(e.target.checked)}
+              color='primary'
+            />
+          }
+          label='Market Coverage'
+        />
       </Grid>
     </Paper>
   );
