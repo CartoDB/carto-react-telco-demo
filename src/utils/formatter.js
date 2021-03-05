@@ -57,3 +57,10 @@ export const percentageFormatter = (value) => {
     }).format(isNaN(value) ? 0 : value),
   };
 };
+
+export const populationTooltipFormatter = (value) => {
+  return Intl.NumberFormat('en-US', {
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+  }).format(isNaN(value) ? 0 : value);
+};

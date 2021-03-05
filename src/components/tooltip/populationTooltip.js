@@ -1,34 +1,29 @@
 import { renderToString } from 'react-dom/server';
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
+import { percentageFormatter, populationTooltipFormatter } from 'utils/formatter';
 const useStyles = makeStyles((theme) => ({
   root: {},
-  value: {
+  populationValue: {
     fontWeight: 'bold',
     fontSize: '24px',
   },
-  section: {
+  titleSection: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 5,
   },
-  marketShareWrapper: {
+  breakdownSection: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    padding: 5,
   },
-  marketShareContainer: {
-    flexDirection: 'column',
-    display: 'flex',
-    padding: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  marketShareValue: {
-    fontWeight: 'bold',
-    fontSize: '16px',
+  breakdown: {
+    padding: '0 10px',
   },
 }));
 
@@ -36,24 +31,47 @@ const PopulationTooltip = ({ feature }) => {
   const classes = useStyles();
   return (
     <Box className={classes.root}>
-      <Box className={classes.section}>
-        <Typography className={classes.value}>
-          {feature.properties.total_population.toFixed(0)}
+      <Box className={classes.titleSection}>
+        <Typography className={classes.populationValue}>
+          {populationTooltipFormatter(feature.properties.total_population)}
         </Typography>
         <Typography variant='subtitle2'>Total Population</Typography>
       </Box>
-      <Box className={classes.marketShareWrapper}>
-        <Box className={classes.marketShareContainer}>
-          <Typography className={classes.marketShareValue}>
-            {feature.properties.companyA_population.toFixed(0)}
+      <Divider />
+      <Box className={classes.breakdownSection}>
+        <Box>
+          <Typography className={classes.breakdown} variant='subtitle2'>
+            % Covered
           </Typography>
-          <Typography variant='subtitle2'>Company A</Typography>
         </Box>
-        <Box className={classes.marketShareContainer}>
-          <Typography className={classes.marketShareValue}>
-            {feature.properties.companyB_population.toFixed(0)}
+        <Box>
+          <Typography className={classes.breakdown} variant='subtitle2'>
+            {percentageFormatter(0.86 * 100).value} %
           </Typography>
-          <Typography variant='subtitle2'>Company B</Typography>
+        </Box>
+      </Box>
+      <Box className={classes.breakdownSection}>
+        <Box>
+          <Typography className={classes.breakdown} variant='subtitle2'>
+            % Female
+          </Typography>
+        </Box>
+        <Box>
+          <Typography className={classes.breakdown} variant='subtitle2'>
+            {percentageFormatter(0.86 * 100).value} %
+          </Typography>
+        </Box>
+      </Box>
+      <Box className={classes.breakdownSection}>
+        <Box>
+          <Typography className={classes.breakdown} variant='subtitle2'>
+            % Adult
+          </Typography>
+        </Box>
+        <Box>
+          <Typography className={classes.breakdown} variant='subtitle2'>
+            {percentageFormatter(0.86 * 100).value} %
+          </Typography>
         </Box>
       </Box>
     </Box>

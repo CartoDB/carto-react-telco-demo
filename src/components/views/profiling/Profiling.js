@@ -102,7 +102,7 @@ function Profiling() {
           />
           <FormulaWidget
             id='totalPopulationCompanyA'
-            title='Total Population for Company A'
+            title='Total Population Covered'
             dataSource={populationSource.id}
             column='companyA_population'
             operation={AggregationTypes.SUM}
@@ -110,17 +110,6 @@ function Profiling() {
             formatter={numberFormatter}
             viewportFilter
           />
-          <FormulaWidget
-            id='totalPopulationCompanyB'
-            title='Total Population for Company B'
-            dataSource={populationSource.id}
-            column='companyB_population'
-            operation={AggregationTypes.SUM}
-            onError={onTotalPopulationWidgetError}
-            formatter={numberFormatter}
-            viewportFilter
-          />
-
           <HistogramWidget
             id='populationDensity'
             title='Population Density'
