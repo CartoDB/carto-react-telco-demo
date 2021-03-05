@@ -239,7 +239,7 @@ function Profiling() {
           />
           <HistogramWidget
             id='histogramMarketCoverage'
-            title='Histogram Market Coverage'
+            title='Market Coverage'
             dataSource={openCellIdSource.id}
             column='market_share'
             operation={AggregationTypes.COUNT}
@@ -249,7 +249,7 @@ function Profiling() {
           />
           <HistogramWidget
             id='histogramMarketCoverage'
-            title='Histogram Competitor Market Coverage'
+            title='Competitor Market Coverage'
             dataSource={openCellIdSource.id}
             column='competitor_market_share'
             operation={AggregationTypes.COUNT}

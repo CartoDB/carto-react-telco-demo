@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
   drawButtonContainer: {
     margin: 10,
   },
+  body: {
+    padding: theme.spacing(1, 3, 0.5),
+  },
 }));
 
 export default function Capex() {
@@ -88,6 +91,12 @@ export default function Capex() {
     <Grid container direction='column' className={classes.root}>
       <Typography variant='h5' gutterBottom className={classes.title}>
         Smart Capex Investment
+      </Typography>
+      <Typography variant='body2' className={classes.body}>
+        Move the sliders to create your ideal location!
+      </Typography>
+      <Typography variant='body2' className={classes.body}>
+        The more blue the color of a tile, the more similar it is to your ideal profile.
       </Typography>
       <Grid item className={classes.sliderContainer}>
         <Typography variant='h6'>Population: {sliderValues.totalPopulation}</Typography>
@@ -136,17 +145,6 @@ export default function Capex() {
           value={sliderValues.competitorMarketCoverage}
           onChange={(e, competitorMarketCoverage) =>
             setSliderValues((state) => ({ ...state, competitorMarketCoverage }))
-          }
-        />
-      </Grid>
-      <Grid item className={classes.sliderContainer}>
-        <Typography variant='h6'>Potential Revenue: {sliderValues.maxRevenue}</Typography>
-        <Slider
-          min={0}
-          max={3000000}
-          value={sliderValues.maxRevenue}
-          onChange={(e, maxRevenue) =>
-            setSliderValues((state) => ({ ...state, maxRevenue }))
           }
         />
       </Grid>
