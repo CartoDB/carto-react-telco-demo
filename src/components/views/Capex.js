@@ -16,7 +16,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Slider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    '&.MuiTypography-h6': {
+      fontSize: '1rem',
+    },
+  },
   title: {
     padding: theme.spacing(3, 3, 1.5),
   },
