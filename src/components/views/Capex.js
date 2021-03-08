@@ -13,7 +13,7 @@ import {
   updateLayer,
 } from '@carto/react/redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, Slider } from '@material-ui/core';
+import { Grid, Typography, Slider, Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,6 +48,18 @@ const useStyles = makeStyles((theme) => ({
   },
   body: {
     padding: theme.spacing(1, 3, 0.5),
+  },
+  slider: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  sliderName: {
+    color: theme.palette.grey[700],
+  },
+  sliderValue: {
+    display: 'inline',
+    width: 50,
+    textAlign: 'right',
   },
 }));
 
@@ -99,54 +111,84 @@ export default function Capex() {
         The more blue the color of a tile, the more similar it is to your ideal profile.
       </Typography>
       <Grid item className={classes.sliderContainer}>
-        <Typography variant='h6'>Population: {sliderValues.totalPopulation}</Typography>
-        <Slider
-          min={0}
-          max={5000}
-          value={sliderValues.totalPopulation}
-          onChange={(e, totalPopulation) =>
-            setSliderValues((state) => ({ ...state, totalPopulation }))
-          }
-        />
+        <Typography className={classes.sliderName} variant='subtitle2'>
+          Population
+        </Typography>
+        <Box className={classes.slider}>
+          <Slider
+            min={0}
+            max={5000}
+            value={sliderValues.totalPopulation}
+            onChange={(e, totalPopulation) =>
+              setSliderValues((state) => ({ ...state, totalPopulation }))
+            }
+          />
+          <Box className={classes.sliderValue}>
+            <Typography variant='subtitle' style={{ verticalAlign: 'middle' }}>
+              {sliderValues.totalPopulation}
+            </Typography>
+          </Box>
+        </Box>
       </Grid>
       <Grid item className={classes.sliderContainer}>
-        <Typography variant='h6'>
-          Number of Cell Towers: {sliderValues.numOfCellTowers}
+        <Typography className={classes.sliderName} variant='subtitle2'>
+          Number of Cell Towers
         </Typography>
-        <Slider
-          min={0}
-          max={100}
-          value={sliderValues.numOfCellTowers}
-          onChange={(e, numOfCellTowers) =>
-            setSliderValues((state) => ({ ...state, numOfCellTowers }))
-          }
-        />
+        <Box className={classes.slider}>
+          <Slider
+            min={0}
+            max={100}
+            value={sliderValues.numOfCellTowers}
+            onChange={(e, numOfCellTowers) =>
+              setSliderValues((state) => ({ ...state, numOfCellTowers }))
+            }
+          />
+          <Box className={classes.sliderValue}>
+            <Typography variant='subtitle' style={{ verticalAlign: 'middle' }}>
+              {sliderValues.numOfCellTowers}
+            </Typography>
+          </Box>
+        </Box>
       </Grid>
       <Grid item className={classes.sliderContainer}>
-        <Typography variant='h6'>
-          Market Coverage: {sliderValues.marketCoverage}%
+        <Typography className={classes.sliderName} variant='subtitle2'>
+          Market Coverage Percent
         </Typography>
-        <Slider
-          min={0}
-          max={100}
-          value={sliderValues.marketCoverage}
-          onChange={(e, marketCoverage) =>
-            setSliderValues((state) => ({ ...state, marketCoverage }))
-          }
-        />
+        <Box className={classes.slider}>
+          <Slider
+            min={0}
+            max={100}
+            value={sliderValues.marketCoverage}
+            onChange={(e, marketCoverage) =>
+              setSliderValues((state) => ({ ...state, marketCoverage }))
+            }
+          />
+          <Box className={classes.sliderValue}>
+            <Typography variant='subtitle' style={{ verticalAlign: 'middle' }}>
+              {sliderValues.marketCoverage} %
+            </Typography>
+          </Box>
+        </Box>
       </Grid>
       <Grid item className={classes.sliderContainer}>
-        <Typography variant='h6'>
-          Competitor Market Coverage: {sliderValues.competitorMarketCoverage} %
+        <Typography className={classes.sliderName} variant='subtitle2'>
+          Competitor Market Coverage %
         </Typography>
-        <Slider
-          min={0}
-          max={100}
-          value={sliderValues.competitorMarketCoverage}
-          onChange={(e, competitorMarketCoverage) =>
-            setSliderValues((state) => ({ ...state, competitorMarketCoverage }))
-          }
-        />
+        <Box className={classes.slider}>
+          <Slider
+            min={0}
+            max={100}
+            value={sliderValues.competitorMarketCoverage}
+            onChange={(e, competitorMarketCoverage) =>
+              setSliderValues((state) => ({ ...state, competitorMarketCoverage }))
+            }
+          />
+          <Box className={classes.sliderValue}>
+            <Typography variant='subtitle' style={{ verticalAlign: 'middle' }}>
+              {sliderValues.competitorMarketCoverage} %
+            </Typography>
+          </Box>
+        </Box>
       </Grid>
     </Grid>
   );
