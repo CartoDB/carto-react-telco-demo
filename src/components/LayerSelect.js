@@ -108,7 +108,7 @@ export function LayerSelect({ ...props }) {
         })
       );
     } else {
-      dispatch(removeLayer(MARKET_COVERAGE_LAYER_ID));
+      dispatch(removeLayer(POTENTIAL_REVENUE_LAYER_ID));
     }
   };
   if (location.pathname !== '/profiling') return null;

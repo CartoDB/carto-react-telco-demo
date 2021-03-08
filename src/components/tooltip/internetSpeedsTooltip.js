@@ -6,18 +6,25 @@ import { internetSpeedFormatter } from 'utils/formatter';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
+  titleSection: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: '5 5px',
+  },
   section: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '0 10px',
   },
   title: {
     fontWeight: 'bold',
-    fontSize: '18px',
   },
   divider: {
     margin: '10px',
+  },
+  value: {
+    padding: '0 5px',
   },
 }));
 const InternetSpeedTooltip = ({ feature }) => {
@@ -25,39 +32,39 @@ const InternetSpeedTooltip = ({ feature }) => {
   console.dir(feature);
   return (
     <Box className={classes.root}>
-      <Box className={classes.section}>
-        <Typography className={classes.title} variant='h5'>
+      <Box className={classes.titleSection}>
+        <Typography className={classes.title} variant='h6'>
           Fixed Internet Speed
         </Typography>
       </Box>
       <Box className={classes.section}>
-        <Typography variant='subtitle2'>Average Upload (mbps)</Typography>
-        <Typography variant='subtitle2' className={classes.company}>
-          {internetSpeedFormatter(feature.properties.fixed_avg_u_kbps).value}
+        <Typography variant='subtitle2'>Average Upload</Typography>
+        <Typography variant='subtitle2' className={classes.value}>
+          {internetSpeedFormatter(feature.properties.fixed_avg_u_kbps).value} (mbps)
         </Typography>
       </Box>
       <Box className={classes.section}>
-        <Typography variant='subtitle2'>Average Download (mbps)</Typography>
-        <Typography variant='subtitle2' className={classes.company}>
-          {internetSpeedFormatter(feature.properties.fixed_avg_d_kbps).value}
+        <Typography variant='subtitle2'>Average Download</Typography>
+        <Typography variant='subtitle2' className={classes.value}>
+          {internetSpeedFormatter(feature.properties.fixed_avg_d_kbps).value} (mbps)
         </Typography>
       </Box>
       <Divider className={classes.divider} />
-      <Box className={classes.section}>
-        <Typography className={classes.title} variant='h5'>
+      <Box className={classes.titleSection}>
+        <Typography className={classes.title} variant='h6'>
           Mobile Internet Speed
         </Typography>
       </Box>
       <Box className={classes.section}>
-        <Typography variant='subtitle2'>Average Upload (mbps)</Typography>
-        <Typography variant='subtitle2' className={classes.company}>
-          {internetSpeedFormatter(feature.properties.mobile_avg_u_kbps).value}
+        <Typography variant='subtitle2'>Average Upload</Typography>
+        <Typography variant='subtitle2' className={classes.value}>
+          {internetSpeedFormatter(feature.properties.mobile_avg_u_kbps).value} (mbps)
         </Typography>
       </Box>
       <Box className={classes.section}>
-        <Typography variant='subtitle2'>Average Download (mbps)</Typography>
-        <Typography variant='subtitle2' className={classes.company}>
-          {internetSpeedFormatter(feature.properties.mobile_avg_d_kbps).value}
+        <Typography variant='subtitle2'>Average Download</Typography>
+        <Typography variant='subtitle2' className={classes.value}>
+          {internetSpeedFormatter(feature.properties.mobile_avg_d_kbps).value} (mbps)
         </Typography>
       </Box>
     </Box>
