@@ -261,7 +261,7 @@ function Profiling() {
           <HistogramWidget
             id='histogramMarketCoverage'
             title='Market Coverage'
-            dataSource={openCellIdSource.id}
+            dataSource={marketCoverageSource.id}
             column='market_share'
             operation={AggregationTypes.COUNT}
             ticks={[0, 0.2, 0.4, 0.6]}
@@ -271,7 +271,7 @@ function Profiling() {
           <HistogramWidget
             id='histogramMarketCoverage'
             title='Competitor Market Coverage'
-            dataSource={openCellIdSource.id}
+            dataSource={marketCoverageSource.id}
             column='competitor_market_share'
             operation={AggregationTypes.COUNT}
             ticks={[0, 0.2, 0.4, 0.6]}

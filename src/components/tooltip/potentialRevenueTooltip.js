@@ -25,7 +25,7 @@ const PotentialRevenueTooltip = ({ feature }) => {
         <Typography className={classes.populationValue}>
           {populationTooltipFormatter(feature.properties.potential_revenue)}
         </Typography>
-        <Typography variant='subtitle2'>Potential Revenue (‘000 Baht)</Typography>
+        <Typography variant='subtitle2'>Potential Revenue</Typography>
       </Box>
     </Box>
   );
