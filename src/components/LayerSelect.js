@@ -19,8 +19,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
+
+import OpenInNewOutlinedIcon from '@material-ui/icons/OpenInNewOutlined';
 import { makeStyles } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -35,15 +39,17 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  title: {
-    display: 'block',
-    marginBottom: theme.spacing(1),
+  tooltip: {
+    margin: theme.spacing(1),
+    maxWidth: 250,
   },
-  element: {
-    ...theme.typography.overline,
-    textTransform: 'none',
-    color: theme.palette.text.secondary,
-    padding: theme.spacing(0.25, 0),
+  title: {},
+  label: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  icon: {
+    fontSize: '1.2rem',
   },
 }));
 export function LayerSelect({ ...props }) {
@@ -114,7 +120,7 @@ export function LayerSelect({ ...props }) {
   if (location.pathname !== '/profiling') return null;
   return (
     <Paper className={`${props.className} ${classes.root}`} elevation={2}>
-      <Typography className={classes.title} variant='caption'>
+      <Typography className={classes.title} variant='body1'>
         Layer Select
       </Typography>
 
@@ -128,7 +134,26 @@ export function LayerSelect({ ...props }) {
               color='primary'
             />
           }
-          label='Population'
+          label={
+            <Tooltip
+              className={classes.tooltip}
+              title='Population is from Facebook HRSL'
+              placement='bottom'
+            >
+              <Grid
+                className={classes.label}
+                container
+                direction='row'
+                alignItems='center'
+                justify
+              >
+                <Typography variant='body2'>Population</Typography>
+                <Link target='_blank' rel='noreferrer' href='//google.com'>
+                  <OpenInNewOutlinedIcon className={classes.icon} />
+                </Link>
+              </Grid>
+            </Tooltip>
+          }
         />
       </Grid>
       <Grid container direction='row' alignItems='center'>
@@ -141,7 +166,25 @@ export function LayerSelect({ ...props }) {
               color='primary'
             />
           }
-          label='Open Cell Id'
+          label={
+            <Tooltip
+              className={classes.tooltip}
+              title='Data is from Open Cell Id'
+              placement='bottom'
+            >
+              <Grid
+                className={classes.label}
+                container
+                direction='row'
+                alignItems='center'
+              >
+                <Typography variant='body2'>Cell Towers</Typography>
+                <Link target='_blank' rel='noreferrer' href='//google.com'>
+                  <OpenInNewOutlinedIcon className={classes.icon} />
+                </Link>
+              </Grid>
+            </Tooltip>
+          }
         />
       </Grid>
       <Grid container direction='row' alignItems='center'>
@@ -154,7 +197,25 @@ export function LayerSelect({ ...props }) {
               color='primary'
             />
           }
-          label='Internet Speeds'
+          label={
+            <Tooltip
+              className={classes.tooltip}
+              title='Internet Speeds are from ookla'
+              placement='bottom'
+            >
+              <Grid
+                className={classes.label}
+                container
+                direction='row'
+                alignItems='center'
+              >
+                <Typography variant='body2'>Internet Speeds</Typography>
+                <Link target='_blank' rel='noreferrer' href='//google.com'>
+                  <OpenInNewOutlinedIcon className={classes.icon} />
+                </Link>
+              </Grid>
+            </Tooltip>
+          }
         />
       </Grid>
       <Grid container direction='row' alignItems='center'>
@@ -167,7 +228,17 @@ export function LayerSelect({ ...props }) {
               color='primary'
             />
           }
-          label='Market Coverage'
+          label={
+            <Tooltip
+              className={classes.tooltip}
+              title='Market Coverage is calculated by the following'
+              placement='bottom'
+            >
+              <Grid container direction='row' alignItems='center'>
+                <Typography variant='body2'>Market Coverage</Typography>
+              </Grid>
+            </Tooltip>
+          }
         />
       </Grid>
       <Grid container direction='row' alignItems='center'>
@@ -180,7 +251,17 @@ export function LayerSelect({ ...props }) {
               color='primary'
             />
           }
-          label='Potential Revenue'
+          label={
+            <Tooltip
+              className={classes.tooltip}
+              title='Potential Revenue is calculated by the following'
+              placement='bottom'
+            >
+              <Grid container direction='row' alignItems='center'>
+                <Typography variant='body2'>Potential Revenue</Typography>
+              </Grid>
+            </Tooltip>
+          }
         />
       </Grid>
     </Paper>
