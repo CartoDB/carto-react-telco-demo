@@ -46,15 +46,15 @@ export const internetSpeedFormatter = (value) => {
   };
 };
 
-export const percentageFormatter = (value) => {
+export const percentageFormatter = (value, precision = 2) => {
   return {
     suffix: ' %',
     value: Intl.NumberFormat('en-US', {
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 2,
+      maximumFractionDigits: precision,
+      minimumFractionDigits: precision,
       notation: 'compact',
       compactDisplay: 'short',
-    }).format(isNaN(value) ? 0 : value),
+    }).format(isNaN(value) ? 0 : value * 100),
   };
 };
 

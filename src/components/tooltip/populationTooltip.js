@@ -51,36 +51,36 @@ const PopulationTooltip = ({ feature }) => {
       <Box className={classes.breakdownSection}>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            % Covered
+            Covered
           </Typography>
         </Box>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            {percentageFormatter(percentCovered).value} %
-          </Typography>
-        </Box>
-      </Box>
-      <Box className={classes.breakdownSection}>
-        <Box>
-          <Typography className={classes.breakdown} variant='subtitle2'>
-            % Female
-          </Typography>
-        </Box>
-        <Box>
-          <Typography className={classes.breakdown} variant='subtitle2'>
-            {percentageFormatter(percentFemale).value} %
+            {percentageFormatter(percentCovered, 0).value} %
           </Typography>
         </Box>
       </Box>
       <Box className={classes.breakdownSection}>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            % Adult
+            Female
           </Typography>
         </Box>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            {percentageFormatter(percentAdult).value} %
+            {percentageFormatter(percentFemale, 0).value} %
+          </Typography>
+        </Box>
+      </Box>
+      <Box className={classes.breakdownSection}>
+        <Box>
+          <Typography className={classes.breakdown} variant='subtitle2'>
+            Adult
+          </Typography>
+        </Box>
+        <Box>
+          <Typography className={classes.breakdown} variant='subtitle2'>
+            {percentageFormatter(percentAdult, 0).value} %
           </Typography>
         </Box>
       </Box>

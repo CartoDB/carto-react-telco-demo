@@ -33,7 +33,7 @@ const MarketCoverageTooltip = ({ feature }) => {
     <Box className={classes.root}>
       <Box className={classes.titleSection}>
         <Typography className={classes.populationValue}>
-          {percentageFormatter(feature.properties.market_share).value} %
+          {percentageFormatter(feature.properties.market_share, 0).value} %
         </Typography>
         <Typography variant='subtitle2'>Market Coverage</Typography>
       </Box>
@@ -46,7 +46,7 @@ const MarketCoverageTooltip = ({ feature }) => {
         </Box>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            {percentageFormatter(feature.properties.competitor_market_share).value} %
+            {percentageFormatter(feature.properties.competitor_market_share, 0).value} %
           </Typography>
         </Box>
       </Box>
@@ -58,7 +58,7 @@ const MarketCoverageTooltip = ({ feature }) => {
         </Box>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            {percentageFormatter(feature.properties.total_pop).value} %
+            {percentageFormatter(feature.properties.total_pop, 0).value} %
           </Typography>
         </Box>
       </Box>

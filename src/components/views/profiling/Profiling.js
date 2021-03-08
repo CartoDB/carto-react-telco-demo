@@ -256,7 +256,6 @@ function Profiling() {
             operation={AggregationTypes.AVG}
             onError={onTotalPopulationWidgetError}
             formatter={percentageFormatter}
-            xAxisFormatter={internetSpeedFormatter}
             viewportFilter
           />
           <HistogramWidget
@@ -269,7 +268,7 @@ function Profiling() {
             onError={onTotalPopulationWidgetError}
             viewportFilter
             formatter={numberFormatter}
-            xAxisFormatter={percentageFormatter}
+            xAxisFormatter={(v) => percentageFormatter(v, 0)}
           />
           <HistogramWidget
             id='histogramMarketCoverage'
@@ -281,7 +280,7 @@ function Profiling() {
             onError={onTotalPopulationWidgetError}
             viewportFilter
             formatter={numberFormatter}
-            xAxisFormatter={percentageFormatter}
+            xAxisFormatter={(v) => percentageFormatter(v, 0)}
           />
         </>
       ) : null}

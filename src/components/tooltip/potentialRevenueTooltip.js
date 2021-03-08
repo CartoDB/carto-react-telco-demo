@@ -23,7 +23,7 @@ const PotentialRevenueTooltip = ({ feature }) => {
     <Box className={classes.root}>
       <Box className={classes.titleSection}>
         <Typography className={classes.populationValue}>
-          {populationTooltipFormatter(feature.properties.potential_revenue)}
+          BHT {populationTooltipFormatter(feature.properties.potential_revenue)}
         </Typography>
         <Typography variant='subtitle2'>Potential Revenue</Typography>
       </Box>
