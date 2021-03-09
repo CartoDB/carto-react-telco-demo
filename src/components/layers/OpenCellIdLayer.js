@@ -4,8 +4,13 @@ import { selectSourceById } from '@carto/react/redux';
 import { useCartoLayerFilterProps } from '@carto/react/api';
 
 import renderOpenCellIdTooltip from 'components/tooltip/openCellIdTooltip';
-import { PICTON_BLUE, YELLOW_ORANGE } from 'utils/colors';
 export const OPEN_CELL_ID_LAYER_ID = 'openCellIdLayer';
+
+export const COLORS = [
+  [36, 164, 240, 128],
+  [255, 163, 70, 128],
+];
+export const LABELS = ['Company A', 'Company B'];
 
 export default function OpenCellIdLayer() {
   const { openCellIdLayer } = useSelector((state) => state.carto.layers);
@@ -20,9 +25,9 @@ export default function OpenCellIdLayer() {
       credentials: source.credentials,
       getFillColor: (object) => {
         if (object.properties.network_operator === 'Company A') {
-          return [...PICTON_BLUE.rgbArray, 128];
+          return COLORS[0];
         } else if (object.properties.network_operator === 'Company B') {
-          return [...YELLOW_ORANGE.rgbArray, 128];
+          return COLORS[1];
         } else {
           return [0, 0, 0, 128];
         }

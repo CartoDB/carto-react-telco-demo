@@ -7,6 +7,15 @@ import { BLUE_COLORS } from 'utils/colors';
 
 export const MARKET_COVERAGE_LAYER_ID = 'marketCoverageLayer';
 
+export const COLORS = [
+  [6, 143, 232, 128], //rgb(6, 143, 232)
+  [106, 166, 238, 128], //rgb(106, 166, 238)
+  [155, 191, 243, 128], //rgb(155, 191, 243)
+  [197, 216, 248, 128], //rgb(197, 216, 248)
+  [236, 242, 253, 128], //rgb(236, 242, 253)
+  [255, 255, 255, 128], //rgb(255, 255, 255)
+];
+export const LABELS = ['>60%', '37%-60%', '19%-37%', '6%-19%', '0%-6%'];
 export default function MarketCoverageLayer() {
   const { marketCoverageLayer } = useSelector((state) => state.carto.layers);
   const source = useSelector((state) =>
@@ -23,15 +32,15 @@ export default function MarketCoverageLayer() {
       getFillColor: (object) => {
         // Apply color based on an attribute
         if (object.properties.market_share > 0.6) {
-          return [...BLUE_COLORS[0], 192];
+          return COLORS[0];
         } else if (object.properties.market_share > 0.371) {
-          return [...BLUE_COLORS[2], 192];
+          return COLORS[1];
         } else if (object.properties.market_share > 0.197) {
-          return [...BLUE_COLORS[4], 192];
+          return COLORS[2];
         } else if (object.properties.market_share > 0.063) {
-          return [...BLUE_COLORS[6], 192];
+          return COLORS[3];
         } else {
-          return [...BLUE_COLORS[9], 192];
+          return COLORS[4];
         }
       },
       pointRadiusMinPixels: 2,

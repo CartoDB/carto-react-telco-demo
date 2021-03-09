@@ -26,6 +26,7 @@ import { setBottomSheetOpen, setError } from 'config/appSlice';
 import cartoLogo from 'assets/img/carto-logo-map.svg';
 
 import LayerSelect from 'components/LayerSelect';
+import Legend from 'components/legends/Legend';
 const drawerWidth = 350;
 
 const useStyles = makeStyles((theme) => ({
@@ -160,6 +161,11 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(4),
     top: theme.spacing(4),
   },
+  legend: {
+    position: 'absolute',
+    bottom: theme.spacing(4),
+    right: theme.spacing(4),
+  },
 }));
 
 export default function Main() {
@@ -244,6 +250,7 @@ export default function Main() {
         <Map layers={getLayers()} />
         <GeocoderWidget className={classes.geocoder} onError={onGeocoderWidgetError} />
         <LayerSelect className={classes.layerSelect} />
+        <Legend className={classes.legend} />
         <Hidden xsDown>
           <ZoomControl className={classes.zoomControl} />
         </Hidden>

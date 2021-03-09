@@ -7,15 +7,22 @@ import renderInternetSpeedsTooltip from 'components/tooltip/internetSpeedsToolti
 
 export const INTERNET_SPEEDS_LAYER_ID = 'internetSpeedsLayer';
 
-const COLORS = {
-  ONE_MILLION: [207, 89, 126, 128],
-  HUNDRED_THOUSAND: [232, 133, 113, 128],
-  TEN_THOUSAND: [238, 180, 121, 128],
-  THOUSAND: [233, 226, 156, 128],
-  HUNDRED: [156, 203, 134, 128],
-  TEN: [57, 177, 133, 128],
-  OTHER: [0, 147, 146, 128],
-};
+export const COLORS = [
+  [207, 89, 126, 128],
+  [232, 133, 113, 128],
+  [238, 180, 121, 128],
+  [233, 226, 156, 128],
+  [156, 203, 134, 128],
+  [0, 147, 146, 128],
+];
+export const LABELS = [
+  '>80mbps',
+  '60mbps-80mbps',
+  '40mbps-60mbps',
+  '20mbps-40mbps',
+  '0mbps-20mbps',
+  'No Data',
+];
 export default function InternetSpeedsLayer() {
   const { internetSpeedsLayer } = useSelector((state) => state.carto.layers);
   const source = useSelector((state) =>
@@ -33,17 +40,17 @@ export default function InternetSpeedsLayer() {
       getFillColor: (object) => {
         // Apply color based on an attribute
         if (object.properties.mobile_avg_d_kbps > 80000) {
-          return COLORS.ONE_MILLION;
+          return COLORS[0];
         } else if (object.properties.mobile_avg_d_kbps > 60000) {
-          return COLORS.HUNDRED_THOUSAND;
+          return COLORS[1];
         } else if (object.properties.mobile_avg_d_kbps > 40000) {
-          return COLORS.TEN_THOUSAND;
+          return COLORS[2];
         } else if (object.properties.mobile_avg_d_kbps > 20000) {
-          return COLORS.THOUSAND;
+          return COLORS[3];
         } else if (object.properties.mobile_avg_d_kbps > 0) {
-          return COLORS.TEN;
+          return COLORS[4];
         } else {
-          return COLORS.OTHER;
+          return COLORS[5];
         }
       },
       pointRadiusMinPixels: 2,

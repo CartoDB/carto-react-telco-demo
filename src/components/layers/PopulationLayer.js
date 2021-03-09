@@ -5,15 +5,24 @@ import { useCartoLayerFilterProps } from '@carto/react/api';
 import renderPopulationTooltip from 'components/tooltip/populationTooltip';
 export const POPULATION_LAYER_ID = 'populationLayer';
 
-const COLORS = {
-  ONE_MILLION: [207, 89, 126, 128],
-  HUNDRED_THOUSAND: [232, 133, 113, 128],
-  TEN_THOUSAND: [238, 180, 121, 128],
-  THOUSAND: [233, 226, 156, 128],
-  HUNDRED: [156, 203, 134, 128],
-  TEN: [57, 177, 133, 128],
-  OTHER: [0, 147, 146, 128],
-};
+export const COLORS = [
+  [207, 89, 126, 128],
+  [232, 133, 113, 128],
+  [238, 180, 121, 128],
+  [233, 226, 156, 128],
+  [156, 203, 134, 128],
+  [57, 177, 133, 128],
+  [0, 147, 146, 128],
+];
+export const LABELS = [
+  '>10M',
+  '1M-10M',
+  '100k-1M',
+  '10k-100k',
+  '1k-10k',
+  '100-1k',
+  '<100',
+];
 
 export default function PopulationLayer() {
   const { populationLayer } = useSelector((state) => state.carto.layers);
@@ -28,19 +37,19 @@ export default function PopulationLayer() {
       getFillColor: (object) => {
         // Apply color based on an attribute
         if (object.properties.total_population > 10000000) {
-          return COLORS.ONE_MILLION;
+          return COLORS[0];
         } else if (object.properties.total_population > 1000000) {
-          return COLORS.HUNDRED_THOUSAND;
+          return COLORS[1];
         } else if (object.properties.total_population > 100000) {
-          return COLORS.TEN_THOUSAND;
+          return COLORS[2];
         } else if (object.properties.total_population > 10000) {
-          return COLORS.THOUSAND;
+          return COLORS[3];
         } else if (object.properties.total_population > 1000) {
-          return COLORS.HUNDRED;
+          return COLORS[4];
         } else if (object.properties.total_population > 100) {
-          return COLORS.TEN;
+          return COLORS[5];
         } else {
-          return COLORS.OTHER;
+          return COLORS[6];
         }
       },
       pointRadiusMinPixels: 2,
