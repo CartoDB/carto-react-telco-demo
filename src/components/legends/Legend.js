@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1.5),
     backgroundColor: theme.palette.common.white,
     maxHeight: '50%',
+    width: '150px',
     overflow: 'scroll',
   },
 }));

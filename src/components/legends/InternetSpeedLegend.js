@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px gray solid',
   },
 }));
-function PopulationLegend() {
+function InternetSpeedLegend() {
   const classes = useStyles();
   const { internetSpeedsLayer } = useSelector((state) => state.carto.layers);
 
@@ -32,7 +32,7 @@ function PopulationLegend() {
   return (
     <>
       <Typography className={classes.title} variant='caption'>
-        Internet Speed
+        Mobile Download Speed (mbps)
       </Typography>
 
       {COLORS.map((elem, i) => (
@@ -56,4 +56,4 @@ function PopulationLegend() {
   );
 }
 
-export default PopulationLegend;
+export default InternetSpeedLegend;

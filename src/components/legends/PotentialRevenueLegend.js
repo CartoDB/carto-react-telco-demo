@@ -32,7 +32,7 @@ function PotentialRevenueLegend() {
   return (
     <>
       <Typography className={classes.title} variant='caption'>
-        PotentialRevenue
+        PotentialRevenue (THB)
       </Typography>
 
       {COLORS.map((elem, i) => (

@@ -172,7 +172,7 @@ export default function Capex() {
       </Grid>
       <Grid item className={classes.sliderContainer}>
         <Typography className={classes.sliderName} variant='subtitle2'>
-          Competitor Market Coverage %
+          Competitor Market Coverage Percent
         </Typography>
         <Box className={classes.slider}>
           <Slider

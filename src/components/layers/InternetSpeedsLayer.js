@@ -15,14 +15,7 @@ export const COLORS = [
   [156, 203, 134, 128],
   [0, 147, 146, 128],
 ];
-export const LABELS = [
-  '>80mbps',
-  '60mbps-80mbps',
-  '40mbps-60mbps',
-  '20mbps-40mbps',
-  '0mbps-20mbps',
-  'No Data',
-];
+export const LABELS = ['>80', '60-80', '40-60', '20-40', '0-20', '0'];
 export default function InternetSpeedsLayer() {
   const { internetSpeedsLayer } = useSelector((state) => state.carto.layers);
   const source = useSelector((state) =>
