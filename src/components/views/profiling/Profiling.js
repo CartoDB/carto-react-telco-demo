@@ -15,7 +15,7 @@ import { OPEN_CELL_ID_LAYER_ID } from 'components/layers/OpenCellIdLayer';
 
 import { setError } from 'config/appSlice';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Divider } from '@material-ui/core';
 import { removeLayer, addSource, removeSource, addLayer } from '@carto/react/redux';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -136,6 +136,7 @@ function Profiling() {
       </Typography>
       {populationLayer ? (
         <>
+          <Divider />
           <FormulaWidget
             id='totalPopulation'
             title='Total Population'
@@ -146,6 +147,7 @@ function Profiling() {
             formatter={numberFormatter}
             viewportFilter
           />
+          <Divider />
           <FormulaWidget
             id='totalPopulationCompanyA'
             title='Total Population Covered'
@@ -156,6 +158,7 @@ function Profiling() {
             formatter={numberFormatter}
             viewportFilter
           />
+          <Divider />
           <HistogramWidget
             id='populationDensity'
             title='Population Density'
@@ -172,6 +175,7 @@ function Profiling() {
 
       {openCellIdLayer ? (
         <>
+          <Divider />
           <CategoryWidget
             id='cellIdCompanies'
             title='Cell tower by Companies'
@@ -182,6 +186,7 @@ function Profiling() {
             formatter={numberFormatter}
             viewportFilter
           />
+          <Divider />
           <CategoryWidget
             id='cellIdRadio'
             title='Cell tower by Technology'
@@ -196,6 +201,7 @@ function Profiling() {
       ) : null}
       {internetSpeedsLayer ? (
         <>
+          <Divider />
           <HistogramWidget
             id='internetSpeedUploadFixed'
             title='Fixed Download Speeds'
@@ -208,6 +214,7 @@ function Profiling() {
             formatter={numberFormatter}
             viewportFilter
           />
+          <Divider />
           <HistogramWidget
             id='internetSpeedUploadFixed'
             title='Fixed Upload Speeds'
@@ -220,6 +227,7 @@ function Profiling() {
             formatter={numberFormatter}
             viewportFilter
           />
+          <Divider />
           <HistogramWidget
             id='internetSpeedDownloadMobile'
             title='Mobile Download Speeds'
@@ -232,6 +240,7 @@ function Profiling() {
             formatter={numberFormatter}
             viewportFilter
           />
+          <Divider />
           <HistogramWidget
             id='internetSpeedUploadMobile'
             title='Mobile Upload Speeds'
@@ -248,6 +257,7 @@ function Profiling() {
       ) : null}
       {marketCoverageLayer ? (
         <>
+          <Divider />
           <FormulaWidget
             id='aveMarketCoverage'
             title='Average Market Coverage'
@@ -258,6 +268,7 @@ function Profiling() {
             formatter={percentageFormatter}
             viewportFilter
           />
+          <Divider />
           <HistogramWidget
             id='histogramMarketCoverage'
             title='Market Coverage'
@@ -270,6 +281,7 @@ function Profiling() {
             formatter={numberFormatter}
             xAxisFormatter={(v) => percentageFormatter(v, 0)}
           />
+          <Divider />
           <HistogramWidget
             id='histogramMarketCoverage'
             title='Competitor Market Coverage'
@@ -286,6 +298,7 @@ function Profiling() {
       ) : null}
       {potentialRevenueLayer ? (
         <>
+          <Divider />
           <FormulaWidget
             id='totalPotentialRevenue'
             title='Total Potential Revenue'
@@ -296,6 +309,7 @@ function Profiling() {
             formatter={numberFormatter}
             viewportFilter
           />
+          <Divider />
           <CategoryWidget
             id='revenueTier'
             title='Revenue Tier'
