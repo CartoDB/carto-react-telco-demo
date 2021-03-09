@@ -3,7 +3,6 @@ import { CartoBQTilerLayer } from '@deck.gl/carto';
 import { selectSourceById } from '@carto/react/redux';
 import { useCartoLayerFilterProps } from '@carto/react/api';
 import renderMarketCoverageTooltip from 'components/tooltip/marketCoverageTooltip';
-import { BLUE_COLORS } from 'utils/colors';
 
 export const MARKET_COVERAGE_LAYER_ID = 'marketCoverageLayer';
 
@@ -13,7 +12,6 @@ export const COLORS = [
   [155, 191, 243, 128], //rgb(155, 191, 243)
   [197, 216, 248, 128], //rgb(197, 216, 248)
   [236, 242, 253, 128], //rgb(236, 242, 253)
-  [255, 255, 255, 128], //rgb(255, 255, 255)
 ];
 export const LABELS = ['>60%', '37%-60%', '19%-37%', '6%-19%', '0%-6%'];
 export default function MarketCoverageLayer() {
