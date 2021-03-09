@@ -10,6 +10,8 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.caption,
     padding: theme.spacing(1.5),
     backgroundColor: theme.palette.common.white,
+    maxHeight: '50%',
+    overflow: 'scroll',
   },
 }));
 

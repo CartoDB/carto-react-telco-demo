@@ -5,7 +5,7 @@ import { rgbToHex } from 'utils/colors';
 const useStyles = makeStyles((theme) => ({
   title: {
     display: 'block',
-    marginBottom: theme.spacing(1),
+    margin: theme.spacing(0.25, 0),
   },
 
   element: {
