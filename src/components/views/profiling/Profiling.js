@@ -22,6 +22,7 @@ import {
   numberFormatter,
   internetSpeedFormatter,
   percentageFormatter,
+  bahtFormatter,
 } from 'utils/formatter';
 
 import {
@@ -306,7 +307,7 @@ function Profiling() {
             column='potential_revenue'
             operation={AggregationTypes.SUM}
             onError={onTotalPopulationWidgetError}
-            formatter={numberFormatter}
+            formatter={bahtFormatter}
             viewportFilter
           />
           <Divider />

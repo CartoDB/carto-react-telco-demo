@@ -1,7 +1,7 @@
 import { renderToString } from 'react-dom/server';
 import { Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
-import { populationTooltipFormatter } from 'utils/formatter';
+import { bahtTooltipFormatter } from 'utils/formatter';
 const useStyles = makeStyles((theme) => ({
   root: {},
   populationValue: {
@@ -19,11 +19,12 @@ const useStyles = makeStyles((theme) => ({
 
 const PotentialRevenueTooltip = ({ feature }) => {
   const classes = useStyles();
+  const formatted = bahtTooltipFormatter(feature.properties.potential_revenue);
   return (
     <Box className={classes.root}>
       <Box className={classes.titleSection}>
         <Typography className={classes.populationValue}>
-          BHT {populationTooltipFormatter(feature.properties.potential_revenue)}
+          {formatted.prefix} {formatted.value}
         </Typography>
         <Typography variant='subtitle2'>Potential Revenue</Typography>
       </Box>

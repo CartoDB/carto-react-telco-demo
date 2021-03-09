@@ -13,18 +13,6 @@ import '@formatjs/intl-pluralrules/locale-data/en';
 import '@formatjs/intl-numberformat/polyfill';
 import '@formatjs/intl-numberformat/locale-data/en';
 
-export const currencyFormatter = (value) => {
-  return {
-    prefix: '$',
-    value: Intl.NumberFormat('en-US', {
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 2,
-      notation: 'compact',
-      compactDisplay: 'short',
-    }).format(isNaN(value) ? 0 : value),
-  };
-};
-
 export const numberFormatter = (value) => {
   return Intl.NumberFormat('en-US', {
     maximumFractionDigits: 1,
@@ -63,4 +51,26 @@ export const populationTooltipFormatter = (value) => {
     maximumFractionDigits: 0,
     minimumFractionDigits: 0,
   }).format(isNaN(value) ? 0 : value);
+};
+
+export const bahtFormatter = (value) => {
+  return {
+    prefix: 'THB',
+    value: Intl.NumberFormat('en-US', {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+      notation: 'compact',
+      compactDisplay: 'short',
+    }).format(isNaN(value) ? 0 : value * 100),
+  };
+};
+
+export const bahtTooltipFormatter = (value) => {
+  return {
+    prefix: 'THB',
+    value: Intl.NumberFormat('en-US', {
+      maximumFractionDigits: 0,
+      minimumFractionDigits: 0,
+    }).format(isNaN(value) ? 0 : value * 100),
+  };
 };
