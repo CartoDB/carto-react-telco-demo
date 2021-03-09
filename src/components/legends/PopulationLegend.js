@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     width: 8,
     height: 8,
     marginRight: theme.spacing(1),
+    border: '1px gray solid',
   },
 }));
 function PopulationLegend() {
