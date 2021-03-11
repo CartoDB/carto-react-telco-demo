@@ -61,7 +61,7 @@ export const bahtFormatter = (value) => {
       minimumFractionDigits: 2,
       notation: 'compact',
       compactDisplay: 'short',
-    }).format(isNaN(value) ? 0 : value * 100),
+    }).format(isNaN(value) ? 0 : value),
   };
 };
 
@@ -71,6 +71,16 @@ export const bahtTooltipFormatter = (value) => {
     value: Intl.NumberFormat('en-US', {
       maximumFractionDigits: 0,
       minimumFractionDigits: 0,
-    }).format(isNaN(value) ? 0 : value * 100),
+    }).format(isNaN(value) ? 0 : value),
+  };
+};
+
+export const euroTooltipFormatter = (value) => {
+  return {
+    prefix: 'EUR',
+    value: Intl.NumberFormat('en-US', {
+      maximumFractionDigits: 0,
+      minimumFractionDigits: 0,
+    }).format(isNaN(value) ? 0 : value),
   };
 };

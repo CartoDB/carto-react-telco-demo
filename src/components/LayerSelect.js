@@ -15,6 +15,9 @@ import { MARKET_COVERAGE_LAYER_ID } from 'components/layers/MarketCoverageLayer'
 import potentialRevenueSource from 'data/sources/potentialRevenueSource';
 
 import { POTENTIAL_REVENUE_LAYER_ID } from 'components/layers/PotentialRevenueLayer';
+import sociodemographicsSource from 'data/sources/sociodemographicsSource';
+
+import { SOCIODEMOGRAPHICS_LAYER_ID } from 'components/layers/SociodemographicsLayer';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Paper from '@material-ui/core/Paper';
@@ -117,6 +120,18 @@ export function LayerSelect({ ...props }) {
       dispatch(removeLayer(POTENTIAL_REVENUE_LAYER_ID));
     }
   };
+  const setSociodemographic = (active) => {
+    if (active) {
+      dispatch(
+        addLayer({
+          id: SOCIODEMOGRAPHICS_LAYER_ID,
+          source: sociodemographicsSource.id,
+        })
+      );
+    } else {
+      dispatch(removeLayer(SOCIODEMOGRAPHICS_LAYER_ID));
+    }
+  };
   if (location.pathname !== '/profiling') return null;
   return (
     <Paper className={`${props.className} ${classes.root}`} elevation={2}>
@@ -145,7 +160,6 @@ export function LayerSelect({ ...props }) {
                 container
                 direction='row'
                 alignItems='center'
-                justify
               >
                 <Typography variant='body2'>Population</Typography>
                 <Link target='_blank' rel='noreferrer' href='//google.com'>
@@ -259,6 +273,29 @@ export function LayerSelect({ ...props }) {
             >
               <Grid container direction='row' alignItems='center'>
                 <Typography variant='body2'>Potential Revenue</Typography>
+              </Grid>
+            </Tooltip>
+          }
+        />
+      </Grid>
+      <Grid container direction='row' alignItems='center'>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={'sociodemographicsLayer' in activeLayers}
+              name='sociodemographic'
+              onClick={(e) => setSociodemographic(e.target.checked)}
+              color='primary'
+            />
+          }
+          label={
+            <Tooltip
+              className={classes.tooltip}
+              title='Potential Revenue is calculated by the following'
+              placement='bottom'
+            >
+              <Grid container direction='row' alignItems='center'>
+                <Typography variant='body2'>Sociodemographic</Typography>
               </Grid>
             </Tooltip>
           }

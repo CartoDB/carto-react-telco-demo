@@ -5,6 +5,7 @@ import OpenCellIdLegend from './OpenCellIdLegend';
 import InternetSpeedLegend from './InternetSpeedLegend';
 import MarketCoverageLegend from './MarketCoverageLegend';
 import PotentialRevenueLegend from './PotentialRevenueLegend';
+import SociodemographicsLegend from './SociodemographicsLegend';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +26,7 @@ function Legend({ className }) {
     openCellIdLayer,
     potentialRevenueLayer,
     marketCoverageLayer,
+    sociodemographicsLayer,
   } = useSelector((state) => state.carto.layers);
   if (
     !(
@@ -32,7 +34,8 @@ function Legend({ className }) {
       internetSpeedsLayer ||
       openCellIdLayer ||
       potentialRevenueLayer ||
-      marketCoverageLayer
+      marketCoverageLayer ||
+      sociodemographicsLayer
     )
   ) {
     return null;
@@ -44,6 +47,7 @@ function Legend({ className }) {
       <InternetSpeedLegend />
       <MarketCoverageLegend />
       <PotentialRevenueLegend />
+      <SociodemographicsLegend />
     </Paper>
   );
 }

@@ -1,4 +1,8 @@
 import { useEffect } from 'react';
+import sociodemographicsSource from 'data/sources/sociodemographicsSource';
+
+import { SOCIODEMOGRAPHICS_LAYER_ID } from 'components/layers/SociodemographicsLayer';
+
 import potentialRevenueSource from 'data/sources/potentialRevenueSource';
 
 import { POTENTIAL_REVENUE_LAYER_ID } from 'components/layers/PotentialRevenueLayer';
@@ -16,7 +20,13 @@ import { OPEN_CELL_ID_LAYER_ID } from 'components/layers/OpenCellIdLayer';
 import { setError } from 'config/appSlice';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Divider } from '@material-ui/core';
-import { removeLayer, addSource, removeSource, addLayer } from '@carto/react/redux';
+import {
+  removeLayer,
+  addSource,
+  removeSource,
+  addLayer,
+  selectOAuthCredentials,
+} from '@carto/react/redux';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   numberFormatter,
@@ -39,16 +49,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 function Profiling() {
   const dispatch = useDispatch();
+  const credentials = useSelector(selectOAuthCredentials);
   const {
     populationLayer,
     internetSpeedsLayer,
     openCellIdLayer,
     marketCoverageLayer,
     potentialRevenueLayer,
+    sociodemographicsLayer,
   } = useSelector((state) => state.carto.layers);
 
   useEffect(() => {
-    dispatch(addSource(openCellIdSource));
+    const source = { ...openCellIdSource, credentials };
+    dispatch(addSource(source));
 
     // dispatch(
     //   addLayer({
@@ -61,7 +74,7 @@ function Profiling() {
       dispatch(removeLayer(OPEN_CELL_ID_LAYER_ID));
       dispatch(removeSource(openCellIdSource.id));
     };
-  }, [dispatch]);
+  }, [dispatch, credentials]);
 
   useEffect(() => {
     dispatch(addSource(internetSpeedsSource));
@@ -124,6 +137,23 @@ function Profiling() {
       dispatch(removeSource(potentialRevenueSource.id));
     };
   }, [dispatch]);
+
+  useEffect(() => {
+    const source = { ...sociodemographicsSource, credentials };
+    dispatch(addSource(source));
+
+    // dispatch(
+    //   addLayer({
+    //     id: SOCIODEMOGRAPHICS_LAYER_ID,
+    //     source: sociodemographicsSource.id,
+    //   })
+    // );
+
+    return function cleanup() {
+      dispatch(removeLayer(SOCIODEMOGRAPHICS_LAYER_ID));
+      dispatch(removeSource(sociodemographicsSource.id));
+    };
+  }, [dispatch, credentials]);
 
   // Auto import useEffect
   const onTotalPopulationWidgetError = (error) => {
@@ -320,6 +350,58 @@ function Profiling() {
             onError={onTotalPopulationWidgetError}
             formatter={numberFormatter}
             viewportFilter
+          />
+        </>
+      ) : null}
+      {sociodemographicsLayer ? (
+        <>
+          <Divider />
+          <FormulaWidget
+            id='consumerExpenditureOnCommunication'
+            title='Consumer Expenditure on Communications'
+            dataSource={sociodemographicsSource.id}
+            column='wvce_08'
+            operation={AggregationTypes.SUM}
+            onError={onTotalPopulationWidgetError}
+            formatter={bahtFormatter}
+            viewportFilter
+          />
+          <Divider />
+          <CategoryWidget
+            id='commonSegment'
+            title='Most Common World View Consumer Segment'
+            dataSource={sociodemographicsSource.id}
+            column='wvseg'
+            operation={AggregationTypes.COUNT}
+            onError={onTotalPopulationWidgetError}
+            formatter={numberFormatter}
+            viewportFilter
+          />
+          <Divider />
+          <HistogramWidget
+            id='totalPurchasingPower'
+            title='Total Purchasing Power (Mn Euro)'
+            dataSource={sociodemographicsSource.id}
+            column='di_mio'
+            operation={AggregationTypes.COUNT}
+            ticks={[0, 0.5, 1, 1.5, 2]}
+            onError={onTotalPopulationWidgetError}
+            viewportFilter
+            formatter={numberFormatter}
+            xAxisFormatter={numberFormatter}
+          />
+          <Divider />
+          <HistogramWidget
+            id='consumerExpenditureCommunication'
+            title='Consumer Expenditure on Communications'
+            dataSource={sociodemographicsSource.id}
+            column='wvce_08'
+            operation={AggregationTypes.COUNT}
+            ticks={[0, 50000, 100000, 150000, 200000]}
+            onError={onTotalPopulationWidgetError}
+            viewportFilter
+            formatter={numberFormatter}
+            xAxisFormatter={numberFormatter}
           />
         </>
       ) : null}

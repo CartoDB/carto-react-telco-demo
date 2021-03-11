@@ -5,6 +5,7 @@ import InternetSpeedsLayer from './InternetSpeedsLayer';
 import SummaryHexLayer from './SummaryHexLayer';
 import MarketCoverageLayer from './MarketCoverageLayer';
 import PotentialRevenueLayer from './PotentialRevenueLayer';
+import SociodemographicsLayer from './SociodemographicsLayer';
 // Auto import
 
 export const getLayers = () => {
@@ -16,6 +17,7 @@ export const getLayers = () => {
     SummaryHexLayer(),
     MarketCoverageLayer(),
     PotentialRevenueLayer(),
+    SociodemographicsLayer(),
     // Auto import layers
   ];
 };
