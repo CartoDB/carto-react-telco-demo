@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core';
 import { euroTooltipFormatter, percentageFormatter } from 'utils/formatter';
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: '300px',
+    maxWidth: 250,
   },
   value: {
     fontWeight: 'bold',

@@ -33,6 +33,7 @@ import {
   internetSpeedFormatter,
   percentageFormatter,
   bahtFormatter,
+  euroFormatter,
 } from 'utils/formatter';
 
 import { FormulaWidget, HistogramWidget, CategoryWidget } from '@carto/react-widgets';
@@ -359,7 +360,7 @@ function Profiling() {
             column='wvce_08'
             operation={AggregationTypes.SUM}
             onError={onTotalPopulationWidgetError}
-            formatter={bahtFormatter}
+            formatter={euroFormatter}
             viewportFilter
           />
           <Divider />
@@ -380,7 +381,7 @@ function Profiling() {
             dataSource={sociodemographicsSource.id}
             column='di_mio'
             operation={AggregationTypes.COUNT}
-            ticks={[0, 0.5, 1, 1.5, 2]}
+            ticks={[2, 4, 6, 8, 10]}
             onError={onTotalPopulationWidgetError}
             viewportFilter
             formatter={numberFormatter}

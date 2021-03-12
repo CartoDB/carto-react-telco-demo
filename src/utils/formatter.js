@@ -13,74 +13,119 @@ import '@formatjs/intl-pluralrules/locale-data/en';
 import '@formatjs/intl-numberformat/polyfill';
 import '@formatjs/intl-numberformat/locale-data/en';
 
+const parseLogicalOperation = (value) => {
+  if (!isNaN(value)) return { value: value, operation: '' };
+  const _value = typeof value === 'string' ? value.replace('>', '') : value;
+  return isNaN(_value) ? { value: 0, operation: '' } : { value: _value, operation: '> ' };
+};
+
 export const numberFormatter = (value) => {
-  return Intl.NumberFormat('en-US', {
-    maximumFractionDigits: 1,
-    minimumFractionDigits: 0,
-    notation: 'compact',
-    compactDisplay: 'short',
-  }).format(value);
+  const _value = parseLogicalOperation(value);
+
+  return (
+    _value.operation +
+    Intl.NumberFormat('en-US', {
+      maximumFractionDigits: 1,
+      minimumFractionDigits: 0,
+      notation: 'compact',
+      compactDisplay: 'short',
+    }).format(_value.value)
+  );
 };
 
 export const internetSpeedFormatter = (value) => {
+  const _value = parseLogicalOperation(value);
   return {
     suffix: 'mbps',
-    value: Intl.NumberFormat('en-US', {
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 2,
-      notation: 'compact',
-      compactDisplay: 'short',
-    }).format(isNaN(value) ? 0 : value / 1000),
+    value:
+      _value.operation +
+      Intl.NumberFormat('en-US', {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+        notation: 'compact',
+        compactDisplay: 'short',
+      }).format(_value.value * 1000), // convert kbps to mbps
   };
 };
 
 export const percentageFormatter = (value, precision = 2) => {
+  const _value = parseLogicalOperation(value);
   return {
     suffix: ' %',
-    value: Intl.NumberFormat('en-US', {
-      maximumFractionDigits: precision,
-      minimumFractionDigits: precision,
-      notation: 'compact',
-      compactDisplay: 'short',
-    }).format(isNaN(value) ? 0 : value * 100),
+    value:
+      _value.operation +
+      Intl.NumberFormat('en-US', {
+        maximumFractionDigits: precision,
+        minimumFractionDigits: precision,
+        notation: 'compact',
+        compactDisplay: 'short',
+      }).format(_value.value * 100), // Convert decimal to percentage
   };
 };
 
 export const populationTooltipFormatter = (value) => {
-  return Intl.NumberFormat('en-US', {
-    maximumFractionDigits: 0,
-    minimumFractionDigits: 0,
-  }).format(isNaN(value) ? 0 : value);
+  const _value = parseLogicalOperation(value);
+  return (
+    _value.operation +
+    Intl.NumberFormat('en-US', {
+      maximumFractionDigits: 0,
+      minimumFractionDigits: 0,
+    }).format(_value.value)
+  );
 };
 
 export const bahtFormatter = (value) => {
+  const _value = parseLogicalOperation(value);
   return {
     prefix: 'THB',
-    value: Intl.NumberFormat('en-US', {
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 2,
-      notation: 'compact',
-      compactDisplay: 'short',
-    }).format(isNaN(value) ? 0 : value),
+    value:
+      _value.value +
+      Intl.NumberFormat('en-US', {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+        notation: 'compact',
+        compactDisplay: 'short',
+      }).format(_value.value),
   };
 };
 
 export const bahtTooltipFormatter = (value) => {
+  const _value = parseLogicalOperation(value);
   return {
     prefix: 'THB',
-    value: Intl.NumberFormat('en-US', {
-      maximumFractionDigits: 0,
-      minimumFractionDigits: 0,
-    }).format(isNaN(value) ? 0 : value),
+    value:
+      _value.operation +
+      Intl.NumberFormat('en-US', {
+        maximumFractionDigits: 0,
+        minimumFractionDigits: 0,
+      }).format(_value.value),
   };
 };
 
 export const euroTooltipFormatter = (value) => {
+  const _value = parseLogicalOperation(value);
   return {
     prefix: 'EUR',
-    value: Intl.NumberFormat('en-US', {
-      maximumFractionDigits: 0,
-      minimumFractionDigits: 0,
-    }).format(isNaN(value) ? 0 : value),
+    value:
+      _value.operation +
+      Intl.NumberFormat('en-US', {
+        maximumFractionDigits: 0,
+        minimumFractionDigits: 0,
+      }).format(_value.value),
+  };
+};
+
+export const euroFormatter = (value) => {
+  const _value = parseLogicalOperation(value);
+  return {
+    prefix: 'EUR',
+    value:
+      _value.operation +
+      Intl.NumberFormat('en-US', {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+        notation: 'compact',
+        compactDisplay: 'short',
+      }).format(_value.value),
   };
 };

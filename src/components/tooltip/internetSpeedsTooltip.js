@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 const InternetSpeedTooltip = ({ feature }) => {
   const classes = useStyles();
-  console.dir(feature);
   return (
     <Box className={classes.root}>
       <Box className={classes.titleSection}>
