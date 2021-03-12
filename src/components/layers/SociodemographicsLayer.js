@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { CartoSQLLayer } from '@deck.gl/carto';
-import { selectSourceById } from '@carto/react/redux';
-import { useCartoLayerFilterProps } from '@carto/react/api';
+import { selectSourceById } from '@carto/react-redux';
+import { useCartoLayerProps } from '@carto/react-api';
 import renderSociodemographicsTooltip from 'components/tooltip/sociodemographicsTooltip';
 
 export const SOCIODEMOGRAPHICS_LAYER_ID = 'sociodemographicsLayer';
@@ -19,7 +19,7 @@ export default function SociodemographicsLayer() {
   const source = useSelector((state) =>
     selectSourceById(state, sociodemographicsLayer?.source)
   );
-  const cartoFilterProps = useCartoLayerFilterProps(source);
+  const cartoFilterProps = useCartoLayerProps(source);
 
   if (sociodemographicsLayer && source) {
     return new CartoSQLLayer({

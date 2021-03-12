@@ -2,7 +2,7 @@ import internetSpeedsSource from 'data/sources/internetSpeedsSource';
 
 import { INTERNET_SPEEDS_LAYER_ID } from 'components/layers/InternetSpeedsLayer';
 import populationSource from 'data/sources/populationSource';
-import { addLayer, removeLayer } from '@carto/react/redux';
+import { addLayer, removeLayer } from '@carto/react-redux';
 
 import { POPULATION_LAYER_ID } from 'components/layers/PopulationLayer';
 

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { CartoBQTilerLayer } from '@deck.gl/carto';
-import { selectSourceById } from '@carto/react/redux';
-import { useCartoLayerFilterProps } from '@carto/react/api';
+import { selectSourceById } from '@carto/react-redux';
+import { useCartoLayerProps } from '@carto/react-api';
 import renderPotentialRevenueTooltip from 'components/tooltip/potentialRevenueTooltip';
 
 export const POTENTIAL_REVENUE_LAYER_ID = 'potentialRevenueLayer';
@@ -19,7 +19,7 @@ export default function PotentialRevenueLayer() {
   const source = useSelector((state) =>
     selectSourceById(state, potentialRevenueLayer?.source)
   );
-  const cartoFilterProps = useCartoLayerFilterProps(source);
+  const cartoFilterProps = useCartoLayerProps(source);
 
   if (potentialRevenueLayer && source) {
     return new CartoBQTilerLayer({

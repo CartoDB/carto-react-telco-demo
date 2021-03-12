@@ -26,7 +26,7 @@ import {
   removeSource,
   addLayer,
   selectOAuthCredentials,
-} from '@carto/react/redux';
+} from '@carto/react-redux';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   numberFormatter,
@@ -35,12 +35,8 @@ import {
   bahtFormatter,
 } from 'utils/formatter';
 
-import {
-  AggregationTypes,
-  FormulaWidget,
-  HistogramWidget,
-  CategoryWidget,
-} from '@carto/react/widgets';
+import { FormulaWidget, HistogramWidget, CategoryWidget } from '@carto/react-widgets';
+import { AggregationTypes } from '@carto/react-core';
 const useStyles = makeStyles((theme) => ({
   root: {},
   title: {

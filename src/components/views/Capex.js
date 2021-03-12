@@ -11,7 +11,7 @@ import {
   addSource,
   removeSource,
   updateLayer,
-} from '@carto/react/redux';
+} from '@carto/react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Slider, Box } from '@material-ui/core';
 

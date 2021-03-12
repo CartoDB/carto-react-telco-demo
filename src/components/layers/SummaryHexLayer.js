@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { CartoBQTilerLayer } from '@deck.gl/carto';
-import { selectSourceById } from '@carto/react/redux';
-import { useCartoLayerFilterProps } from '@carto/react/api';
+import { selectSourceById } from '@carto/react-redux';
+import { useCartoLayerProps } from '@carto/react-api';
 
 export const SUMMARY_HEX_LAYER_ID = 'summaryHexLayer';
 
@@ -23,7 +23,7 @@ const maxNumCellTower = 100;
 export default function SummaryHexLayer() {
   const { summaryHexLayer } = useSelector((state) => state.carto.layers);
   const source = useSelector((state) => selectSourceById(state, summaryHexLayer?.source));
-  const cartoFilterProps = useCartoLayerFilterProps(source);
+  const cartoFilterProps = useCartoLayerProps(source);
   const getFillColor = useCallback(
     (object) => {
       if (summaryHexLayer) {

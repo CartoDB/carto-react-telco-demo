@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@material-ui/core';
 
-import { logout } from '@carto/react/redux';
+import { logout } from '@carto/react-redux';
 import UserMenuLogin from './UserMenuLogin';
 
 const useStyles = makeStyles((theme) => ({

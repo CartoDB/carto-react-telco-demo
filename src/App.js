@@ -10,7 +10,7 @@ import {
   ThemeProvider,
 } from '@material-ui/core';
 
-import { cartoThemeOptions } from '@carto/react/ui';
+import { cartoThemeOptions } from '@carto/react-ui';
 
 import routes from './routes';
 import { Header } from 'components/common/Header';

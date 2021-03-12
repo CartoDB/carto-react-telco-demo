@@ -5,8 +5,8 @@ import { StaticMap } from 'react-map-gl';
 
 import { makeStyles } from '@material-ui/core';
 
-import { setViewState } from '@carto/react/redux';
-import { BASEMAPS, GoogleMap } from '@carto/react/basemaps';
+import { setViewState } from '@carto/react-redux';
+import { BASEMAPS, GoogleMap } from '@carto/react-basemaps';
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -3,7 +3,9 @@ import { Box, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import { euroTooltipFormatter, percentageFormatter } from 'utils/formatter';
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    maxWidth: '300px',
+  },
   value: {
     fontWeight: 'bold',
     fontSize: '24px',
@@ -14,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 5,
+  },
+  subtitle: {
+    textAlign: 'center',
   },
   breakdownSection: {
     display: 'flex',
@@ -35,7 +40,7 @@ const SociodemographicsTooltip = ({ feature }) => {
         <Typography className={classes.value}>
           EUR {euroTooltipFormatter(feature.properties.wvce_08).value}
         </Typography>
-        <Typography variant='subtitle2'>
+        <Typography className={classes.subtitle} variant='subtitle2'>
           Consumer Spend on Communications (Mn Euro)
         </Typography>
       </Box>

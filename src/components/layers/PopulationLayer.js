@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { CartoBQTilerLayer } from '@deck.gl/carto';
-import { selectSourceById } from '@carto/react/redux';
-import { useCartoLayerFilterProps } from '@carto/react/api';
+import { selectSourceById } from '@carto/react-redux';
+import { useCartoLayerProps } from '@carto/react-api';
 import renderPopulationTooltip from 'components/tooltip/populationTooltip';
 export const POPULATION_LAYER_ID = 'populationLayer';
 
@@ -27,7 +27,7 @@ export const LABELS = [
 export default function PopulationLayer() {
   const { populationLayer } = useSelector((state) => state.carto.layers);
   const source = useSelector((state) => selectSourceById(state, populationLayer?.source));
-  const cartoFilterProps = useCartoLayerFilterProps(source);
+  const cartoFilterProps = useCartoLayerProps(source);
 
   if (populationLayer && source) {
     return new CartoBQTilerLayer({

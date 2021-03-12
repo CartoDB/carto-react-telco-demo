@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { CartoBQTilerLayer } from '@deck.gl/carto';
-import { selectSourceById } from '@carto/react/redux';
-import { useCartoLayerFilterProps } from '@carto/react/api';
+import { selectSourceById } from '@carto/react-redux';
+import { useCartoLayerProps } from '@carto/react-api';
 import renderMarketCoverageTooltip from 'components/tooltip/marketCoverageTooltip';
 
 export const MARKET_COVERAGE_LAYER_ID = 'marketCoverageLayer';
@@ -19,7 +19,7 @@ export default function MarketCoverageLayer() {
   const source = useSelector((state) =>
     selectSourceById(state, marketCoverageLayer?.source)
   );
-  const cartoFilterProps = useCartoLayerFilterProps(source);
+  const cartoFilterProps = useCartoLayerProps(source);
 
   if (marketCoverageLayer && source) {
     return new CartoBQTilerLayer({

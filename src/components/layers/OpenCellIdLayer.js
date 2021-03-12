@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { CartoSQLLayer } from '@deck.gl/carto';
-import { selectSourceById } from '@carto/react/redux';
-import { useCartoLayerFilterProps } from '@carto/react/api';
+import { selectSourceById } from '@carto/react-redux';
+import { useCartoLayerProps } from '@carto/react-api';
 
 import renderOpenCellIdTooltip from 'components/tooltip/openCellIdTooltip';
 export const OPEN_CELL_ID_LAYER_ID = 'openCellIdLayer';
@@ -15,7 +15,7 @@ export const LABELS = ['Company A', 'Company B'];
 export default function OpenCellIdLayer() {
   const { openCellIdLayer } = useSelector((state) => state.carto.layers);
   const source = useSelector((state) => selectSourceById(state, openCellIdLayer?.source));
-  const cartoFilterProps = useCartoLayerFilterProps(source);
+  const cartoFilterProps = useCartoLayerProps(source);
 
   if (openCellIdLayer && source) {
     return new CartoSQLLayer({

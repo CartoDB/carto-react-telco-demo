@@ -14,7 +14,7 @@ import App from './App';
 import { initialState, oauthInitialState } from 'config/initialStateSlice';
 import configureAppStore from './config/store';
 
-import { createCartoSlice, createOauthCartoSlice } from '@carto/react/redux';
+import { createCartoSlice, createOauthCartoSlice } from '@carto/react-redux';
 
 const store = configureAppStore();
 
