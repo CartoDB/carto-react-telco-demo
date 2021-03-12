@@ -47,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
 function Profiling() {
   const dispatch = useDispatch();
   const credentials = useSelector(selectOAuthCredentials);
+  const forceLogin = useSelector((state) => state.app.forceOAuthLogin);
+
   const {
     populationLayer,
     internetSpeedsLayer,
@@ -57,7 +59,9 @@ function Profiling() {
   } = useSelector((state) => state.carto.layers);
 
   useEffect(() => {
-    const source = { ...openCellIdSource, credentials };
+    const source = forceLogin
+      ? { ...openCellIdSource, credentials }
+      : { ...openCellIdSource };
     dispatch(addSource(source));
 
     // dispatch(
@@ -71,7 +75,7 @@ function Profiling() {
       dispatch(removeLayer(OPEN_CELL_ID_LAYER_ID));
       dispatch(removeSource(openCellIdSource.id));
     };
-  }, [dispatch, credentials]);
+  }, [dispatch, credentials, forceLogin]);
 
   useEffect(() => {
     dispatch(addSource(internetSpeedsSource));
@@ -136,7 +140,10 @@ function Profiling() {
   }, [dispatch]);
 
   useEffect(() => {
-    const source = { ...sociodemographicsSource, credentials };
+    const source = forceLogin
+      ? { ...sociodemographicsSource, credentials }
+      : { ...sociodemographicsSource };
+    dispatch(addSource(source));
     dispatch(addSource(source));
 
     // dispatch(
@@ -150,7 +157,7 @@ function Profiling() {
       dispatch(removeLayer(SOCIODEMOGRAPHICS_LAYER_ID));
       dispatch(removeSource(sociodemographicsSource.id));
     };
-  }, [dispatch, credentials]);
+  }, [dispatch, credentials, forceLogin]);
 
   // Auto import useEffect
   const onTotalPopulationWidgetError = (error) => {

@@ -6,7 +6,7 @@ const slice = createSlice({
     error: null,
     isolineResult: null,
     bottomSheetOpen: false,
-    forceOAuthLogin: true, // enable for an initial Login screen
+    forceOAuthLogin: false, // enable for an initial Login screen
   },
   reducers: {
     setIsolineResult: (state, action) => {
