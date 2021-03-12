@@ -39,7 +39,7 @@ export default function SociodemographicsLayer() {
         } else if (object.properties.wvce_08 > 20000) {
           return COLORS[4];
         } else {
-          return COLORS[6];
+          return COLORS[5];
         }
       },
       pointRadiusMinPixels: 2,

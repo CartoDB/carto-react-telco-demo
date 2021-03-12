@@ -381,7 +381,7 @@ function Profiling() {
             dataSource={sociodemographicsSource.id}
             column='di_mio'
             operation={AggregationTypes.COUNT}
-            ticks={[2, 4, 6, 8, 10]}
+            ticks={[0, 2, 4, 6, 8, 10]}
             onError={onTotalPopulationWidgetError}
             viewportFilter
             formatter={numberFormatter}
@@ -390,7 +390,7 @@ function Profiling() {
           <Divider />
           <HistogramWidget
             id='consumerExpenditureCommunication'
-            title='Consumer Expenditure on Communications'
+            title='Consumer Expenditure on Communications (EUR)'
             dataSource={sociodemographicsSource.id}
             column='wvce_08'
             operation={AggregationTypes.COUNT}

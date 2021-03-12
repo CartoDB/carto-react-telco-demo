@@ -41,7 +41,7 @@ const SociodemographicsTooltip = ({ feature }) => {
           EUR {euroTooltipFormatter(feature.properties.wvce_08).value}
         </Typography>
         <Typography className={classes.subtitle} variant='subtitle2'>
-          Consumer Spend on Communications (Mn Euro)
+          Consumer Spend on Communications
         </Typography>
       </Box>
       <Divider />
@@ -65,7 +65,7 @@ const SociodemographicsTooltip = ({ feature }) => {
         </Box>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            {numberFormatter(feature.properties.di_mio)}
+            EUR {numberFormatter(feature.properties.di_mio)}M
           </Typography>
         </Box>
       </Box>

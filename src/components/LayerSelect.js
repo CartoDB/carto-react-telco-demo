@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tooltip: {
     margin: theme.spacing(1),
-    maxWidth: 250,
+    maxWidth: 200,
   },
   title: {},
   label: {
@@ -152,7 +152,7 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title='Population is from Facebook HRSL'
+              title="Population is from Facebook's High Resolution Settlement Layer"
               placement='bottom'
             >
               <Grid
@@ -162,7 +162,11 @@ export function LayerSelect({ ...props }) {
                 alignItems='center'
               >
                 <Typography variant='body2'>Population</Typography>
-                <Link target='_blank' rel='noreferrer' href='//google.com'>
+                <Link
+                  target='_blank'
+                  rel='noreferrer'
+                  href='//research.fb.com/downloads/high-resolution-settlement-layer-hrsl/'
+                >
                   <OpenInNewOutlinedIcon className={classes.icon} />
                 </Link>
               </Grid>
@@ -183,7 +187,7 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title='Data is from Open Cell Id'
+              title='This data is a subset from OpenCellId, but with dummy company data for the purpose of the Demo'
               placement='bottom'
             >
               <Grid
@@ -193,7 +197,11 @@ export function LayerSelect({ ...props }) {
                 alignItems='center'
               >
                 <Typography variant='body2'>Cell Towers</Typography>
-                <Link target='_blank' rel='noreferrer' href='//google.com'>
+                <Link
+                  target='_blank'
+                  rel='noreferrer'
+                  href='//www.opencellid.org/stats.php'
+                >
                   <OpenInNewOutlinedIcon className={classes.icon} />
                 </Link>
               </Grid>
@@ -214,7 +222,7 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title='Internet Speeds are from ookla'
+              title="The internet speeds comes from Ookla's Open Aggregated Speed Test Data"
               placement='bottom'
             >
               <Grid
@@ -245,7 +253,7 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title='Market Coverage is calculated by the following'
+              title='This is calculated based on the population within 100m of a cell tower of each company'
               placement='bottom'
             >
               <Grid container direction='row' alignItems='center'>
@@ -268,7 +276,7 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title='Potential Revenue is calculated by the following'
+              title='This is based on the total population not covered by either company, within the adult age range, multiplied by the average monthly mobile subscription price (BHT 400)'
               placement='bottom'
             >
               <Grid container direction='row' alignItems='center'>
@@ -291,7 +299,7 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title='Potential Revenue is calculated by the following'
+              title="Sociodemographics is from Consumer Spending from Carto's Sapatial Data Catalog"
               placement='bottom'
             >
               <Grid container direction='row' alignItems='center'>
