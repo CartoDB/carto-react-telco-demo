@@ -1,7 +1,7 @@
 import { renderToString } from 'react-dom/server';
 import { Box, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
-import { euroTooltipFormatter, percentageFormatter } from 'utils/formatter';
+import { euroTooltipFormatter, numberFormatter } from 'utils/formatter';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 250,
@@ -65,7 +65,7 @@ const SociodemographicsTooltip = ({ feature }) => {
         </Box>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            {percentageFormatter(feature.properties.di_mio / 100, 0).value} %
+            {numberFormatter(feature.properties.di_mio)}
           </Typography>
         </Box>
       </Box>
