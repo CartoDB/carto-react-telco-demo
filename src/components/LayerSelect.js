@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
   },
   tooltip: {
     margin: theme.spacing(1),
-    maxWidth: 200,
   },
   title: {},
   label: {
@@ -232,7 +231,11 @@ export function LayerSelect({ ...props }) {
                 alignItems='center'
               >
                 <Typography variant='body2'>Internet Speeds</Typography>
-                <Link target='_blank' rel='noreferrer' href='//google.com'>
+                <Link
+                  target='_blank'
+                  rel='noreferrer'
+                  href='//registry.opendata.aws/speedtest-global-performance/'
+                >
                   <OpenInNewOutlinedIcon className={classes.icon} />
                 </Link>
               </Grid>
@@ -304,6 +307,13 @@ export function LayerSelect({ ...props }) {
             >
               <Grid container direction='row' alignItems='center'>
                 <Typography variant='body2'>Experian's Sociodemographic</Typography>
+                <Link
+                  target='_blank'
+                  rel='noreferrer'
+                  href='//carto.com/spatial-data-catalog/browser/dataset/expn_consumer_sp_3fff01d5/data/'
+                >
+                  <OpenInNewOutlinedIcon className={classes.icon} />
+                </Link>
               </Grid>
             </Tooltip>
           }
