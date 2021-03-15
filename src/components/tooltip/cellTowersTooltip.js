@@ -57,7 +57,9 @@ const CellTowersTooltip = ({ feature }) => {
             className={`${classes.company} ${
               feature.properties.network_operator === 'Company A'
                 ? classes.companyA
-                : classes.companyB
+                : feature.properties.network_operator === 'Company B'
+                ? classes.companyB
+                : null
             }`}
           >
             {feature.properties.network_operator}
