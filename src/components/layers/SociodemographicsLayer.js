@@ -13,7 +13,7 @@ export const COLORS = [
   [209, 175, 232, 128], // #d1afe8
   [243, 224, 247, 128], //#f3e0f7,
 ];
-export const LABELS = ['>100k', '80k-100k', '60k-80k', '40k-60k', '20k-40k', '<20k'];
+export const LABELS = ['>200', '160-200', '120-160', '80-120', '40-80', '>40'];
 export default function SociodemographicsLayer() {
   const { sociodemographicsLayer } = useSelector((state) => state.carto.layers);
   const source = useSelector((state) =>
@@ -28,15 +28,15 @@ export default function SociodemographicsLayer() {
       data: source.data,
       credentials: source.credentials,
       getFillColor: (object) => {
-        if (object.properties.wvce_08 > 100000) {
+        if (object.properties.ave_wvce_08 > 200) {
           return COLORS[0];
-        } else if (object.properties.wvce_08 > 80000) {
+        } else if (object.properties.ave_wvce_08 > 160) {
           return COLORS[1];
-        } else if (object.properties.wvce_08 > 60000) {
+        } else if (object.properties.ave_wvce_08 > 120) {
           return COLORS[2];
-        } else if (object.properties.wvce_08 > 40000) {
+        } else if (object.properties.ave_wvce_08 > 80) {
           return COLORS[3];
-        } else if (object.properties.wvce_08 > 20000) {
+        } else if (object.properties.ave_wvce_08 > 40) {
           return COLORS[4];
         } else {
           return COLORS[5];

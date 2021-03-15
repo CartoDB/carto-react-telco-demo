@@ -38,10 +38,10 @@ const SociodemographicsTooltip = ({ feature }) => {
     <Box className={classes.root}>
       <Box className={classes.titleSection}>
         <Typography className={classes.value}>
-          EUR {euroTooltipFormatter(feature.properties.wvce_08).value}
+          EUR {euroTooltipFormatter(feature.properties.ave_wvce_08).value}
         </Typography>
         <Typography className={classes.subtitle} variant='subtitle2'>
-          Consumer Spend on Communications
+          Average Spend on Communications
         </Typography>
       </Box>
       <Divider />
@@ -53,19 +53,19 @@ const SociodemographicsTooltip = ({ feature }) => {
         </Box>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            {feature.properties.wvseg}
+            {feature.properties.wvseg2}
           </Typography>
         </Box>
       </Box>
       <Box className={classes.breakdownSection}>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            Purchasing Power
+            Ave. Purchasing Power
           </Typography>
         </Box>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            EUR {numberFormatter(feature.properties.di_mio)}M
+            EUR {numberFormatter(feature.properties.ave_di_mio)}
           </Typography>
         </Box>
       </Box>

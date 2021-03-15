@@ -32,7 +32,7 @@ function PopulationLegend() {
   return (
     <>
       <Typography className={classes.title} variant='caption'>
-        Consumer Expenditure on Communications
+        Average Consumer Expenditure on Communications
       </Typography>
 
       {COLORS.map((elem, i) => (

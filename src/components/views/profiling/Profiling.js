@@ -36,7 +36,12 @@ import {
   euroFormatter,
 } from 'utils/formatter';
 
-import { FormulaWidget, HistogramWidget, CategoryWidget } from '@carto/react-widgets';
+import {
+  FormulaWidget,
+  HistogramWidget,
+  CategoryWidget,
+  PieWidget,
+} from '@carto/react-widgets';
 import { AggregationTypes } from '@carto/react-core';
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -355,7 +360,7 @@ function Profiling() {
           <Divider />
           <FormulaWidget
             id='consumerExpenditureOnCommunication'
-            title='Consumer Expenditure on Communications'
+            title='Total Spend on Communications'
             dataSource={sociodemographicsSource.id}
             column='wvce_08'
             operation={AggregationTypes.SUM}
@@ -364,11 +369,11 @@ function Profiling() {
             viewportFilter
           />
           <Divider />
-          <CategoryWidget
+          <PieWidget
             id='commonSegment'
-            title='Most Common World View Consumer Segment'
+            title='Consumer Segment Breakdown'
             dataSource={sociodemographicsSource.id}
-            column='wvseg'
+            column='wvseg2'
             operation={AggregationTypes.COUNT}
             onError={onTotalPopulationWidgetError}
             formatter={numberFormatter}
@@ -377,11 +382,11 @@ function Profiling() {
           <Divider />
           <HistogramWidget
             id='totalPurchasingPower'
-            title='Total Purchasing Power (Mn Euro)'
+            title='Ave. Purchasing Power'
             dataSource={sociodemographicsSource.id}
-            column='di_mio'
+            column='ave_di_mio'
             operation={AggregationTypes.COUNT}
-            ticks={[0, 2, 4, 6, 8, 10]}
+            ticks={[0, 2000, 4000, 6000, 8000]}
             onError={onTotalPopulationWidgetError}
             viewportFilter
             formatter={numberFormatter}
@@ -390,11 +395,11 @@ function Profiling() {
           <Divider />
           <HistogramWidget
             id='consumerExpenditureCommunication'
-            title='Consumer Expenditure on Communications (EUR)'
+            title='Ave. Spend on Communications '
             dataSource={sociodemographicsSource.id}
-            column='wvce_08'
+            column='ave_wvce_08'
             operation={AggregationTypes.COUNT}
-            ticks={[0, 50000, 100000, 150000, 200000]}
+            ticks={[0, 40, 80, 120, 160, 200]}
             onError={onTotalPopulationWidgetError}
             viewportFilter
             formatter={numberFormatter}

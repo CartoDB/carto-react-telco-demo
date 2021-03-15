@@ -156,7 +156,7 @@ export function LayerSelect({ ...props }) {
               placement='bottom'
             >
               <Grid
-                className={classes.label}
+                classNapme={classes.label}
                 container
                 direction='row'
                 alignItems='center'
@@ -299,11 +299,11 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title="Sociodemographics is from Consumer Spending from Carto's Sapatial Data Catalog"
+              title="Sociodemographics is from Experian's Consumer Spending"
               placement='bottom'
             >
               <Grid container direction='row' alignItems='center'>
-                <Typography variant='body2'>Sociodemographic</Typography>
+                <Typography variant='body2'>Experian's Sociodemographic</Typography>
               </Grid>
             </Tooltip>
           }
