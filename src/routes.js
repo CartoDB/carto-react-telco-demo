@@ -5,7 +5,7 @@ import Main from 'components/views/Main';
 import NotFound from 'components/views/NotFound';
 
 import Capex from 'components/views/Capex.js';
-import Profiling from 'components/views/profiling/Profiling.js';
+import Profiling from 'components/views/Profiling.js';
 
 // Auto import
 const routes = [
