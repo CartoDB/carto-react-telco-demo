@@ -1,7 +1,6 @@
 import { renderToString } from 'react-dom/server';
 import { Box, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
-import { PICTON_BLUE, YELLOW_ORANGE } from 'utils/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -30,10 +29,10 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 10px',
   },
   companyA: {
-    color: PICTON_BLUE.hex,
+    color: '#24a4f0',
   },
   companyB: {
-    color: YELLOW_ORANGE.hex,
+    color: '#FFA346',
   },
 }));
 
