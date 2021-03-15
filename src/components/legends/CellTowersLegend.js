@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
-import { COLORS, LABELS } from 'components/layers/OpenCellIdLayer';
+import { COLORS, LABELS } from 'components/layers/CellTowersLayer';
 import { rgbToHex } from 'utils/colors';
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -23,11 +23,11 @@ const useStyles = makeStyles((theme) => ({
     border: '1px gray solid',
   },
 }));
-function OpenCellIdLegend() {
+function CellTowersLegend() {
   const classes = useStyles();
-  const { openCellIdLayer } = useSelector((state) => state.carto.layers);
+  const { cellTowersLayer } = useSelector((state) => state.carto.layers);
 
-  if (!openCellIdLayer) return null;
+  if (!cellTowersLayer) return null;
 
   return (
     <>
@@ -56,4 +56,4 @@ function OpenCellIdLegend() {
   );
 }
 
-export default OpenCellIdLegend;
+export default CellTowersLegend;

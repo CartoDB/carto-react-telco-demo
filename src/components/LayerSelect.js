@@ -6,9 +6,9 @@ import { addLayer, removeLayer } from '@carto/react-redux';
 
 import { POPULATION_LAYER_ID } from 'components/layers/PopulationLayer';
 
-import openCellIdSource from 'data/sources/openCellIdSource';
+import cellTowersSource from 'data/sources/cellTowersSource';
 
-import { OPEN_CELL_ID_LAYER_ID } from 'components/layers/OpenCellIdLayer';
+import { OPEN_CELL_ID_LAYER_ID } from 'components/layers/CellTowersLayer';
 import marketCoverageSource from 'data/sources/marketCoverageSource';
 
 import { MARKET_COVERAGE_LAYER_ID } from 'components/layers/MarketCoverageLayer';
@@ -72,12 +72,12 @@ export function LayerSelect({ ...props }) {
       dispatch(removeLayer(POPULATION_LAYER_ID));
     }
   };
-  const setOpenCellIdLayer = (active) => {
+  const setCellTowersLayer = (active) => {
     if (active) {
       dispatch(
         addLayer({
           id: OPEN_CELL_ID_LAYER_ID,
-          source: openCellIdSource.id,
+          source: cellTowersSource.id,
         })
       );
     } else {
@@ -178,16 +178,16 @@ export function LayerSelect({ ...props }) {
         <FormControlLabel
           control={
             <Checkbox
-              checked={'openCellIdLayer' in activeLayers}
+              checked={'cellTowersLayer' in activeLayers}
               name='Open Cell Id'
-              onClick={(e) => setOpenCellIdLayer(e.target.checked)}
+              onClick={(e) => setCellTowersLayer(e.target.checked)}
               color='primary'
             />
           }
           label={
             <Tooltip
               className={classes.tooltip}
-              title='This data is a subset from OpenCellId, but with dummy company data for the purpose of the Demo'
+              title='This data is a subset from CellTowers, but with dummy company data for the purpose of the Demo'
               placement='bottom'
             >
               <Grid

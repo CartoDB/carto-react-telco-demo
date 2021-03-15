@@ -14,8 +14,8 @@ import populationSource from 'data/sources/populationSource';
 import { POPULATION_LAYER_ID } from 'components/layers/PopulationLayer';
 import internetSpeedsSource from 'data/sources/internetSpeedsSource';
 import { INTERNET_SPEEDS_LAYER_ID } from 'components/layers/InternetSpeedsLayer';
-import openCellIdSource from 'data/sources/openCellIdSource';
-import { OPEN_CELL_ID_LAYER_ID } from 'components/layers/OpenCellIdLayer';
+import cellTowersSource from 'data/sources/cellTowersSource';
+import { OPEN_CELL_ID_LAYER_ID } from 'components/layers/CellTowersLayer';
 
 import { setError } from 'config/appSlice';
 import { makeStyles } from '@material-ui/core/styles';
@@ -55,26 +55,26 @@ function Profiling() {
   const {
     populationLayer,
     internetSpeedsLayer,
-    openCellIdLayer,
+    cellTowersLayer,
     marketCoverageLayer,
     potentialRevenueLayer,
     sociodemographicsLayer,
   } = useSelector((state) => state.carto.layers);
 
   useEffect(() => {
-    const source = { ...openCellIdSource, credentials };
+    const source = { ...cellTowersSource, credentials };
     dispatch(addSource(source));
 
     // dispatch(
     //   addLayer({
     //     id: OPEN_CELL_ID_LAYER_ID,
-    //     source: openCellIdSource.id,
+    //     source: cellTowersSource.id,
     //   })
     // );
 
     return function cleanup() {
       dispatch(removeLayer(OPEN_CELL_ID_LAYER_ID));
-      dispatch(removeSource(openCellIdSource.id));
+      dispatch(removeSource(cellTowersSource.id));
     };
   }, [dispatch, credentials]);
 
@@ -206,13 +206,13 @@ function Profiling() {
         </>
       ) : null}
 
-      {openCellIdLayer ? (
+      {cellTowersLayer ? (
         <>
           <Divider />
           <CategoryWidget
             id='cellIdCompanies'
             title='Cell tower by Companies'
-            dataSource={openCellIdSource.id}
+            dataSource={cellTowersSource.id}
             column='network_operator'
             operation={AggregationTypes.COUNT}
             onError={onTotalPopulationWidgetError}
@@ -223,7 +223,7 @@ function Profiling() {
           <CategoryWidget
             id='cellIdRadio'
             title='Cell tower by Technology'
-            dataSource={openCellIdSource.id}
+            dataSource={cellTowersSource.id}
             column='radio'
             operation={AggregationTypes.COUNT}
             onError={onTotalPopulationWidgetError}

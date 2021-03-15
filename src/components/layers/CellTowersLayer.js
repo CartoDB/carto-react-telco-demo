@@ -3,8 +3,8 @@ import { CartoSQLLayer } from '@deck.gl/carto';
 import { selectSourceById } from '@carto/react-redux';
 import { useCartoLayerProps } from '@carto/react-api';
 
-import renderOpenCellIdTooltip from 'components/tooltip/openCellIdTooltip';
-export const OPEN_CELL_ID_LAYER_ID = 'openCellIdLayer';
+import renderCellTowersTooltip from 'components/tooltip/cellTowersTooltip';
+export const OPEN_CELL_ID_LAYER_ID = 'cellTowersLayer';
 
 export const COLORS = [
   [36, 164, 240, 128],
@@ -12,12 +12,12 @@ export const COLORS = [
 ];
 export const LABELS = ['Company A', 'Company B'];
 
-export default function OpenCellIdLayer() {
-  const { openCellIdLayer } = useSelector((state) => state.carto.layers);
-  const source = useSelector((state) => selectSourceById(state, openCellIdLayer?.source));
+export default function CellTowersLayer() {
+  const { cellTowersLayer } = useSelector((state) => state.carto.layers);
+  const source = useSelector((state) => selectSourceById(state, cellTowersLayer?.source));
   const cartoFilterProps = useCartoLayerProps(source);
 
-  if (openCellIdLayer && source) {
+  if (cellTowersLayer && source) {
     return new CartoSQLLayer({
       ...cartoFilterProps,
       id: OPEN_CELL_ID_LAYER_ID,
@@ -39,7 +39,7 @@ export default function OpenCellIdLayer() {
       onHover: (info) => {
         if (info?.object) {
           info.object = {
-            html: renderOpenCellIdTooltip(info.object),
+            html: renderCellTowersTooltip(info.object),
             style: {},
           };
         }

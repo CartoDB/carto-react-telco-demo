@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Paper, makeStyles } from '@material-ui/core';
 import PopulationLegend from './PopulationLegend';
-import OpenCellIdLegend from './OpenCellIdLegend';
+import CellTowersLegend from './CellTowersLegend';
 import InternetSpeedLegend from './InternetSpeedLegend';
 import MarketCoverageLegend from './MarketCoverageLegend';
 import PotentialRevenueLegend from './PotentialRevenueLegend';
@@ -23,7 +23,7 @@ function Legend({ className }) {
   const {
     populationLayer,
     internetSpeedsLayer,
-    openCellIdLayer,
+    cellTowersLayer,
     potentialRevenueLayer,
     marketCoverageLayer,
     sociodemographicsLayer,
@@ -32,7 +32,7 @@ function Legend({ className }) {
     !(
       populationLayer ||
       internetSpeedsLayer ||
-      openCellIdLayer ||
+      cellTowersLayer ||
       potentialRevenueLayer ||
       marketCoverageLayer ||
       sociodemographicsLayer
@@ -43,7 +43,7 @@ function Legend({ className }) {
   return (
     <Paper elevation={4} className={`${classes.root} ${className} `}>
       <PopulationLegend />
-      <OpenCellIdLegend />
+      <CellTowersLegend />
       <InternetSpeedLegend />
       <MarketCoverageLegend />
       <PotentialRevenueLegend />

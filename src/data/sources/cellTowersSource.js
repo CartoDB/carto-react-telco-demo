@@ -1,4 +1,4 @@
-const OPEN_CELL_ID_SOURCE_ID = 'openCellIdSource';
+const OPEN_CELL_ID_SOURCE_ID = 'cellTowersSource';
 
 const source = {
   id: OPEN_CELL_ID_SOURCE_ID,

@@ -1,5 +1,5 @@
 import GeocoderLayer from './GeocoderLayer';
-import OpenCellIdLayer from './OpenCellIdLayer';
+import CellTowersLayer from './CellTowersLayer';
 import PopulationLayer from './PopulationLayer';
 import InternetSpeedsLayer from './InternetSpeedsLayer';
 import SummaryHexLayer from './SummaryHexLayer';
@@ -11,7 +11,7 @@ import SociodemographicsLayer from './SociodemographicsLayer';
 export const getLayers = () => {
   return [
     GeocoderLayer(),
-    OpenCellIdLayer(),
+    CellTowersLayer(),
     PopulationLayer(),
     InternetSpeedsLayer(),
     SummaryHexLayer(),

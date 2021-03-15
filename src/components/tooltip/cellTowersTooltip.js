@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const OpenCellIdTooltip = ({ feature }) => {
+const CellTowersTooltip = ({ feature }) => {
   const classes = useStyles();
   return (
     <Box className={classes.root}>
@@ -67,6 +67,6 @@ const OpenCellIdTooltip = ({ feature }) => {
     </Box>
   );
 };
-const renderOpenCellIdTooltip = (feature) =>
-  renderToString(<OpenCellIdTooltip feature={feature} />);
-export default renderOpenCellIdTooltip;
+const renderCellTowersTooltip = (feature) =>
+  renderToString(<CellTowersTooltip feature={feature} />);
+export default renderCellTowersTooltip;
