@@ -382,11 +382,11 @@ function Profiling() {
           <Divider />
           <HistogramWidget
             id='totalPurchasingPower'
-            title='Ave. Purchasing Power'
+            title='Average Purchasing Power'
             dataSource={sociodemographicsSource.id}
             column='ave_di_mio'
             operation={AggregationTypes.COUNT}
-            ticks={[0, 2000, 4000, 6000, 8000]}
+            ticks={[0, 1500, 3000, 4500, 6000]}
             onError={onTotalPopulationWidgetError}
             viewportFilter
             formatter={numberFormatter}
@@ -395,7 +395,7 @@ function Profiling() {
           <Divider />
           <HistogramWidget
             id='consumerExpenditureCommunication'
-            title='Ave. Spend on Communications '
+            title='Average Spend on Communications '
             dataSource={sociodemographicsSource.id}
             column='ave_wvce_08'
             operation={AggregationTypes.COUNT}

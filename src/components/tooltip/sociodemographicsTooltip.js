@@ -3,9 +3,7 @@ import { Box, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import { euroTooltipFormatter, numberFormatter } from 'utils/formatter';
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 250,
-  },
+  root: {},
   value: {
     fontWeight: 'bold',
     fontSize: '24px',
@@ -48,7 +46,7 @@ const SociodemographicsTooltip = ({ feature }) => {
       <Box className={classes.breakdownSection}>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            Cons. Segment
+            Consumer Segment
           </Typography>
         </Box>
         <Box>
@@ -60,7 +58,7 @@ const SociodemographicsTooltip = ({ feature }) => {
       <Box className={classes.breakdownSection}>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            Ave. Purchasing Power
+            Average Purchasing Power
           </Typography>
         </Box>
         <Box>
