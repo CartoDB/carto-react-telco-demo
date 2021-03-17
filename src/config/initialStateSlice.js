@@ -11,8 +11,8 @@ export const initialState = {
   },
   basemap: VOYAGER, // Gmaps is buggy and i dont like it
   credentials: {
-    username: process.env.REACT_APP_CARTO_USERNAME,
-    apiKey: process.env.REACT_APP_CARTO_API_KEY,
+    username: 'public',
+    apiKey: 'default_public',
     serverUrlTemplate: 'https://{user}.carto.com',
   },
   googleApiKey: process.env.REACT_APP_GOOGLE_API_KEY, // only required when using a Google Basemap
@@ -20,7 +20,7 @@ export const initialState = {
 
 export const oauthInitialState = {
   oauthApp: {
-    clientId: process.env.REACT_APP_CARTO_CLIENT_ID,
+    clientId: 'wn9xASUYFYlg',
     scopes: [
       'user:profile', // to load avatar photo
       'dataservices:geocoding', // to use geocoding through Data Services API

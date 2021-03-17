@@ -20,10 +20,12 @@ const COLORS = [
 ];
 const maxPopulationValue = 5000;
 const maxNumCellTower = 100;
+
 export default function SummaryHexLayer() {
   const { summaryHexLayer } = useSelector((state) => state.carto.layers);
   const source = useSelector((state) => selectSourceById(state, summaryHexLayer?.source));
   const cartoFilterProps = useCartoLayerProps(source);
+
   const getFillColor = useCallback(
     (object) => {
       if (summaryHexLayer) {
@@ -59,7 +61,6 @@ export default function SummaryHexLayer() {
       ...cartoFilterProps,
       id: SUMMARY_HEX_LAYER_ID,
       data: source.data,
-      credentials: source.credentials,
       pointRadiusMinPixels: 2,
       pickable: true,
       getFillColor: getFillColor,

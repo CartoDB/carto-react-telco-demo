@@ -75,14 +75,14 @@ const NavigationMenu = (props) => {
         >
           <Tab
             label='Profiling'
-            value='profiling'
+            value={'profiling'}
             component={NavLink}
             to='/profiling'
             className={classes.navLink}
           />
           <Tab
             label='Capex'
-            value='capex'
+            value={'capex'}
             component={NavLink}
             to='/capex'
             className={classes.navLink}

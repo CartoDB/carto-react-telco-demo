@@ -26,7 +26,6 @@ export default function MarketCoverageLayer() {
       ...cartoFilterProps,
       id: MARKET_COVERAGE_LAYER_ID,
       data: source.data,
-      credentials: source.credentials,
       getFillColor: (object) => {
         // Apply color based on an attribute
         if (object.properties.market_share > 0.6) {

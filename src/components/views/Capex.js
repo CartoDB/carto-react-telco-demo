@@ -124,7 +124,7 @@ export default function Capex() {
             }
           />
           <Box className={classes.sliderValue}>
-            <Typography variant='subtitle' style={{ verticalAlign: 'middle' }}>
+            <Typography variant='subtitle1' style={{ verticalAlign: 'middle' }}>
               {sliderValues.totalPopulation}
             </Typography>
           </Box>
@@ -144,7 +144,7 @@ export default function Capex() {
             }
           />
           <Box className={classes.sliderValue}>
-            <Typography variant='subtitle' style={{ verticalAlign: 'middle' }}>
+            <Typography variant='subtitle1' style={{ verticalAlign: 'middle' }}>
               {sliderValues.numOfCellTowers}
             </Typography>
           </Box>
@@ -164,7 +164,7 @@ export default function Capex() {
             }
           />
           <Box className={classes.sliderValue}>
-            <Typography variant='subtitle' style={{ verticalAlign: 'middle' }}>
+            <Typography variant='subtitle1' style={{ verticalAlign: 'middle' }}>
               {sliderValues.marketCoverage} %
             </Typography>
           </Box>
@@ -184,7 +184,7 @@ export default function Capex() {
             }
           />
           <Box className={classes.sliderValue}>
-            <Typography variant='subtitle' style={{ verticalAlign: 'middle' }}>
+            <Typography variant='subtitle1' style={{ verticalAlign: 'middle' }}>
               {sliderValues.competitorMarketCoverage} %
             </Typography>
           </Box>

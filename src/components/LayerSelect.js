@@ -155,7 +155,7 @@ export function LayerSelect({ ...props }) {
               placement='bottom'
             >
               <Grid
-                classNapme={classes.label}
+                className={classes.label}
                 container
                 direction='row'
                 alignItems='center'

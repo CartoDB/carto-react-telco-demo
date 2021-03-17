@@ -26,7 +26,6 @@ export default function PotentialRevenueLayer() {
       ...cartoFilterProps,
       id: POTENTIAL_REVENUE_LAYER_ID,
       data: source.data,
-      credentials: source.credentials,
       getFillColor: (object) => {
         // Apply color based on an attribute
         if (object.properties.potential_revenue > 1658000) {

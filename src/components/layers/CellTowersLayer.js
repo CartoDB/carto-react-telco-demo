@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { CartoSQLLayer } from '@deck.gl/carto';
-import { selectSourceById } from '@carto/react-redux';
+import { selectSourceById, selectOAuthCredentials } from '@carto/react-redux';
 import { useCartoLayerProps } from '@carto/react-api';
 
 import renderCellTowersTooltip from 'components/tooltip/cellTowersTooltip';
@@ -16,13 +16,14 @@ export default function CellTowersLayer() {
   const { cellTowersLayer } = useSelector((state) => state.carto.layers);
   const source = useSelector((state) => selectSourceById(state, cellTowersLayer?.source));
   const cartoFilterProps = useCartoLayerProps(source);
+  const credentials = useSelector(selectOAuthCredentials);
 
   if (cellTowersLayer && source) {
     return new CartoSQLLayer({
       ...cartoFilterProps,
       id: OPEN_CELL_ID_LAYER_ID,
       data: source.data,
-      credentials: source.credentials,
+      credentials,
       getFillColor: (object) => {
         if (object.properties.network_operator === 'Company A') {
           return COLORS[0];

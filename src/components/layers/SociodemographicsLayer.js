@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { CartoSQLLayer } from '@deck.gl/carto';
-import { selectSourceById } from '@carto/react-redux';
+import { selectSourceById, selectOAuthCredentials } from '@carto/react-redux';
 import { useCartoLayerProps } from '@carto/react-api';
 import renderSociodemographicsTooltip from 'components/tooltip/sociodemographicsTooltip';
 
@@ -20,13 +20,14 @@ export default function SociodemographicsLayer() {
     selectSourceById(state, sociodemographicsLayer?.source)
   );
   const cartoFilterProps = useCartoLayerProps(source);
+  const credentials = useSelector(selectOAuthCredentials);
 
   if (sociodemographicsLayer && source) {
     return new CartoSQLLayer({
       ...cartoFilterProps,
       id: SOCIODEMOGRAPHICS_LAYER_ID,
       data: source.data,
-      credentials: source.credentials,
+      credentials,
       getFillColor: (object) => {
         if (object.properties.ave_wvce_08 > 200) {
           return COLORS[0];

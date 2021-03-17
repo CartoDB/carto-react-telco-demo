@@ -28,7 +28,6 @@ export default function InternetSpeedsLayer() {
       ...cartoFilterProps,
       id: INTERNET_SPEEDS_LAYER_ID,
       data: source.data,
-      credentials: source.credentials,
       maxZoom: 10,
       getFillColor: (object) => {
         // Apply color based on an attribute
