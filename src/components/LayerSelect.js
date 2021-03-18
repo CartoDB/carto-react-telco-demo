@@ -33,6 +33,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { useLocation } from 'react-router-dom';
 
+import experianLogo from 'assets/img/experian-logo.png';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     ...theme.typography.caption,
@@ -52,6 +54,14 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     fontSize: '1.2rem',
+  },
+  link: {
+    marginLeft: 'auto',
+  },
+  experianLogo: {
+    width: '60px',
+    verticalAlign: 'middle',
+    marginRight: '10px',
   },
 }));
 export function LayerSelect({ ...props }) {
@@ -151,7 +161,7 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title="Population is from Facebook's High Resolution Settlement Layer"
+              title="Population from Facebook's High Resolution Settlement Layer"
               placement='bottom'
             >
               <Grid
@@ -161,17 +171,19 @@ export function LayerSelect({ ...props }) {
                 alignItems='center'
               >
                 <Typography variant='body2'>Population</Typography>
-                <Link
-                  target='_blank'
-                  rel='noreferrer'
-                  href='//research.fb.com/downloads/high-resolution-settlement-layer-hrsl/'
-                >
-                  <OpenInNewOutlinedIcon className={classes.icon} />
-                </Link>
               </Grid>
             </Tooltip>
           }
         />
+        <Grid item className={classes.link}>
+          <Link
+            target='_blank'
+            rel='noreferrer'
+            href='//research.fb.com/downloads/high-resolution-settlement-layer-hrsl/'
+          >
+            <OpenInNewOutlinedIcon className={classes.icon} />
+          </Link>
+        </Grid>
       </Grid>
       <Grid container direction='row' alignItems='center'>
         <FormControlLabel
@@ -186,7 +198,7 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title='This data is a subset from CellTowers, but with dummy company data for the purpose of the Demo'
+              title='This data is a subset from OpenCelliD, but with dummy company data for the purpose of the Demo'
               placement='bottom'
             >
               <Grid
@@ -196,17 +208,15 @@ export function LayerSelect({ ...props }) {
                 alignItems='center'
               >
                 <Typography variant='body2'>Cell Towers</Typography>
-                <Link
-                  target='_blank'
-                  rel='noreferrer'
-                  href='//www.opencellid.org/stats.php'
-                >
-                  <OpenInNewOutlinedIcon className={classes.icon} />
-                </Link>
               </Grid>
             </Tooltip>
           }
         />
+        <Grid item className={classes.link}>
+          <Link target='_blank' rel='noreferrer' href='//www.opencellid.org/stats.php'>
+            <OpenInNewOutlinedIcon className={classes.icon} />
+          </Link>
+        </Grid>
       </Grid>
       <Grid container direction='row' alignItems='center'>
         <FormControlLabel
@@ -221,7 +231,7 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title="The internet speeds comes from Ookla's Open Aggregated Speed Test Data"
+              title="Dataset from Ookla's Speedtest Intelligence® data"
               placement='bottom'
             >
               <Grid
@@ -231,17 +241,19 @@ export function LayerSelect({ ...props }) {
                 alignItems='center'
               >
                 <Typography variant='body2'>Internet Speeds</Typography>
-                <Link
-                  target='_blank'
-                  rel='noreferrer'
-                  href='//registry.opendata.aws/speedtest-global-performance/'
-                >
-                  <OpenInNewOutlinedIcon className={classes.icon} />
-                </Link>
               </Grid>
             </Tooltip>
           }
         />
+        <Grid item className={classes.link}>
+          <Link
+            target='_blank'
+            rel='noreferrer'
+            href='//registry.opendata.aws/speedtest-global-performance/'
+          >
+            <OpenInNewOutlinedIcon className={classes.icon} />
+          </Link>
+        </Grid>
       </Grid>
       <Grid container direction='row' alignItems='center'>
         <FormControlLabel
@@ -256,7 +268,7 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title='This is calculated based on the population within 100m of a cell tower of each company'
+              title='Population within 100m of a cell tower for each company'
               placement='bottom'
             >
               <Grid container direction='row' alignItems='center'>
@@ -279,7 +291,7 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title='This is based on the total population not covered by either company, within the adult age range, multiplied by the average monthly mobile subscription price (BHT 400)'
+              title='Population not covered by either company, within the adult age range, multiplied by the average monthly mobile subscription price (BHT 400)'
               placement='bottom'
             >
               <Grid container direction='row' alignItems='center'>
@@ -302,22 +314,31 @@ export function LayerSelect({ ...props }) {
           label={
             <Tooltip
               className={classes.tooltip}
-              title="Sociodemographics is from Experian's Consumer Spending"
+              title="Experian's Consumer Spending data (includes population and consumer segments)"
               placement='bottom'
             >
               <Grid container direction='row' alignItems='center'>
-                <Typography variant='body2'>Experian's Sociodemographic</Typography>
-                <Link
-                  target='_blank'
-                  rel='noreferrer'
-                  href='//carto.com/spatial-data-catalog/browser/dataset/expn_consumer_sp_3fff01d5/data/'
-                >
-                  <OpenInNewOutlinedIcon className={classes.icon} />
-                </Link>
+                <Typography variant='body2'>
+                  <img
+                    src={experianLogo}
+                    className={classes.experianLogo}
+                    alt='Experian '
+                  />
+                  Consumer Spending
+                </Typography>
               </Grid>
             </Tooltip>
           }
         />
+        <Grid item className={classes.link}>
+          <Link
+            target='_blank'
+            rel='noreferrer'
+            href='//carto.com/spatial-data-catalog/browser/dataset/expn_consumer_sp_3fff01d5/data/'
+          >
+            <OpenInNewOutlinedIcon className={classes.icon} />
+          </Link>
+        </Grid>
       </Grid>
     </Paper>
   );
