@@ -39,13 +39,13 @@ const InternetSpeedTooltip = ({ feature }) => {
       <Box className={classes.section}>
         <Typography variant='subtitle2'>Average Upload</Typography>
         <Typography variant='subtitle2' className={classes.value}>
-          {internetSpeedFormatter(feature.properties.fixed_avg_u_kbps).value} (mbps)
+          {internetSpeedFormatter(feature.properties.fixed_avg_u_kbps, 2).value} mbps
         </Typography>
       </Box>
       <Box className={classes.section}>
         <Typography variant='subtitle2'>Average Download</Typography>
         <Typography variant='subtitle2' className={classes.value}>
-          {internetSpeedFormatter(feature.properties.fixed_avg_d_kbps).value} (mbps)
+          {internetSpeedFormatter(feature.properties.fixed_avg_d_kbps, 2).value} mbps
         </Typography>
       </Box>
       <Divider className={classes.divider} />
@@ -57,13 +57,13 @@ const InternetSpeedTooltip = ({ feature }) => {
       <Box className={classes.section}>
         <Typography variant='subtitle2'>Average Upload</Typography>
         <Typography variant='subtitle2' className={classes.value}>
-          {internetSpeedFormatter(feature.properties.mobile_avg_u_kbps).value} (mbps)
+          {internetSpeedFormatter(feature.properties.mobile_avg_u_kbps, 2).value} mbps
         </Typography>
       </Box>
       <Box className={classes.section}>
         <Typography variant='subtitle2'>Average Download</Typography>
         <Typography variant='subtitle2' className={classes.value}>
-          {internetSpeedFormatter(feature.properties.mobile_avg_d_kbps).value} (mbps)
+          {internetSpeedFormatter(feature.properties.mobile_avg_d_kbps, 2).value} mbps
         </Typography>
       </Box>
     </Box>

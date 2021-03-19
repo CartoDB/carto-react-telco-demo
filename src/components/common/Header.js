@@ -68,7 +68,7 @@ const NavigationMenu = (props) => {
         className={!vertical ? classes.navTabs : ''}
       >
         <Tabs
-          value={location.pathname.split('/')[1] || ''}
+          value={location.pathname.split('/')[1] || 'profiling'}
           textColor={vertical ? 'primary' : 'inherit'}
           orientation={vertical ? 'vertical' : 'horizontal'}
           variant={vertical ? 'fullWidth' : 'standard'}
