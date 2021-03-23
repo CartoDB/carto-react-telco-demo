@@ -1,6 +1,6 @@
 {
   "name": "carto-template-demand-planning",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@carto/react-api": "1.0.0",
