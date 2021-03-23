@@ -38,16 +38,26 @@ import experianLogo from 'assets/img/experian-logo.png';
 const useStyles = makeStyles((theme) => ({
   root: {
     ...theme.typography.caption,
-    padding: theme.spacing(1.5),
+    padding: theme.spacing(3),
     backgroundColor: theme.palette.common.white,
     '&:empty': {
       display: 'none',
+    },
+    [theme.breakpoints.only('sm')]: {
+      top: '6.5rem !important',
+      marginLeft: '2rem',
+    },
+    [theme.breakpoints.only('xs')]: {
+      top: '5rem',
+      marginLeft: 'none',
     },
   },
   tooltip: {
     margin: theme.spacing(1),
   },
-  title: {},
+  title: {
+    marginBottom: theme.spacing(1),
+  },
   label: {
     display: 'flex',
     justifyContent: 'space-between',

@@ -135,7 +135,7 @@ function Profiling() {
       <Typography variant='h5' gutterBottom className={classes.title}>
         Geographic Profiling
       </Typography>
-      {populationLayer ? (
+      {populationLayer && (
         <>
           <Divider />
           <FormulaWidget
@@ -146,7 +146,6 @@ function Profiling() {
             operation={AggregationTypes.SUM}
             onError={onWidgetError}
             formatter={numberFormatter}
-            viewportFilter
           />
           <Divider />
           <FormulaWidget
@@ -157,7 +156,6 @@ function Profiling() {
             operation={AggregationTypes.SUM}
             onError={onWidgetError}
             formatter={numberFormatter}
-            viewportFilter
           />
           <Divider />
           <HistogramWidget
@@ -169,12 +167,10 @@ function Profiling() {
             ticks={[0, 10, 100, 1000, 10000]}
             onError={onWidgetError}
             formatter={numberFormatter}
-            viewportFilter
           />
         </>
-      ) : null}
-
-      {cellTowersLayer ? (
+      )}
+      {cellTowersLayer && (
         <>
           <Divider />
           <CategoryWidget
@@ -185,7 +181,6 @@ function Profiling() {
             operation={AggregationTypes.COUNT}
             onError={onWidgetError}
             formatter={numberFormatter}
-            viewportFilter
           />
           <Divider />
           <CategoryWidget
@@ -196,11 +191,10 @@ function Profiling() {
             operation={AggregationTypes.COUNT}
             onError={onWidgetError}
             formatter={numberFormatter}
-            viewportFilter
           />
         </>
-      ) : null}
-      {internetSpeedsLayer ? (
+      )}
+      {internetSpeedsLayer && (
         <>
           <Divider />
           <HistogramWidget
@@ -213,7 +207,6 @@ function Profiling() {
             onError={onWidgetError}
             xAxisFormatter={internetSpeedFormatter}
             formatter={numberFormatter}
-            viewportFilter
           />
           <Divider />
           <HistogramWidget
@@ -226,7 +219,6 @@ function Profiling() {
             onError={onWidgetError}
             xAxisFormatter={internetSpeedFormatter}
             formatter={numberFormatter}
-            viewportFilter
           />
           <Divider />
           <HistogramWidget
@@ -239,7 +231,6 @@ function Profiling() {
             onError={onWidgetError}
             xAxisFormatter={internetSpeedFormatter}
             formatter={numberFormatter}
-            viewportFilter
           />
           <Divider />
           <HistogramWidget
@@ -252,11 +243,10 @@ function Profiling() {
             onError={onWidgetError}
             xAxisFormatter={internetSpeedFormatter}
             formatter={numberFormatter}
-            viewportFilter
           />
         </>
-      ) : null}
-      {marketCoverageLayer ? (
+      )}
+      {marketCoverageLayer && (
         <>
           <Divider />
           <FormulaWidget
@@ -267,7 +257,6 @@ function Profiling() {
             operation={AggregationTypes.AVG}
             onError={onWidgetError}
             formatter={percentageFormatter}
-            viewportFilter
           />
           <Divider />
           <HistogramWidget
@@ -278,7 +267,6 @@ function Profiling() {
             operation={AggregationTypes.COUNT}
             ticks={[0, 0.2, 0.4, 0.6]}
             onError={onWidgetError}
-            viewportFilter
             formatter={numberFormatter}
             xAxisFormatter={(v) => percentageFormatter(v, 0)}
           />
@@ -291,13 +279,12 @@ function Profiling() {
             operation={AggregationTypes.COUNT}
             ticks={[0, 0.2, 0.4, 0.6]}
             onError={onWidgetError}
-            viewportFilter
             formatter={numberFormatter}
             xAxisFormatter={(v) => percentageFormatter(v, 0)}
           />
         </>
-      ) : null}
-      {potentialRevenueLayer ? (
+      )}
+      {potentialRevenueLayer && (
         <>
           <Divider />
           <FormulaWidget
@@ -308,7 +295,6 @@ function Profiling() {
             operation={AggregationTypes.SUM}
             onError={onWidgetError}
             formatter={bahtFormatter}
-            viewportFilter
           />
           <Divider />
           <CategoryWidget
@@ -319,11 +305,10 @@ function Profiling() {
             operation={AggregationTypes.COUNT}
             onError={onWidgetError}
             formatter={numberFormatter}
-            viewportFilter
           />
         </>
-      ) : null}
-      {sociodemographicsLayer ? (
+      )}
+      {sociodemographicsLayer && (
         <>
           <Divider />
           <FormulaWidget
@@ -334,7 +319,6 @@ function Profiling() {
             operation={AggregationTypes.SUM}
             onError={onWidgetError}
             formatter={euroFormatter}
-            viewportFilter
           />
           <Divider />
           <PieWidget
@@ -345,7 +329,6 @@ function Profiling() {
             operation={AggregationTypes.COUNT}
             onError={onWidgetError}
             formatter={numberFormatter}
-            viewportFilter
           />
           <Divider />
           <HistogramWidget
@@ -356,7 +339,6 @@ function Profiling() {
             operation={AggregationTypes.COUNT}
             ticks={[3000, 4000, 5000, 6000, 7000]}
             onError={onWidgetError}
-            viewportFilter
             formatter={numberFormatter}
             xAxisFormatter={numberFormatter}
           />
@@ -369,12 +351,11 @@ function Profiling() {
             operation={AggregationTypes.COUNT}
             ticks={[220, 240, 260, 280, 300]}
             onError={onWidgetError}
-            viewportFilter
             formatter={numberFormatter}
             xAxisFormatter={numberFormatter}
           />
         </>
-      ) : null}
+      )}
     </Grid>
   );
 }
