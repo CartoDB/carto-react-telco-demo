@@ -81,8 +81,8 @@ export const bahtFormatter = (value) => {
     value:
       _value.operation +
       Intl.NumberFormat('en-US', {
-        maximumFractionDigits: 2,
-        minimumFractionDigits: 2,
+        maximumFractionDigits: 1,
+        minimumFractionDigits: 0,
         notation: 'compact',
         compactDisplay: 'short',
       }).format(_value.value),

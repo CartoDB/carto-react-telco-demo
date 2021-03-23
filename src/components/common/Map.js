@@ -97,11 +97,7 @@ export function Map(props) {
         getCursor={handleCursor}
         getTooltip={handleTooltip}
       >
-        <StaticMap
-          reuseMaps
-          mapStyle={basemap.options.mapStyle}
-          preventStyleDiffing
-        ></StaticMap>
+        <StaticMap reuseMaps mapStyle={basemap.options.mapStyle} preventStyleDiffing />
       </DeckGL>
     );
   } else if (basemap.type === 'gmaps') {
@@ -114,7 +110,7 @@ export function Map(props) {
         onViewStateChange={handleViewStateChange}
         onResize={handleSizeChange}
         getTooltip={handleTooltip}
-      ></GoogleMap>
+      />
     );
   } else {
     map = <div>Not a valid map provider</div>;
