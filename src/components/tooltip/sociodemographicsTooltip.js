@@ -36,7 +36,7 @@ const SociodemographicsTooltip = ({ feature }) => {
     <Box className={classes.root}>
       <Box className={classes.titleSection}>
         <Typography className={classes.value}>
-          EUR {euroTooltipFormatter(feature.properties.ave_wvce_08).value}
+          EUR {euroTooltipFormatter(feature.properties.avg_wvce_08_hh).value}
         </Typography>
         <Typography className={classes.subtitle} variant='subtitle2'>
           Average Spend on Communications
@@ -51,7 +51,7 @@ const SociodemographicsTooltip = ({ feature }) => {
         </Box>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            {feature.properties.wvseg2}
+            {feature.properties.wvseg}
           </Typography>
         </Box>
       </Box>
@@ -63,7 +63,19 @@ const SociodemographicsTooltip = ({ feature }) => {
         </Box>
         <Box>
           <Typography className={classes.breakdown} variant='subtitle2'>
-            EUR {numberFormatter(feature.properties.ave_di_mio)}
+            EUR {numberFormatter(feature.properties.avg_di_mio)}
+          </Typography>
+        </Box>
+      </Box>
+      <Box className={classes.breakdownSection}>
+        <Box>
+          <Typography className={classes.breakdown} variant='subtitle2'>
+            Total Consumer Spending
+          </Typography>
+        </Box>
+        <Box>
+          <Typography className={classes.breakdown} variant='subtitle2'>
+            EUR {numberFormatter(feature.properties.wvce_08)}
           </Typography>
         </Box>
       </Box>
