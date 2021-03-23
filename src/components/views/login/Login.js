@@ -49,8 +49,12 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 485,
     color: theme.palette.common.white,
   },
+  credentials: {
+    marginTop: theme.spacing(5),
+    color: theme.palette.common.white,
+  },
   login: {
-    marginTop: theme.spacing(9),
+    marginTop: theme.spacing(2),
   },
   contact: {
     marginTop: theme.spacing(2),
@@ -113,13 +117,26 @@ export default function Login() {
 
         <Grid item className={classes.title}>
           <Typography variant='h3' color='inherit'>
-            React Demo
+            Telco React Demo
           </Typography>
         </Grid>
 
         <Grid item className={classes.description}>
           <Typography variant='h5' color='inherit'>
-            Discover the power of developing with CARTO for React library
+            Developed by Thinking Machines with Experian data
+          </Typography>
+        </Grid>
+
+        <Grid item className={classes.credentials}>
+          <Typography variant='h6' color='inherit'>
+            Use these credentials for login:
+          </Typography>
+          <Typography variant='subtitle-1' color='inherit'>
+            User: developers-viewer
+          </Typography>
+          <br />
+          <Typography variant='subtitle-1' color='inherit'>
+            Password: viewer
           </Typography>
         </Grid>
 
