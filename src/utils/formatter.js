@@ -33,18 +33,18 @@ export const numberFormatter = (value) => {
   );
 };
 
-export const internetSpeedFormatter = (value) => {
+export const internetSpeedFormatter = (value, precision = 0) => {
   const _value = parseLogicalOperation(value);
   return {
     suffix: 'mbps',
     value:
       _value.operation +
       Intl.NumberFormat('en-US', {
-        maximumFractionDigits: 2,
-        minimumFractionDigits: 2,
+        maximumFractionDigits: precision,
+        minimumFractionDigits: precision,
         notation: 'compact',
         compactDisplay: 'short',
-      }).format(_value.value * 1000), // convert kbps to mbps
+      }).format(_value.value / 1000), // convert kbps to mbps
   };
 };
 
@@ -79,7 +79,7 @@ export const bahtFormatter = (value) => {
   return {
     prefix: 'THB',
     value:
-      _value.value +
+      _value.operation +
       Intl.NumberFormat('en-US', {
         maximumFractionDigits: 2,
         minimumFractionDigits: 2,
