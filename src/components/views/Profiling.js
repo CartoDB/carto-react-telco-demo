@@ -1,19 +1,20 @@
 import { useEffect } from 'react';
-import sociodemographicsSource from 'data/sources/sociodemographicsSource';
 
+import sociodemographicsSource from 'data/sources/sociodemographicsSource';
 import { SOCIODEMOGRAPHICS_LAYER_ID } from 'components/layers/SociodemographicsLayer';
 
 import potentialRevenueSource from 'data/sources/potentialRevenueSource';
-
 import { POTENTIAL_REVENUE_LAYER_ID } from 'components/layers/PotentialRevenueLayer';
 
 import marketCoverageSource from 'data/sources/marketCoverageSource';
-
 import { MARKET_COVERAGE_LAYER_ID } from 'components/layers/MarketCoverageLayer';
+
 import populationSource from 'data/sources/populationSource';
 import { POPULATION_LAYER_ID } from 'components/layers/PopulationLayer';
+
 import internetSpeedsSource from 'data/sources/internetSpeedsSource';
 import { INTERNET_SPEEDS_LAYER_ID } from 'components/layers/InternetSpeedsLayer';
+
 import cellTowersSource from 'data/sources/cellTowersSource';
 import { OPEN_CELL_ID_LAYER_ID } from 'components/layers/CellTowersLayer';
 
@@ -43,12 +44,14 @@ import {
   PieWidget,
 } from '@carto/react-widgets';
 import { AggregationTypes } from '@carto/react-core';
+
 const useStyles = makeStyles((theme) => ({
   root: {},
   title: {
     padding: theme.spacing(3, 3, 1.5),
   },
 }));
+
 function Profiling() {
   const dispatch = useDispatch();
   const credentials = useSelector(selectOAuthCredentials);
@@ -65,13 +68,6 @@ function Profiling() {
     const source = { ...cellTowersSource, credentials };
     dispatch(addSource(source));
 
-    // dispatch(
-    //   addLayer({
-    //     id: OPEN_CELL_ID_LAYER_ID,
-    //     source: cellTowersSource.id,
-    //   })
-    // );
-
     return function cleanup() {
       dispatch(removeLayer(OPEN_CELL_ID_LAYER_ID));
       dispatch(removeSource(cellTowersSource.id));
@@ -81,18 +77,12 @@ function Profiling() {
   useEffect(() => {
     dispatch(addSource(internetSpeedsSource));
 
-    // dispatch(
-    //   addLayer({
-    //     id: INTERNET_SPEEDS_LAYER_ID,
-    //     source: internetSpeedsSource.id,
-    //   })
-    // );
-
     return function cleanup() {
       dispatch(removeLayer(INTERNET_SPEEDS_LAYER_ID));
       dispatch(removeSource(internetSpeedsSource.id));
     };
   }, [dispatch]);
+
   useEffect(() => {
     dispatch(addSource(populationSource));
     dispatch(
@@ -111,13 +101,6 @@ function Profiling() {
   useEffect(() => {
     dispatch(addSource(marketCoverageSource));
 
-    // dispatch(
-    //   addLayer({
-    //     id: MARKET_COVERAGE_LAYER_ID,
-    //     source: marketCoverageSource.id,
-    //   })
-    // );
-
     return function cleanup() {
       dispatch(removeLayer(MARKET_COVERAGE_LAYER_ID));
       dispatch(removeSource(marketCoverageSource.id));
@@ -127,13 +110,6 @@ function Profiling() {
   useEffect(() => {
     dispatch(addSource(potentialRevenueSource));
 
-    // dispatch(
-    //   addLayer({
-    //     id: POTENTIAL_REVENUE_LAYER_ID,
-    //     source: potentialRevenueSource.id,
-    //   })
-    // );
-
     return function cleanup() {
       dispatch(removeLayer(POTENTIAL_REVENUE_LAYER_ID));
       dispatch(removeSource(potentialRevenueSource.id));
@@ -141,26 +117,18 @@ function Profiling() {
   }, [dispatch]);
 
   useEffect(() => {
-    const source = { ...sociodemographicsSource, credentials };
-    dispatch(addSource(source));
-
-    // dispatch(
-    //   addLayer({
-    //     id: SOCIODEMOGRAPHICS_LAYER_ID,
-    //     source: sociodemographicsSource.id,
-    //   })
-    // );
+    dispatch(addSource(sociodemographicsSource));
 
     return function cleanup() {
       dispatch(removeLayer(SOCIODEMOGRAPHICS_LAYER_ID));
       dispatch(removeSource(sociodemographicsSource.id));
     };
-  }, [dispatch, credentials]);
+  }, [dispatch]);
 
-  // Auto import useEffect
-  const onTotalPopulationWidgetError = (error) => {
-    dispatch(setError(`Error obtaining total population: ${error.message}`));
+  const onWidgetError = (error) => {
+    dispatch(setError(`Error in widget: ${error.message}`));
   };
+
   const classes = useStyles();
   return (
     <Grid container direction='column' className={classes.root}>
@@ -176,7 +144,7 @@ function Profiling() {
             dataSource={populationSource.id}
             column='total_population'
             operation={AggregationTypes.SUM}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             formatter={numberFormatter}
             viewportFilter
           />
@@ -187,7 +155,7 @@ function Profiling() {
             dataSource={populationSource.id}
             column='companyA_population'
             operation={AggregationTypes.SUM}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             formatter={numberFormatter}
             viewportFilter
           />
@@ -199,7 +167,7 @@ function Profiling() {
             column='total_population'
             operation={AggregationTypes.COUNT}
             ticks={[0, 10, 100, 1000, 10000]}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             formatter={numberFormatter}
             viewportFilter
           />
@@ -215,7 +183,7 @@ function Profiling() {
             dataSource={cellTowersSource.id}
             column='network_operator'
             operation={AggregationTypes.COUNT}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             formatter={numberFormatter}
             viewportFilter
           />
@@ -226,7 +194,7 @@ function Profiling() {
             dataSource={cellTowersSource.id}
             column='radio'
             operation={AggregationTypes.COUNT}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             formatter={numberFormatter}
             viewportFilter
           />
@@ -242,7 +210,7 @@ function Profiling() {
             column='fixed_avg_d_kbps'
             operation={AggregationTypes.COUNT}
             ticks={[0, 90000, 180000, 270000, 360000]}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             xAxisFormatter={internetSpeedFormatter}
             formatter={numberFormatter}
             viewportFilter
@@ -255,7 +223,7 @@ function Profiling() {
             column='fixed_avg_u_kbps'
             operation={AggregationTypes.COUNT}
             ticks={[0, 90000, 180000, 270000, 360000]}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             xAxisFormatter={internetSpeedFormatter}
             formatter={numberFormatter}
             viewportFilter
@@ -268,7 +236,7 @@ function Profiling() {
             column='mobile_avg_d_kbps'
             operation={AggregationTypes.COUNT}
             ticks={[0, 20000, 40000, 60000, 80000]}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             xAxisFormatter={internetSpeedFormatter}
             formatter={numberFormatter}
             viewportFilter
@@ -281,7 +249,7 @@ function Profiling() {
             column='mobile_avg_u_kbps'
             operation={AggregationTypes.COUNT}
             ticks={[0, 20000, 40000, 60000, 80000]}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             xAxisFormatter={internetSpeedFormatter}
             formatter={numberFormatter}
             viewportFilter
@@ -297,7 +265,7 @@ function Profiling() {
             dataSource={marketCoverageSource.id}
             column='market_share'
             operation={AggregationTypes.AVG}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             formatter={percentageFormatter}
             viewportFilter
           />
@@ -309,7 +277,7 @@ function Profiling() {
             column='market_share'
             operation={AggregationTypes.COUNT}
             ticks={[0, 0.2, 0.4, 0.6]}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             viewportFilter
             formatter={numberFormatter}
             xAxisFormatter={(v) => percentageFormatter(v, 0)}
@@ -322,7 +290,7 @@ function Profiling() {
             column='competitor_market_share'
             operation={AggregationTypes.COUNT}
             ticks={[0, 0.2, 0.4, 0.6]}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             viewportFilter
             formatter={numberFormatter}
             xAxisFormatter={(v) => percentageFormatter(v, 0)}
@@ -338,7 +306,7 @@ function Profiling() {
             dataSource={potentialRevenueSource.id}
             column='potential_revenue'
             operation={AggregationTypes.SUM}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             formatter={bahtFormatter}
             viewportFilter
           />
@@ -349,7 +317,7 @@ function Profiling() {
             dataSource={potentialRevenueSource.id}
             column='tier'
             operation={AggregationTypes.COUNT}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             formatter={numberFormatter}
             viewportFilter
           />
@@ -364,18 +332,18 @@ function Profiling() {
             dataSource={sociodemographicsSource.id}
             column='wvce_08'
             operation={AggregationTypes.SUM}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             formatter={euroFormatter}
             viewportFilter
           />
           <Divider />
           <PieWidget
-            id='commonSegment'
+            id='consumerSegment'
             title='Consumer Segment Breakdown'
             dataSource={sociodemographicsSource.id}
-            column='wvseg2'
+            column='wvseg'
             operation={AggregationTypes.COUNT}
-            onError={onTotalPopulationWidgetError}
+            onError={onWidgetError}
             formatter={numberFormatter}
             viewportFilter
           />
@@ -384,10 +352,10 @@ function Profiling() {
             id='totalPurchasingPower'
             title='Average Purchasing Power'
             dataSource={sociodemographicsSource.id}
-            column='ave_di_mio'
+            column='avg_di_mio'
             operation={AggregationTypes.COUNT}
-            ticks={[0, 1500, 3000, 4500, 6000]}
-            onError={onTotalPopulationWidgetError}
+            ticks={[3000, 4000, 5000, 6000, 7000]}
+            onError={onWidgetError}
             viewportFilter
             formatter={numberFormatter}
             xAxisFormatter={numberFormatter}
@@ -397,10 +365,10 @@ function Profiling() {
             id='consumerExpenditureCommunication'
             title='Average Spend on Communications '
             dataSource={sociodemographicsSource.id}
-            column='ave_wvce_08'
+            column='avg_wvce_08_hh'
             operation={AggregationTypes.COUNT}
-            ticks={[0, 40, 80, 120, 160, 200]}
-            onError={onTotalPopulationWidgetError}
+            ticks={[220, 240, 260, 280, 300]}
+            onError={onWidgetError}
             viewportFilter
             formatter={numberFormatter}
             xAxisFormatter={numberFormatter}
