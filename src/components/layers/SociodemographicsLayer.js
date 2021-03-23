@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { CartoSQLLayer } from '@deck.gl/carto';
-import { selectSourceById, selectOAuthCredentials } from '@carto/react-redux';
+import { CartoBQTilerLayer } from '@deck.gl/carto';
+import { selectSourceById } from '@carto/react-redux';
 import { useCartoLayerProps } from '@carto/react-api';
 import renderSociodemographicsTooltip from 'components/tooltip/sociodemographicsTooltip';
 
@@ -13,31 +13,29 @@ export const COLORS = [
   [209, 175, 232, 128], // #d1afe8
   [243, 224, 247, 128], //#f3e0f7,
 ];
-export const LABELS = ['>200', '160-200', '120-160', '80-120', '40-80', '>40'];
+export const LABELS = ['>300', '280-300', '260-280', '240-260', '220-240', '<220'];
 export default function SociodemographicsLayer() {
   const { sociodemographicsLayer } = useSelector((state) => state.carto.layers);
   const source = useSelector((state) =>
     selectSourceById(state, sociodemographicsLayer?.source)
   );
   const cartoFilterProps = useCartoLayerProps(source);
-  const credentials = useSelector(selectOAuthCredentials);
 
   if (sociodemographicsLayer && source) {
-    return new CartoSQLLayer({
+    return new CartoBQTilerLayer({
       ...cartoFilterProps,
       id: SOCIODEMOGRAPHICS_LAYER_ID,
       data: source.data,
-      credentials,
       getFillColor: (object) => {
-        if (object.properties.ave_wvce_08 > 200) {
+        if (object.properties.avg_wvce_08_hh > 300) {
           return COLORS[0];
-        } else if (object.properties.ave_wvce_08 > 160) {
+        } else if (object.properties.avg_wvce_08_hh > 280) {
           return COLORS[1];
-        } else if (object.properties.ave_wvce_08 > 120) {
+        } else if (object.properties.avg_wvce_08_hh > 260) {
           return COLORS[2];
-        } else if (object.properties.ave_wvce_08 > 80) {
+        } else if (object.properties.avg_wvce_08_hh > 240) {
           return COLORS[3];
-        } else if (object.properties.ave_wvce_08 > 40) {
+        } else if (object.properties.avg_wvce_08_hh > 220) {
           return COLORS[4];
         } else {
           return COLORS[5];
