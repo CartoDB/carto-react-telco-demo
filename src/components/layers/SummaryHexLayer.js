@@ -61,6 +61,7 @@ export default function SummaryHexLayer() {
       ...cartoFilterProps,
       id: SUMMARY_HEX_LAYER_ID,
       data: source.data,
+      opacity: 0.6,
       pointRadiusMinPixels: 2,
       pickable: true,
       getFillColor: getFillColor,
