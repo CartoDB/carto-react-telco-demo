@@ -9,7 +9,7 @@ export const initialState = {
     bearing: 0,
     dragRotate: false,
   },
-  basemap: VOYAGER, // Gmaps is buggy and i dont like it
+  basemap: VOYAGER,
   credentials: {
     username: 'public',
     apiKey: 'default_public',
@@ -24,7 +24,6 @@ export const oauthInitialState = {
     scopes: [
       'user:profile', // to load avatar photo
       'dataservices:geocoding', // to use geocoding through Data Services API
-      'dataservices:isolines', // to launch isochrones or isodistances through Data Services API
       'datasets:r:developers-admin.bangkok_opencellid_2019',
     ],
     authorizeEndPoint: 'https://carto.com/oauth2/authorize', // only valid if keeping https://localhost:3000/oauthCallback
